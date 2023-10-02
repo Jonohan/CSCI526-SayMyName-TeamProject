@@ -42,20 +42,13 @@ public class CharController : MonoBehaviour
     {
         GatherMovingInput();
         Look();
-
+        
         if (Input.GetMouseButtonDown(1))
         {
             // // Check if the skill is off cooldown
             // if (Time.time - lastSkillUseTime >= PossessionSkillCooldown)
             // {
             //     ShootPossessionBullet();
-            //     Debug.Log("Possession bullet is not ready");
-            //     logText.text = "Possession bullet is not ready yet.";
-            // }
-            //     
-            // else
-            // {
-            //     // Notify the player that the skill is still on cooldown
             //     Debug.Log("Possession bullet is not ready");
             //     logText.text = "Possession bullet is not ready yet.";
             // }
@@ -113,16 +106,6 @@ public class CharController : MonoBehaviour
         // Reset skill CD.
         lastSkillUseTime = Time.time;
     }
-
-    // private void RegisterInitialPlayerControllable(object info)
-    // {
-    //     Debug.Log(("Registerinitialplayer called in CharController"));
-    //     PossessionManager pm = info as PossessionManager;
-    //     if (pm != null)
-    //         pm.RegisterCurrentPlayerControllable(this.gameObject);
-    //     else
-    //         Debug.Log("CharController: Failed to register new player controller to Possession Manager.");
-    // }
 
     private void DebugFunc(object info)
     {
