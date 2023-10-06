@@ -6,16 +6,18 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class CharController : MonoBehaviour
-{
+{   
+    [Header("Main Camera")]
+    [SerializeField] private Camera mainCamera;
+    
     [Header("Character General Properties")]
     [SerializeField] private Rigidbody rb;
-    [SerializeField] private int health = 10;
     [SerializeField] private bool isPuddle = false;
     
     [Header("Character Movement Parameters")]
     [SerializeField] private float moveSpeed = 5.0f;
     [SerializeField] private float turnSpeed = 720;
-    
+   
     [Header("Skills Parameters - Possession Bullet")]
     public float PossessionSkillCooldown = 5.0f;
     private float lastSkillUseTime = -5.0f;
@@ -24,9 +26,16 @@ public class CharController : MonoBehaviour
     [Header("User Input")]
     [SerializeField] private Vector3 input = Vector3.zero;
 
-    [Header("LogText (need to move to UIManager later)")]
+    [Header("LogText (need to move to UIManager later?)")]
     public GameObject LogTextContainer;
     private Text logText;
+
+    [Header("Debug: Mouse Aiming")]
+    [SerializeField]private Vector3 mouseRealWorldPos;
+    [SerializeField]private Vector3 mouseIsoWorldPos;
+    [SerializeField]private bool isAiming = false;
+    
+    
     
     private void Start()
     {
@@ -36,23 +45,43 @@ public class CharController : MonoBehaviour
         logText = LogTextContainer.GetComponent<Text>();
         logText.text = "Possession bullet is ready";
         
+        //Get main camera
+        mainCamera = Camera.main;
     }
 
     void Update()
     {
         GatherMovingInput();
+        
+        // Check if the skill is off cooldown
+        if (Time.time - lastSkillUseTime >= PossessionSkillCooldown)
+        {
+            logText.text = "Press RMB to shoot possession bullet.";
+        }
+        else // not ready yet
+        {
+            logText.text = "Possession bullet is not ready yet.";
+        }
+
+        if (Input.GetMouseButtonDown(1))
+            isAiming = true;
+        
+        if (isAiming)
+            GatherMouseLookingInput();
+        
         Look();
         
-        if (Input.GetMouseButtonDown(1))
-        {
-            // // Check if the skill is off cooldown
-            // if (Time.time - lastSkillUseTime >= PossessionSkillCooldown)
-            // {
-            //     ShootPossessionBullet();
-            //     Debug.Log("Possession bullet is not ready");
-            //     logText.text = "Possession bullet is not ready yet.";
-            // }
-            ShootPossessionBullet();
+        if (Input.GetMouseButtonUp(1))
+        { 
+            // Check if the skill is off cooldown
+            if (Time.time - lastSkillUseTime >= PossessionSkillCooldown)
+            {
+                ShootPossessionBullet();
+                Debug.Log("Possession bullet is not ready");
+                logText.text = "Possession bullet is not ready yet.";
+            }
+
+            isAiming = false;
         }
     }
 
@@ -65,24 +94,50 @@ public class CharController : MonoBehaviour
     {
         input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")); // comparing to GetAxis this one does not have a smoothing in or out, resulting in no 'inertia'.
     }
+
+    
+    void GatherMouseLookingInput()
+    {
+        mouseRealWorldPos = ScreenToWorld(Input.mousePosition);
+        mouseIsoWorldPos = mouseRealWorldPos.IsoToWorld();
+    }
+    
+    Vector3 ScreenToWorld(Vector3 screenPos)
+    {
+        // Convert screen position to a ray
+        Ray ray = mainCamera.ScreenPointToRay(screenPos);
+
+        // Cast ray to game plane (however you define it, e.g., z = 0)
+        if (Physics.Raycast(ray, out RaycastHit hit))
+        {
+            return hit.point;
+        }
+        // Handle cases where the raycast might not hit anything.
+        return Vector3.zero;
+    }
     
     void Look()
     {
-        if (input != Vector3.zero)
+        Vector3 relativeDiff = Vector3.zero;
+        
+        if (isAiming)
         {
-            // Rotate input because of isometric view
-            var matrix = Matrix4x4.Rotate(Quaternion.Euler(0, 45, 0));
-            Vector3 skewedInput = matrix.MultiplyPoint3x4(input);
+            // will disregard keyboard input vector
+            relativeDiff = mouseIsoWorldPos - transform.position;
+            relativeDiff.y = 0;
+            var rotation = Quaternion.LookRotation(relativeDiff, Vector3.up);
+            transform.rotation = rotation;
+        }
+        
+        else if (input != Vector3.zero)
+        {
+            // Rotate input because of isometric view (see helper IsoHelper.cs).
+            Vector3 isoInput = input.ToIsoView();
             
             // relative difference between char's current position and the direction where it wants to go 
-            Vector3 relativeDiff = (transform.position + skewedInput) - transform.position;
+            relativeDiff = ( (transform.position + isoInput) - transform.position);
             var rotation = Quaternion.LookRotation(relativeDiff, Vector3.up);
-
-            // Lerp the rotation for a smoother turn
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, turnSpeed * Time.deltaTime);
-            
-            // // harder turn
-            // transform.rotation = rotation;
+            transform.rotation = rotation;
         }
     }
 
