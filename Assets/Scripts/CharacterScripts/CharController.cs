@@ -34,6 +34,18 @@ public class CharController : MonoBehaviour
     [SerializeField]private Vector3 mouseRealWorldPos;
     [SerializeField]private Vector3 mouseIsoWorldPos;
     [SerializeField]private bool isAiming = false;
+
+    public GameObject myBag;
+    bool isOpen;
+
+    void OpenMyBag()
+    {
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            isOpen = !isOpen;
+            myBag.SetActive(isOpen);
+        }
+    }
     
     
     
@@ -52,7 +64,8 @@ public class CharController : MonoBehaviour
     void Update()
     {
         GatherMovingInput();
-        
+        OpenMyBag();
+
         // Check if the skill is off cooldown
         if (Time.time - lastSkillUseTime >= PossessionSkillCooldown)
         {
