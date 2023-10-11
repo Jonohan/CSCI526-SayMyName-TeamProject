@@ -32,9 +32,11 @@ public class CharController : MonoBehaviour
 
     [Header("Debug: Mouse Aiming")]
     [SerializeField]private Vector3 mouseRealWorldPos;
-    [SerializeField]private Vector3 mouseIsoWorldPos;
     [SerializeField]private bool isAiming = false;
-
+    public GameObject mousePointer;
+    [SerializeField] private Quaternion rot;
+    
+    [Header("Inventory System")]
     public GameObject myBag;
     bool isOpen;
 
@@ -90,56 +92,58 @@ public class CharController : MonoBehaviour
             if (Time.time - lastSkillUseTime >= PossessionSkillCooldown)
             {
                 ShootPossessionBullet();
-                Debug.Log("Possession bullet is not ready");
                 logText.text = "Possession bullet is not ready yet.";
             }
 
             isAiming = false;
         }
     }
-
+    
     private void FixedUpdate()
     {
-        Move();
+        if(!isAiming)
+            Move();
     }
-
+    
+    /// <summary>
+    /// Gathers keyboard (WASD) input from the user. Called once per frame.
+    /// </summary>
     void GatherMovingInput()
     {
         input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")); // comparing to GetAxis this one does not have a smoothing in or out, resulting in no 'inertia'.
     }
 
-    
+    /// <summary>
+    /// Gather mouse position input from the user for aiming. Called once per frame ONLY IF isAiming == true.
+    /// </summary>
     void GatherMouseLookingInput()
     {
-        mouseRealWorldPos = ScreenToWorld(Input.mousePosition);
-        mouseIsoWorldPos = mouseRealWorldPos.IsoToWorld();
-    }
-    
-    Vector3 ScreenToWorld(Vector3 screenPos)
-    {
         // Convert screen position to a ray
-        Ray ray = mainCamera.ScreenPointToRay(screenPos);
+        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
 
         // Cast ray to game plane (however you define it, e.g., z = 0)
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
-            return hit.point;
+            mouseRealWorldPos = hit.point;
         }
         // Handle cases where the raycast might not hit anything.
-        return Vector3.zero;
+        mouseRealWorldPos = transform.forward;
     }
     
+    /// <summary>
+    /// Rotate the player game object, according to either 1) keyboard input, or 2) aiming mouse input
+    /// </summary>
     void Look()
     {
         Vector3 relativeDiff = Vector3.zero;
         
         if (isAiming)
         {
-            // will disregard keyboard input vector
-            relativeDiff = mouseIsoWorldPos - transform.position;
-            relativeDiff.y = 0;
-            var rotation = Quaternion.LookRotation(relativeDiff, Vector3.up);
-            transform.rotation = rotation;
+           relativeDiff = mousePointer.transform.position - transform.position;
+           relativeDiff.y = 0;
+           var rotation = Quaternion.LookRotation(relativeDiff);
+           transform.rotation = rotation;
+           StartCoroutine(ResetAngularVelocity());
         }
         
         else if (input != Vector3.zero)
@@ -153,7 +157,10 @@ public class CharController : MonoBehaviour
             transform.rotation = rotation;
         }
     }
-
+    
+    /// <summary>
+    /// Move the player game object towards the direction it wants to go. Called once per FixedUpdate() ONLY IF !isAiming. 
+    /// </summary>
     void Move()
     {
         rb.MovePosition(transform.position + ( transform.forward * input.magnitude ) * moveSpeed * Time.deltaTime);
@@ -170,14 +177,21 @@ public class CharController : MonoBehaviour
         GameObject bullet = ObjPoolManager.GetInstance().GetObj("Prefabs/PossessionBullet");
         // Call initialization method in PossessionBullet script. It will handle everything from here.
         PossessionBullet pb = bullet.GetComponent<PossessionBullet>();
-        pb.InitializePossessionBullet(this.gameObject, this.transform.forward, this.bulletSpeed);
+        pb.InitializePossessionBullet(this.gameObject, transform.forward, this.bulletSpeed);
         // Reset skill CD.
         lastSkillUseTime = Time.time;
     }
 
-    private void DebugFunc(object info)
+    /// <summary>
+    /// Reset the player gameo bject's angular velocity exactly 1 FixedUpdate after its rotation happens.
+    /// Trying to reduce the inertia like behavior.
+    /// Not sure this is needed or not?
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator ResetAngularVelocity()
     {
-        Debug.Log("this function is invoked by triggering event DebugE");
+        yield return new WaitForFixedUpdate();
+        rb.angularVelocity = Vector3.zero;
     }
-
+    
 }

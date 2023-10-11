@@ -8,7 +8,7 @@ public class PossessionBullet : MonoBehaviour
 {     
     // Attach this script to bullets
     [Header("General Bullet Properties")]
-    public float lifeCycle = 5.0f; // will be recycled in 5 seconds after instantiated
+    public float lifeCycle = 10.0f; // will be recycled in 5 seconds after instantiated
     public float atk = 0.0f;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private bool isBulletReady = false;
@@ -24,17 +24,20 @@ public class PossessionBullet : MonoBehaviour
 
     private void OnEnable()
     {
-        //Debug.Log("OnEnable is called.");
         rb = this.GetComponent<Rigidbody>();
         Invoke( "RecycleObj", lifeCycle);
     }
-
+    
     private void FixedUpdate()
     {
         if (!isBulletReady) return;
         rb.MovePosition(transform.position + moveDir * bulletSpeed * Time.deltaTime);
     }
-
+    
+    
+    /// <summary>
+    /// Recycle bullet into objectpool for later use.
+    /// </summary>
     void RecycleObj()
     {
         shooter = null;
@@ -42,26 +45,31 @@ public class PossessionBullet : MonoBehaviour
         isBulletReady = false;
         rb.velocity = Vector3.zero;
         ObjPoolManager.GetInstance().PushObj(this.gameObject.name, this.gameObject);
-        //Debug.Log("Object is recycled.");
     }
 
+    /// <summary>
+    /// Process main logic happens after bullet hitting anything.
+    /// Hitting enemy will initiate the possession event.
+    /// Hitting anything except a transparent wall causes the bullet to disappear afterwards. 
+    /// </summary>
+    /// <param name="other">The object that the bullet collides with.</param>
     private void OnCollisionEnter(Collision other)
     {
         // enter the sequence only if the enemy hit is an enemy.
         //TODO: Integrate with enemy scripts to see if this enemy is dead.
         if  ( other.collider.CompareTag("Enemy") )
         {
+            Debug.Log("Hit enemy");
             possessionPair.Add(shooter);
             possessionPair.Add(other.gameObject);
             EventCenter.GetInstance().TriggerEvent("PossessionSequence", possessionPair );
         }
+        
+        // After collision, recycle this object immediately, except colliding with a transparent wall
+        if (!other.collider.CompareTag("TransparentWall"))
+            RecycleObj();
     }
 
-    public void SetShooter(GameObject obj)
-    {
-        this.shooter = obj;
-    }
-    
     /// <summary>
     /// Assign shooter, fly speed and shooting direction when a bullet is initialized in the CharController script. Also resets its position and velocity before enables FixedUpdate().
     /// </summary>
