@@ -1,0 +1,808 @@
+From ccab25ac7172378aa25d953ff15ce225097867a7 Mon Sep 17 00:00:00 2001
+From: Mian Xiong <mianxion@usc.edu>
+Date: Wed, 11 Oct 2023 14:25:51 -0700
+Subject: [PATCH] patrolenemy Patch
+
+---
+ .../Materials/M_PatrolEnemyMetallic.mat       |  83 +++++
+ .../Materials/M_PatrolEnemyMetallic.mat.meta  |   8 +
+ Assets/Resources/Materials/Square.png         | Bin 0 -> 296 bytes
+ Assets/Resources/Materials/Square.png.meta    | 140 +++++++
+ Assets/Scenes/Level1.unity                    | 350 +++++++++++++++++-
+ .../EnemyScripts/PatrolEnemyController.cs     |  77 ++++
+ .../PatrolEnemyController.cs.meta             |  11 +
+ Packages/manifest.json                        |   1 +
+ Packages/packages-lock.json                   |   6 +
+ 9 files changed, 675 insertions(+), 1 deletion(-)
+ create mode 100644 Assets/Resources/Materials/M_PatrolEnemyMetallic.mat
+ create mode 100644 Assets/Resources/Materials/M_PatrolEnemyMetallic.mat.meta
+ create mode 100644 Assets/Resources/Materials/Square.png
+ create mode 100644 Assets/Resources/Materials/Square.png.meta
+ create mode 100644 Assets/Scripts/EnemyScripts/PatrolEnemyController.cs
+ create mode 100644 Assets/Scripts/EnemyScripts/PatrolEnemyController.cs.meta
+
+diff --git a/Assets/Resources/Materials/M_PatrolEnemyMetallic.mat b/Assets/Resources/Materials/M_PatrolEnemyMetallic.mat
+new file mode 100644
+index 0000000..f82963e
+--- /dev/null
++++ b/Assets/Resources/Materials/M_PatrolEnemyMetallic.mat
+@@ -0,0 +1,83 @@
++%YAML 1.1
++%TAG !u! tag:unity3d.com,2011:
++--- !u!21 &2100000
++Material:
++  serializedVersion: 8
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_Name: M_PatrolEnemyMetallic
++  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
++  m_Parent: {fileID: 0}
++  m_ModifiedSerializedProperties: 0
++  m_ValidKeywords: []
++  m_InvalidKeywords: []
++  m_LightmapFlags: 4
++  m_EnableInstancingVariants: 0
++  m_DoubleSidedGI: 0
++  m_CustomRenderQueue: -1
++  stringTagMap: {}
++  disabledShaderPasses: []
++  m_LockedProperties: 
++  m_SavedProperties:
++    serializedVersion: 3
++    m_TexEnvs:
++    - _BumpMap:
++        m_Texture: {fileID: 0}
++        m_Scale: {x: 1, y: 1}
++        m_Offset: {x: 0, y: 0}
++    - _DetailAlbedoMap:
++        m_Texture: {fileID: 0}
++        m_Scale: {x: 1, y: 1}
++        m_Offset: {x: 0, y: 0}
++    - _DetailMask:
++        m_Texture: {fileID: 0}
++        m_Scale: {x: 1, y: 1}
++        m_Offset: {x: 0, y: 0}
++    - _DetailNormalMap:
++        m_Texture: {fileID: 0}
++        m_Scale: {x: 1, y: 1}
++        m_Offset: {x: 0, y: 0}
++    - _EmissionMap:
++        m_Texture: {fileID: 0}
++        m_Scale: {x: 1, y: 1}
++        m_Offset: {x: 0, y: 0}
++    - _MainTex:
++        m_Texture: {fileID: 0}
++        m_Scale: {x: 1, y: 1}
++        m_Offset: {x: 0, y: 0}
++    - _MetallicGlossMap:
++        m_Texture: {fileID: 0}
++        m_Scale: {x: 1, y: 1}
++        m_Offset: {x: 0, y: 0}
++    - _OcclusionMap:
++        m_Texture: {fileID: 0}
++        m_Scale: {x: 1, y: 1}
++        m_Offset: {x: 0, y: 0}
++    - _ParallaxMap:
++        m_Texture: {fileID: 0}
++        m_Scale: {x: 1, y: 1}
++        m_Offset: {x: 0, y: 0}
++    m_Ints: []
++    m_Floats:
++    - _BumpScale: 1
++    - _Cutoff: 0.5
++    - _DetailNormalMapScale: 1
++    - _DstBlend: 0
++    - _GlossMapScale: 1
++    - _Glossiness: 0.5
++    - _GlossyReflections: 1
++    - _Metallic: 1
++    - _Mode: 0
++    - _OcclusionStrength: 1
++    - _Parallax: 0.02
++    - _SmoothnessTextureChannel: 0
++    - _SpecularHighlights: 1
++    - _SrcBlend: 1
++    - _UVSec: 0
++    - _ZWrite: 1
++    m_Colors:
++    - _Color: {r: 0.31430155, g: 0.9245283, b: 0.30003557, a: 1}
++    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
++  m_BuildTextureStacks: []
+diff --git a/Assets/Resources/Materials/M_PatrolEnemyMetallic.mat.meta b/Assets/Resources/Materials/M_PatrolEnemyMetallic.mat.meta
+new file mode 100644
+index 0000000..2a5ae4c
+--- /dev/null
++++ b/Assets/Resources/Materials/M_PatrolEnemyMetallic.mat.meta
+@@ -0,0 +1,8 @@
++fileFormatVersion: 2
++guid: 650efa6631fc5fb449d276dc8a72c69a
++NativeFormatImporter:
++  externalObjects: {}
++  mainObjectFileID: 2100000
++  userData: 
++  assetBundleName: 
++  assetBundleVariant: 
+diff --git a/Assets/Resources/Materials/Square.png b/Assets/Resources/Materials/Square.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..9493ce22cacf3d19f5880b972f746b54f289ffb5
+GIT binary patch
+literal 296
+zcmeAS@N?(olHy`uVBq!ia0vp^|A5$<gAGVVZ#EADQjEnx?oJHr&dIz4a#+$GeH|GX
+zHuiJ>Nn{1`ISV`@iy0V%N<f(LUYdLbP;jrOi(^Pd+}q2Bj0^@mEDL{?{|VN5A~E5>
+t?J|e%9|9_NES>z0kDMnALgte<cKd2|CkWdYeFA!f!PC{xWt~$(69BbxV5R^7
+
+literal 0
+HcmV?d00001
+
+diff --git a/Assets/Resources/Materials/Square.png.meta b/Assets/Resources/Materials/Square.png.meta
+new file mode 100644
+index 0000000..2760211
+--- /dev/null
++++ b/Assets/Resources/Materials/Square.png.meta
+@@ -0,0 +1,140 @@
++fileFormatVersion: 2
++guid: 02c701e09a0164448aa23cc905e59cd6
++TextureImporter:
++  internalIDToNameTable: []
++  externalObjects: {}
++  serializedVersion: 12
++  mipmaps:
++    mipMapMode: 0
++    enableMipMap: 0
++    sRGBTexture: 1
++    linearTexture: 0
++    fadeOut: 0
++    borderMipMap: 0
++    mipMapsPreserveCoverage: 0
++    alphaTestReferenceValue: 0.5
++    mipMapFadeDistanceStart: 1
++    mipMapFadeDistanceEnd: 3
++  bumpmap:
++    convertToNormalMap: 0
++    externalNormalMap: 0
++    heightScale: 0.25
++    normalMapFilter: 0
++    flipGreenChannel: 0
++  isReadable: 0
++  streamingMipmaps: 0
++  streamingMipmapsPriority: 0
++  vTOnly: 0
++  ignoreMipmapLimit: 0
++  grayScaleToAlpha: 0
++  generateCubemap: 6
++  cubemapConvolution: 0
++  seamlessCubemap: 0
++  textureFormat: 1
++  maxTextureSize: 2048
++  textureSettings:
++    serializedVersion: 2
++    filterMode: 1
++    aniso: 1
++    mipBias: 0
++    wrapU: 1
++    wrapV: 1
++    wrapW: 0
++  nPOTScale: 0
++  lightmap: 0
++  compressionQuality: 50
++  spriteMode: 1
++  spriteExtrude: 1
++  spriteMeshType: 1
++  alignment: 0
++  spritePivot: {x: 0.5, y: 0.5}
++  spritePixelsToUnits: 100
++  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
++  spriteGenerateFallbackPhysicsShape: 1
++  alphaUsage: 1
++  alphaIsTransparency: 1
++  spriteTessellationDetail: -1
++  textureType: 8
++  textureShape: 1
++  singleChannelComponent: 0
++  flipbookRows: 1
++  flipbookColumns: 1
++  maxTextureSizeSet: 0
++  compressionQualitySet: 0
++  textureFormatSet: 0
++  ignorePngGamma: 0
++  applyGammaDecoding: 0
++  swizzle: 50462976
++  cookieLightType: 0
++  platformSettings:
++  - serializedVersion: 3
++    buildTarget: DefaultTexturePlatform
++    maxTextureSize: 2048
++    resizeAlgorithm: 0
++    textureFormat: -1
++    textureCompression: 1
++    compressionQuality: 50
++    crunchedCompression: 0
++    allowsAlphaSplitting: 0
++    overridden: 0
++    ignorePlatformSupport: 0
++    androidETC2FallbackOverride: 0
++    forceMaximumCompressionQuality_BC6H_BC7: 0
++  - serializedVersion: 3
++    buildTarget: WebGL
++    maxTextureSize: 2048
++    resizeAlgorithm: 0
++    textureFormat: -1
++    textureCompression: 1
++    compressionQuality: 50
++    crunchedCompression: 0
++    allowsAlphaSplitting: 0
++    overridden: 0
++    ignorePlatformSupport: 0
++    androidETC2FallbackOverride: 0
++    forceMaximumCompressionQuality_BC6H_BC7: 0
++  - serializedVersion: 3
++    buildTarget: Standalone
++    maxTextureSize: 2048
++    resizeAlgorithm: 0
++    textureFormat: -1
++    textureCompression: 1
++    compressionQuality: 50
++    crunchedCompression: 0
++    allowsAlphaSplitting: 0
++    overridden: 0
++    ignorePlatformSupport: 0
++    androidETC2FallbackOverride: 0
++    forceMaximumCompressionQuality_BC6H_BC7: 0
++  - serializedVersion: 3
++    buildTarget: Server
++    maxTextureSize: 2048
++    resizeAlgorithm: 0
++    textureFormat: -1
++    textureCompression: 1
++    compressionQuality: 50
++    crunchedCompression: 0
++    allowsAlphaSplitting: 0
++    overridden: 0
++    ignorePlatformSupport: 0
++    androidETC2FallbackOverride: 0
++    forceMaximumCompressionQuality_BC6H_BC7: 0
++  spriteSheet:
++    serializedVersion: 2
++    sprites: []
++    outline: []
++    physicsShape: []
++    bones: []
++    spriteID: 5e97eb03825dee720800000000000000
++    internalID: 0
++    vertices: []
++    indices: 
++    edges: []
++    weights: []
++    secondaryTextures: []
++    nameFileIdTable: {}
++  mipmapLimitGroupName: 
++  pSDRemoveMatte: 0
++  userData: 
++  assetBundleName: 
++  assetBundleVariant: 
+diff --git a/Assets/Scenes/Level1.unity b/Assets/Scenes/Level1.unity
+index 1f70199..f1ff4f6 100644
+--- a/Assets/Scenes/Level1.unity
++++ b/Assets/Scenes/Level1.unity
+@@ -38,7 +38,7 @@ RenderSettings:
+   m_ReflectionIntensity: 1
+   m_CustomReflection: {fileID: 0}
+   m_Sun: {fileID: 705507994}
+-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
++  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+   m_UseRadianceAmbientProbe: 0
+ --- !u!157 &3
+ LightmapSettings:
+@@ -347,6 +347,81 @@ CanvasRenderer:
+   m_PrefabAsset: {fileID: 0}
+   m_GameObject: {fileID: 350220342}
+   m_CullTransparentMesh: 1
++--- !u!1 &475938327
++GameObject:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  serializedVersion: 6
++  m_Component:
++  - component: {fileID: 475938328}
++  - component: {fileID: 475938330}
++  - component: {fileID: 475938329}
++  m_Layer: 0
++  m_Name: HBar
++  m_TagString: Untagged
++  m_Icon: {fileID: 0}
++  m_NavMeshLayer: 0
++  m_StaticEditorFlags: 0
++  m_IsActive: 1
++--- !u!224 &475938328
++RectTransform:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 475938327}
++  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
++  m_LocalPosition: {x: 0, y: 0, z: 0}
++  m_LocalScale: {x: 1, y: 1, z: 1}
++  m_ConstrainProportionsScale: 0
++  m_Children: []
++  m_Father: {fileID: 845357975}
++  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
++  m_AnchorMin: {x: 0.5, y: 0.5}
++  m_AnchorMax: {x: 0.5, y: 0.5}
++  m_AnchoredPosition: {x: 0, y: 0}
++  m_SizeDelta: {x: 1, y: 0.1}
++  m_Pivot: {x: 0.5, y: 0.5}
++--- !u!114 &475938329
++MonoBehaviour:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 475938327}
++  m_Enabled: 1
++  m_EditorHideFlags: 0
++  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
++  m_Name: 
++  m_EditorClassIdentifier: 
++  m_Material: {fileID: 0}
++  m_Color: {r: 0.9716981, g: 0.196173, b: 0.196173, a: 1}
++  m_RaycastTarget: 1
++  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
++  m_Maskable: 1
++  m_OnCullStateChanged:
++    m_PersistentCalls:
++      m_Calls: []
++  m_Sprite: {fileID: 21300000, guid: 02c701e09a0164448aa23cc905e59cd6, type: 3}
++  m_Type: 3
++  m_PreserveAspect: 0
++  m_FillCenter: 1
++  m_FillMethod: 0
++  m_FillAmount: 0.691
++  m_FillClockwise: 1
++  m_FillOrigin: 1
++  m_UseSpriteMesh: 0
++  m_PixelsPerUnitMultiplier: 1
++--- !u!222 &475938330
++CanvasRenderer:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 475938327}
++  m_CullTransparentMesh: 1
+ --- !u!1 &651209163
+ GameObject:
+   m_ObjectHideFlags: 0
+@@ -481,6 +556,109 @@ Transform:
+   m_Children: []
+   m_Father: {fileID: 0}
+   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
++--- !u!1 &845357974
++GameObject:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  serializedVersion: 6
++  m_Component:
++  - component: {fileID: 845357975}
++  - component: {fileID: 845357978}
++  - component: {fileID: 845357977}
++  - component: {fileID: 845357976}
++  m_Layer: 0
++  m_Name: EnemyHealthBar
++  m_TagString: Untagged
++  m_Icon: {fileID: 0}
++  m_NavMeshLayer: 0
++  m_StaticEditorFlags: 0
++  m_IsActive: 1
++--- !u!224 &845357975
++RectTransform:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 845357974}
++  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
++  m_LocalPosition: {x: 0, y: 0, z: 0}
++  m_LocalScale: {x: 0.99999964, y: 1, z: 0.99999964}
++  m_ConstrainProportionsScale: 0
++  m_Children:
++  - {fileID: 1700218237}
++  - {fileID: 475938328}
++  m_Father: {fileID: 1861179738}
++  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
++  m_AnchorMin: {x: 0, y: 0}
++  m_AnchorMax: {x: 0, y: 0}
++  m_AnchoredPosition: {x: 0, y: 0.79999995}
++  m_SizeDelta: {x: 880.4, y: 386}
++  m_Pivot: {x: 0.5, y: 0.5}
++--- !u!114 &845357976
++MonoBehaviour:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 845357974}
++  m_Enabled: 1
++  m_EditorHideFlags: 0
++  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
++  m_Name: 
++  m_EditorClassIdentifier: 
++  m_IgnoreReversedGraphics: 1
++  m_BlockingObjects: 0
++  m_BlockingMask:
++    serializedVersion: 2
++    m_Bits: 4294967295
++--- !u!114 &845357977
++MonoBehaviour:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 845357974}
++  m_Enabled: 1
++  m_EditorHideFlags: 0
++  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
++  m_Name: 
++  m_EditorClassIdentifier: 
++  m_UiScaleMode: 0
++  m_ReferencePixelsPerUnit: 100
++  m_ScaleFactor: 1
++  m_ReferenceResolution: {x: 800, y: 600}
++  m_ScreenMatchMode: 0
++  m_MatchWidthOrHeight: 0
++  m_PhysicalUnit: 3
++  m_FallbackScreenDPI: 96
++  m_DefaultSpriteDPI: 96
++  m_DynamicPixelsPerUnit: 1
++  m_PresetInfoIsWorld: 1
++--- !u!223 &845357978
++Canvas:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 845357974}
++  m_Enabled: 1
++  serializedVersion: 3
++  m_RenderMode: 2
++  m_Camera: {fileID: 0}
++  m_PlaneDistance: 100
++  m_PixelPerfect: 0
++  m_ReceivesEvents: 1
++  m_OverrideSorting: 0
++  m_OverridePixelPerfect: 0
++  m_SortingBucketNormalizedSize: 0
++  m_VertexColorAlwaysGammaSpace: 0
++  m_AdditionalShaderChannelsFlag: 0
++  m_UpdateRectTransformForStandalone: 0
++  m_SortingLayerID: 0
++  m_SortingOrder: 0
++  m_TargetDisplay: 0
+ --- !u!1 &883524705
+ GameObject:
+   m_ObjectHideFlags: 0
+@@ -1112,6 +1290,81 @@ Transform:
+   - {fileID: 963194228}
+   m_Father: {fileID: 0}
+   m_LocalEulerAnglesHint: {x: 30, y: 45, z: 0}
++--- !u!1 &1700218236
++GameObject:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  serializedVersion: 6
++  m_Component:
++  - component: {fileID: 1700218237}
++  - component: {fileID: 1700218239}
++  - component: {fileID: 1700218238}
++  m_Layer: 0
++  m_Name: HBBackground
++  m_TagString: Untagged
++  m_Icon: {fileID: 0}
++  m_NavMeshLayer: 0
++  m_StaticEditorFlags: 0
++  m_IsActive: 1
++--- !u!224 &1700218237
++RectTransform:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 1700218236}
++  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
++  m_LocalPosition: {x: 0, y: 0, z: 0}
++  m_LocalScale: {x: 1, y: 1, z: 1}
++  m_ConstrainProportionsScale: 0
++  m_Children: []
++  m_Father: {fileID: 845357975}
++  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
++  m_AnchorMin: {x: 0.5, y: 0.5}
++  m_AnchorMax: {x: 0.5, y: 0.5}
++  m_AnchoredPosition: {x: 0, y: 0}
++  m_SizeDelta: {x: 1, y: 0.1}
++  m_Pivot: {x: 0.5, y: 0.5}
++--- !u!114 &1700218238
++MonoBehaviour:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 1700218236}
++  m_Enabled: 1
++  m_EditorHideFlags: 0
++  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
++  m_Name: 
++  m_EditorClassIdentifier: 
++  m_Material: {fileID: 0}
++  m_Color: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 1}
++  m_RaycastTarget: 1
++  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
++  m_Maskable: 1
++  m_OnCullStateChanged:
++    m_PersistentCalls:
++      m_Calls: []
++  m_Sprite: {fileID: 0}
++  m_Type: 0
++  m_PreserveAspect: 0
++  m_FillCenter: 1
++  m_FillMethod: 4
++  m_FillAmount: 1
++  m_FillClockwise: 1
++  m_FillOrigin: 0
++  m_UseSpriteMesh: 0
++  m_PixelsPerUnitMultiplier: 1
++--- !u!222 &1700218239
++CanvasRenderer:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 1700218236}
++  m_CullTransparentMesh: 1
+ --- !u!1001 &1708330064
+ PrefabInstance:
+   m_ObjectHideFlags: 0
+@@ -1338,6 +1591,100 @@ CanvasRenderer:
+   m_PrefabAsset: {fileID: 0}
+   m_GameObject: {fileID: 1815501219}
+   m_CullTransparentMesh: 1
++--- !u!1001 &1861179736
++PrefabInstance:
++  m_ObjectHideFlags: 0
++  serializedVersion: 2
++  m_Modification:
++    serializedVersion: 3
++    m_TransformParent: {fileID: 0}
++    m_Modifications:
++    - target: {fileID: 2123400372220710338, guid: e903f4b0fbd0ae046a9a437ed9ee2566, type: 3}
++      propertyPath: m_Name
++      value: PatrolEnemy
++      objectReference: {fileID: 0}
++    - target: {fileID: 2123400372220710338, guid: e903f4b0fbd0ae046a9a437ed9ee2566, type: 3}
++      propertyPath: m_TagString
++      value: Enemy
++      objectReference: {fileID: 0}
++    - target: {fileID: 5143842518920143292, guid: e903f4b0fbd0ae046a9a437ed9ee2566, type: 3}
++      propertyPath: m_Materials.Array.data[0]
++      value: 
++      objectReference: {fileID: 2100000, guid: 650efa6631fc5fb449d276dc8a72c69a, type: 2}
++    - target: {fileID: 7824196541849326592, guid: e903f4b0fbd0ae046a9a437ed9ee2566, type: 3}
++      propertyPath: m_LocalPosition.x
++      value: 5.23
++      objectReference: {fileID: 0}
++    - target: {fileID: 7824196541849326592, guid: e903f4b0fbd0ae046a9a437ed9ee2566, type: 3}
++      propertyPath: m_LocalPosition.y
++      value: 0.5
++      objectReference: {fileID: 0}
++    - target: {fileID: 7824196541849326592, guid: e903f4b0fbd0ae046a9a437ed9ee2566, type: 3}
++      propertyPath: m_LocalPosition.z
++      value: 5.82
++      objectReference: {fileID: 0}
++    - target: {fileID: 7824196541849326592, guid: e903f4b0fbd0ae046a9a437ed9ee2566, type: 3}
++      propertyPath: m_LocalRotation.w
++      value: 0.542083
++      objectReference: {fileID: 0}
++    - target: {fileID: 7824196541849326592, guid: e903f4b0fbd0ae046a9a437ed9ee2566, type: 3}
++      propertyPath: m_LocalRotation.x
++      value: -0
++      objectReference: {fileID: 0}
++    - target: {fileID: 7824196541849326592, guid: e903f4b0fbd0ae046a9a437ed9ee2566, type: 3}
++      propertyPath: m_LocalRotation.y
++      value: -0.840325
++      objectReference: {fileID: 0}
++    - target: {fileID: 7824196541849326592, guid: e903f4b0fbd0ae046a9a437ed9ee2566, type: 3}
++      propertyPath: m_LocalRotation.z
++      value: -0
++      objectReference: {fileID: 0}
++    - target: {fileID: 7824196541849326592, guid: e903f4b0fbd0ae046a9a437ed9ee2566, type: 3}
++      propertyPath: m_LocalEulerAnglesHint.x
++      value: 0
++      objectReference: {fileID: 0}
++    - target: {fileID: 7824196541849326592, guid: e903f4b0fbd0ae046a9a437ed9ee2566, type: 3}
++      propertyPath: m_LocalEulerAnglesHint.y
++      value: -114.349
++      objectReference: {fileID: 0}
++    - target: {fileID: 7824196541849326592, guid: e903f4b0fbd0ae046a9a437ed9ee2566, type: 3}
++      propertyPath: m_LocalEulerAnglesHint.z
++      value: 0
++      objectReference: {fileID: 0}
++    m_RemovedComponents:
++    - {fileID: 0}
++    m_RemovedGameObjects: []
++    m_AddedGameObjects:
++    - targetCorrespondingSourceObject: {fileID: 7824196541849326592, guid: e903f4b0fbd0ae046a9a437ed9ee2566, type: 3}
++      insertIndex: -1
++      addedObject: {fileID: 845357975}
++    m_AddedComponents:
++    - targetCorrespondingSourceObject: {fileID: 2123400372220710338, guid: e903f4b0fbd0ae046a9a437ed9ee2566, type: 3}
++      insertIndex: -1
++      addedObject: {fileID: 1861179739}
++  m_SourcePrefab: {fileID: 100100000, guid: e903f4b0fbd0ae046a9a437ed9ee2566, type: 3}
++--- !u!1 &1861179737 stripped
++GameObject:
++  m_CorrespondingSourceObject: {fileID: 2123400372220710338, guid: e903f4b0fbd0ae046a9a437ed9ee2566, type: 3}
++  m_PrefabInstance: {fileID: 1861179736}
++  m_PrefabAsset: {fileID: 0}
++--- !u!4 &1861179738 stripped
++Transform:
++  m_CorrespondingSourceObject: {fileID: 7824196541849326592, guid: e903f4b0fbd0ae046a9a437ed9ee2566, type: 3}
++  m_PrefabInstance: {fileID: 1861179736}
++  m_PrefabAsset: {fileID: 0}
++--- !u!114 &1861179739
++MonoBehaviour:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 1861179737}
++  m_Enabled: 1
++  m_EditorHideFlags: 0
++  m_Script: {fileID: 11500000, guid: 90d629f9fa019cf4cade74fb9cab60fc, type: 3}
++  m_Name: 
++  m_EditorClassIdentifier: 
+ --- !u!1 &1863513382
+ GameObject:
+   m_ObjectHideFlags: 0
+@@ -1515,4 +1862,5 @@ SceneRoots:
+   - {fileID: 1708330064}
+   - {fileID: 1978604472}
+   - {fileID: 1539987395}
++  - {fileID: 1861179736}
+   - {fileID: 1073501198}
+diff --git a/Assets/Scripts/EnemyScripts/PatrolEnemyController.cs b/Assets/Scripts/EnemyScripts/PatrolEnemyController.cs
+new file mode 100644
+index 0000000..c42b667
+--- /dev/null
++++ b/Assets/Scripts/EnemyScripts/PatrolEnemyController.cs
+@@ -0,0 +1,77 @@
++using System.Collections;
++using System.Collections.Generic;
++using UnityEngine;
++using UnityEngine.UI;
++
++public class PatrolEnemyController : MonoBehaviour
++{
++    private bool findPlayer = false;
++    GameObject HP_Bar;
++    Image HP_Image;
++    float HP;
++    float HP_Percent;
++    private float Max_HP = 10;
++
++    // Start is called before the first frame update
++    void Start()
++    {
++        // initiate the health bar for the enemy
++        HP_Bar = GameObject.Find("HBar");
++        HP_Image = HP_Bar.GetComponent<Image>();
++        HP = Max_HP;
++
++    }
++
++    // Update is called once per frame
++    void Update()
++    {
++        if (findPlayer == false)
++        {
++            Patrol();
++        } else
++        {
++
++        }
++    }
++
++    // If the patrol enemy does not see the player, then keep patroling
++    void Patrol()
++    {
++
++    }
++
++    // The player enter the patrolling area
++    void OnTriggerEnter(Collider collider)
++    {
++        if(HP > 0)
++        {
++            HP -= 2;
++            HP_Percent = HP / Max_HP;
++            HP_Image.fillAmount = HP_Percent;
++            Debug.Log(HP_Percent);
++        }
++        
++        
++        /*if (collider.gameObject.tag == "Player")
++        {
++            // Shoot at the player
++        } else if(collider.gameObject.tag == "") // Hit by a assalt bullet, rather than possession bullet
++        {
++            // decrease the health bar
++            HP -= 1;
++            HP_Percent = HP / Max_HP;
++            HP_Image.fillAmount = HP_Percent;
++            Debug.Log(HP_Percent);
++        }*/
++    }
++
++    // The player exits the patrolling area
++    void OnTriggerExit(Collider collider)
++    {
++        if (collider.gameObject.tag == "Player")
++        {
++            // Stop shooting at the player
++
++        }
++    }
++}
+diff --git a/Assets/Scripts/EnemyScripts/PatrolEnemyController.cs.meta b/Assets/Scripts/EnemyScripts/PatrolEnemyController.cs.meta
+new file mode 100644
+index 0000000..1650537
+--- /dev/null
++++ b/Assets/Scripts/EnemyScripts/PatrolEnemyController.cs.meta
+@@ -0,0 +1,11 @@
++fileFormatVersion: 2
++guid: 90d629f9fa019cf4cade74fb9cab60fc
++MonoImporter:
++  externalObjects: {}
++  serializedVersion: 2
++  defaultReferences: []
++  executionOrder: 0
++  icon: {instanceID: 0}
++  userData: 
++  assetBundleName: 
++  assetBundleVariant: 
+diff --git a/Packages/manifest.json b/Packages/manifest.json
+index 2891907..d066b5f 100644
+--- a/Packages/manifest.json
++++ b/Packages/manifest.json
+@@ -1,5 +1,6 @@
+ {
+   "dependencies": {
++    "com.unity.2d.sprite": "1.0.0",
+     "com.unity.collab-proxy": "2.0.7",
+     "com.unity.feature.development": "1.0.1",
+     "com.unity.textmeshpro": "3.0.6",
+diff --git a/Packages/packages-lock.json b/Packages/packages-lock.json
+index bb1b371..e3f3f95 100644
+--- a/Packages/packages-lock.json
++++ b/Packages/packages-lock.json
+@@ -1,5 +1,11 @@
+ {
+   "dependencies": {
++    "com.unity.2d.sprite": {
++      "version": "1.0.0",
++      "depth": 0,
++      "source": "builtin",
++      "dependencies": {}
++    },
+     "com.unity.collab-proxy": {
+       "version": "2.0.7",
+       "depth": 0,
+-- 
+2.39.2.windows.1
+
