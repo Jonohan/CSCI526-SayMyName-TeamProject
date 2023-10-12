@@ -38,6 +38,15 @@ public class CharController : MonoBehaviour
     public GameObject myBag;
     bool isOpen;
 
+    public enum PlayerState
+    {
+        Normal,
+        Possessing,
+        Fighting
+    }
+    public PlayerState currentState;
+    public Vector3 startPosition;
+
     void OpenMyBag()
     {
         if (Input.GetKeyDown(KeyCode.B))
@@ -59,6 +68,9 @@ public class CharController : MonoBehaviour
         
         //Get main camera
         mainCamera = Camera.main;
+
+        currentState = PlayerState.Normal; // ³õÊ¼×´Ì¬ÉèÎªNormal
+        startPosition = transform.position; // Set the starting position
     }
 
     void Update()
@@ -180,4 +192,8 @@ public class CharController : MonoBehaviour
         Debug.Log("this function is invoked by triggering event DebugE");
     }
 
+    public void TeleportToStart()
+    {
+        transform.position = startPosition; // Reset player position to start
+    }
 }
