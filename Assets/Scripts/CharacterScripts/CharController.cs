@@ -40,6 +40,15 @@ public class CharController : MonoBehaviour
     public GameObject myBag;
     bool isOpen;
 
+    public enum PlayerState
+    {
+        Normal,
+        Possessing,
+        Fighting
+    }
+    public PlayerState currentState;
+    public Vector3 startPosition;
+
     void OpenMyBag()
     {
         if (Input.GetKeyDown(KeyCode.B))
@@ -61,6 +70,9 @@ public class CharController : MonoBehaviour
         
         //Get main camera
         mainCamera = Camera.main;
+
+        currentState = PlayerState.Normal; // ³õÊ¼×´Ì¬ÉèÎªNormal
+        startPosition = transform.position; // Set the starting position
     }
 
     void Update()
@@ -193,5 +205,9 @@ public class CharController : MonoBehaviour
         yield return new WaitForFixedUpdate();
         rb.angularVelocity = Vector3.zero;
     }
-    
+
+    public void TeleportToStart()
+    {
+        transform.position = startPosition; // Reset player position to start
+    }
 }

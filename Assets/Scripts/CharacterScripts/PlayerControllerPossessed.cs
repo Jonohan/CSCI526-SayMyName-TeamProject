@@ -21,6 +21,7 @@ public class PlayerControllerPossessed : MonoBehaviour
     [SerializeField] private GameObject LogTextContainer;
     private Text logText;
 
+    public EnemyController possessedEnemy;  //新增
     private void Start()
     {
         input = Vector3.zero;
@@ -41,6 +42,8 @@ public class PlayerControllerPossessed : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
         {
             EventCenter.GetInstance().TriggerEvent("ReturnToOgBody", this);
+
+            possessedEnemy.ReturnToPosition();  // 新增
         }
     }
 
