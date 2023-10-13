@@ -39,6 +39,9 @@ public class CharController : MonoBehaviour
     [Header("Inventory System")]
     public GameObject myBag;
     bool isOpen;
+    
+    public PlayerState currentState;
+    public Vector3 startPosition;
 
     void OpenMyBag()
     {
@@ -48,6 +51,15 @@ public class CharController : MonoBehaviour
             myBag.SetActive(isOpen);
         }
     }
+    
+    public enum PlayerState
+    {
+        Normal,
+        Possessing,
+        Fighting
+    }
+
+
     
     
     
@@ -61,6 +73,9 @@ public class CharController : MonoBehaviour
         
         //Get main camera
         mainCamera = Camera.main;
+        
+        currentState = PlayerState.Normal; // 初始状态设为Normal
+        startPosition = transform.position; // Set the starting position
     }
 
     void Update()
@@ -192,6 +207,12 @@ public class CharController : MonoBehaviour
     {
         yield return new WaitForFixedUpdate();
         rb.angularVelocity = Vector3.zero;
+    }
+    
+    
+    public void TeleportToStart()
+    {
+        transform.position = startPosition; // Reset player position to start
     }
     
 }

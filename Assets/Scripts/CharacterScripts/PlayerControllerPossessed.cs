@@ -20,6 +20,8 @@ public class PlayerControllerPossessed : MonoBehaviour
     [Header("LogText (need to move to UIManager later)")]
     [SerializeField] private GameObject LogTextContainer;
     private Text logText;
+    public EnemyController possessedEnemy;  //新增
+
 
     private void Start()
     {
@@ -41,6 +43,8 @@ public class PlayerControllerPossessed : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
         {
             EventCenter.GetInstance().TriggerEvent("ReturnToOgBody", this);
+            
+            possessedEnemy.ReturnToPosition();  // 新增
         }
     }
 
