@@ -39,13 +39,14 @@ public class CharController : MonoBehaviour
     [Header("Inventory System")]
     public GameObject myBag;
     bool isOpen;
-
+    
     public enum PlayerState
     {
         Normal,
         Possessing,
         Fighting
     }
+    
     public PlayerState currentState;
     public Vector3 startPosition;
 
@@ -53,7 +54,7 @@ public class CharController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.B))
         {
-            isOpen = !isOpen;
+            isOpen = !isOpen; 
             myBag.SetActive(isOpen);
         }
     }
@@ -133,7 +134,7 @@ public class CharController : MonoBehaviour
         // Convert screen position to a ray
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
 
-        // Cast ray to game plane (however you define it, e.g., z = 0)
+        // Cast ray to game plane
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
             mouseRealWorldPos = hit.point;

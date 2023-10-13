@@ -16,25 +16,13 @@ public class CharacterHealth : MonoBehaviour
     
     public GameObject DeathMessage;
     [SerializeField] private bool isAlive = true;
-    
+    [SerializeField] private bool hasHalfHealth;
     
     private void Update()
     {
         if (isAlive)
-        {
-            for (int i = 0; i < healthBar.Length; i++)
-            {
-
-                if (i < curHealth)
-                    healthBar[i].sprite = fullHealthContainer;
-                else
-                    healthBar[i].sprite = emptyHealthContainer;
-            
-                if (i < maxHealth)
-                    healthBar[i].enabled = true;
-                else
-                    healthBar[i].enabled = false;
-            }
+        { 
+            UpdateHealthBar();
         
             if (curHealth <= 0)
                 CharacterDeath();
@@ -55,6 +43,46 @@ public class CharacterHealth : MonoBehaviour
 
     private void UpdateHealthBar()
     {
+        // see if health has a fraction part
+        double halfHealth = curHealth % 1.0;
+        hasHalfHealth = (halfHealth == 0.5);
+        // get the integer part
+        int intHealth = (int)curHealth;
         
+        // Update each health container
+        for (int i = 0; i < healthBar.Length; i++)
+        {
+            if (i < intHealth)
+                healthBar[i].sprite = fullHealthContainer;
+            else
+                healthBar[i].sprite = emptyHealthContainer;
+            
+            if (i < maxHealth)
+                healthBar[i].enabled = true;
+            else
+                healthBar[i].enabled = false;
+        }
+        
+        // add the half full container at the end
+        if (hasHalfHealth)
+            healthBar[intHealth].sprite = halfHealthContainer;
+            
+    }
+    
+    
+    /// <summary>
+    /// Call this from other scripts when the player (of any form?)is hit by a bullet 
+    /// </summary>
+    public void HitByBullet()
+    {
+        curHealth -= 0.5f;
+    }
+
+    /// <summary>
+    /// Call this from other scripts when the player is exposed to an enemy and will be teleported back 
+    /// </summary>
+    public void IsExposed()
+    {
+        curHealth -= 1.0f;
     }
 }

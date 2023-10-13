@@ -4020,9 +4020,10 @@ MonoBehaviour:
   - {fileID: 230209203}
   fullHealthContainer: {fileID: 21300000, guid: 70e88615e05705d41b3b6224d1386fc5, type: 3}
   emptyHealthContainer: {fileID: 21300000, guid: aeb19b744b74be442bf209cad546d76c, type: 3}
-  halfHealthContainer: {fileID: 0}
+  halfHealthContainer: {fileID: 21300000, guid: 67b25db84c556884989e8b570ad5a609, type: 3}
   DeathMessage: {fileID: 350220342}
   isAlive: 1
+  hasHalfHealth: 0
 --- !u!1 &1582080888
 GameObject:
   m_ObjectHideFlags: 0
