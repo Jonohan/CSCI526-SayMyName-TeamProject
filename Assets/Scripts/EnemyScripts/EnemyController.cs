@@ -20,10 +20,10 @@ public class EnemyController : MonoBehaviour
     {
         initialPosition = transform.position;
 
-        DrawAttackArea(transform, viewAngle, viewDistance);
+        DrawDetectArea(transform, viewAngle, viewDistance);
     }
 
-    public void DrawAttackArea(Transform t, float angle, float radius)
+    public void DrawDetectArea(Transform t, float angle, float radius)
     {
         int segments = 100;
         float deltaAngle = angle / segments;
@@ -45,7 +45,7 @@ public class EnemyController : MonoBehaviour
             triangles[3 * i + 2] = i + 2;
         }
 
-        GameObject go = new GameObject("DetectionArea");
+        GameObject go = new GameObject("DetectArea");
         go.transform.position = new Vector3(0, 0.1f, 0);
         go.transform.SetParent(transform);
         MeshFilter mf = go.AddComponent<MeshFilter>();
