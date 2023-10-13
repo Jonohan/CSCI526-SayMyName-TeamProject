@@ -6,15 +6,18 @@ using UnityEngine.UI;
 
 public class CharacterHealth : MonoBehaviour
 {
-    public int curHealth; // player current health
-    public int maxHealth; // number of total health containers visible on screen
+    public float curHealth; // player current health
+    public float maxHealth; // number of total health containers visible on screen
 
     public Image[] healthBar;
     public Sprite fullHealthContainer;
     public Sprite emptyHealthContainer;
-
+    public Sprite halfHealthContainer;
+    
     public GameObject DeathMessage;
     [SerializeField] private bool isAlive = true;
+    
+    
     private void Update()
     {
         if (isAlive)
@@ -48,5 +51,10 @@ public class CharacterHealth : MonoBehaviour
         DeathMessage.SetActive(true);
         // Prevent further checks in Update().
         isAlive = false;
+    }
+
+    private void UpdateHealthBar()
+    {
+        
     }
 }
