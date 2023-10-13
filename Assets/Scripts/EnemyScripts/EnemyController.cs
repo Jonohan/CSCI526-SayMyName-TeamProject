@@ -19,8 +19,44 @@ public class EnemyController : MonoBehaviour
     private void Start()
     {
         initialPosition = transform.position;
+
+        DrawAttackArea(transform, viewAngle, viewDistance);
     }
 
+    public void DrawAttackArea(Transform t, float angle, float radius)
+    {
+        int segments = 100;
+        float deltaAngle = angle / segments;
+        Vector3 forward = t.forward;
+
+        Vector3[] vertices = new Vector3[segments + 2];
+        vertices[0] = t.position;
+        for (int i = 1; i < vertices.Length; i++)
+        {
+            Vector3 pos = Quaternion.Euler(0f, -angle / 2 + deltaAngle * (i - 1), 0f) * forward * radius + t.position;
+            vertices[i] = pos;
+        }
+        int trianglesAmount = segments;
+        int[] triangles = new int[segments * 3];
+        for (int i = 0; i < trianglesAmount; i++)
+        {
+            triangles[3 * i] = 0;
+            triangles[3 * i + 1] = i + 1;
+            triangles[3 * i + 2] = i + 2;
+        }
+
+        GameObject go = new GameObject("DetectionArea");
+        go.transform.position = new Vector3(0, 0.1f, 0);
+        go.transform.SetParent(transform);
+        MeshFilter mf = go.AddComponent<MeshFilter>();
+        MeshRenderer mr = go.AddComponent<MeshRenderer>();
+        Mesh mesh = new Mesh();
+        mr.material.shader = Shader.Find("Unlit/Color");
+        mr.material.color = new Color(1.0f, 0.843f, 0.0f, 0.5f);
+        mesh.vertices = vertices;
+        mesh.triangles = triangles;
+        mf.mesh = mesh;
+    }
     void DetectPlayer()
     {
         if (Time.time - lastDetectionTime < detectionCooldown)
