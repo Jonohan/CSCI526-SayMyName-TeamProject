@@ -59,14 +59,27 @@ public class PossessionBullet : MonoBehaviour
         //TODO: Integrate with enemy scripts to see if this enemy is dead.
         if  ( other.collider.CompareTag("Enemy") )
         {
-            Debug.Log("Hit enemy");
+            Debug.Log("Possession bullet hits an enemy");
             possessionPair.Add(shooter);
             possessionPair.Add(other.gameObject);
             EventCenter.GetInstance().TriggerEvent("PossessionSequence", possessionPair );
         }
+        else if (other.collider.CompareTag("Key"))
+        {
+            Debug.Log("Possession bullet hits a key on an enemy");
+            possessionPair.Add(shooter);
+            // Add the key's parent enemy gameobject to the possession pair as the hit (possessed) one.
+            Transform enemyTransform = other.gameObject.transform.parent;
+            if(enemyTransform != null)
+            {
+                GameObject EnemyObj = enemyTransform.gameObject;
+               possessionPair.Add(EnemyObj);
+            }
+        }
         
-        // After collision, recycle this object immediately, except colliding with a transparent wall
-        if (!other.collider.CompareTag("TransparentWall"))
+        // After collision, recycle this object immediately
+        // except colliding with a transparent wall or a detect area
+        if (!other.collider.CompareTag("TransparentWall") && !other.collider.CompareTag("DetectArea")  )
             RecycleObj();
     }
 

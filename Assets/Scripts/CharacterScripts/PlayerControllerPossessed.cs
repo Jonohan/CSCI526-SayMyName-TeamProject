@@ -42,8 +42,9 @@ public class PlayerControllerPossessed : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
         {
             EventCenter.GetInstance().TriggerEvent("ReturnToOgBody", this);
-
-            possessedEnemy.ReturnToPosition();  // 新增
+            
+            // Moved this part to PossessionManager -NW
+            //possessedEnemy.ReturnToPosition();  // 新增
         }
     }
 

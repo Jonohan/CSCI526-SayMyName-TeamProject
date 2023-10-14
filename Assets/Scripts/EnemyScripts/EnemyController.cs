@@ -56,6 +56,9 @@ public class EnemyController : MonoBehaviour
         mesh.vertices = vertices;
         mesh.triangles = triangles;
         mf.mesh = mesh;
+        
+        // Add a tag for possession bullet to distinguish
+        go.tag = "DetectArea";
     }
     void DetectPlayer()
     {
@@ -93,13 +96,13 @@ public class EnemyController : MonoBehaviour
             switch (player.currentState)  // Assuming you've defined currentState in CharController
             {
                 case CharController.PlayerState.Normal:
-                    playerHealth.curHealth -= 1;
+                    playerHealth.IsExposed();
                     player.TeleportToStart();  // Assuming you've defined TeleportToStart in CharController
                     break;
                 case CharController.PlayerState.Possessing:
                     break;
                 case CharController.PlayerState.Fighting:
-                    playerHealth.curHealth -= Mathf.FloorToInt(0.5f);
+                    playerHealth.HitByBullet();
                     break;
             }
         }

@@ -75,9 +75,22 @@ public class PossessionManager : MonoBehaviour
             ec.enabled = true;
         else
             throw new Exception("Error: original enemy controller not found on possessed enemy.");
-        
+
+        StartCoroutine(WaitEnemyReturnToPosition(ec));
         //EventCenter.GetInstance().TriggerEvent("PossessionEnded", this);
         
         this.currentPlayerControllable = originalPlayer;
+    }
+
+    /// <summary>
+    /// This coroutine ensures that enemy script is enabled before ReturnToPosition() is called,
+    /// to avoid possible null reference exception.
+    /// </summary>
+    /// <param name="ec">EnemyController component.</param>
+    /// <returns></returns>
+    private IEnumerator WaitEnemyReturnToPosition(EnemyController ec)
+    {
+        yield return null;
+        ec.ReturnToPosition();
     }
 }
