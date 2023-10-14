@@ -5,12 +5,19 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public float viewDistance = 5;
-    public float viewAngle = 90;
-    public Vector3 initialPosition;
+    public float viewDistance = 5;  // Detection range for the enemy's vision
+    public float viewAngle = 90;  // Angle of the enemy's field of view
+    public Vector3 initialPosition;  // The initial position where the enemy starts
     private float lastDetectionTime = -5.0f;
-    private float detectionCooldown = 1.0f; // …Ë∂®“ª∏ˆ1√Îµƒ¿‰»¥ ±º‰
+    private float detectionCooldown = 1.0f; // Cooldown time between detections
+    
+    public NormalBullet normalBulletPrefab; // Prefab for the bullet to be shot by the enemy
+    public Transform firePoint;  // Point from which the bullet is shot
+    private Vector3 lastSpottedPlayerPosition;  // The last position where the player was spotted
+    public float defaultBulletSpeed = 5.0f;  // Default speed for the bullet
+    public float defaultBulletDamage = 1.0f;   // Default damage dealt by the bullet
 
+    // Continuously check for the player's presence within the enemy's field of view
     private void Update()
     {
         DetectPlayer();
@@ -18,11 +25,12 @@ public class EnemyController : MonoBehaviour
 
     private void Start()
     {
-        initialPosition = transform.position;
+        initialPosition = transform.position;  // Set the enemy's starting position
 
-        DrawDetectArea(transform, viewAngle, viewDistance);
+        DrawDetectArea(transform, viewAngle, viewDistance);  // Draw the enemy's field of view visualization in the game world
     }
 
+    // Method to draw the enemy's field of view
     public void DrawDetectArea(Transform t, float angle, float radius)
     {
         int segments = 100;
@@ -57,11 +65,15 @@ public class EnemyController : MonoBehaviour
         mesh.triangles = triangles;
         mf.mesh = mesh;
     }
+    
+    // Method to detect the player within the enemy's field of view
     void DetectPlayer()
     {
+        // If detection cooldown hasn't passed, exit method
         if (Time.time - lastDetectionTime < detectionCooldown)
             return;
 
+        // Look for the player's game object
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         if (playerObject)
         {
@@ -76,7 +88,7 @@ public class EnemyController : MonoBehaviour
                 {
                     if (hit.collider.CompareTag("Player"))
                     {
-                        lastDetectionTime = Time.time; // ∏¸–¬◊Ó∫ÛºÏ≤‚ ±º‰
+                        lastDetectionTime = Time.time; // Êõ¥Êñ∞ÊúÄÂêéÊ£ÄÊµãÊó∂Èó¥
                         OnPlayerSpotted(player);
                     }
                 }
@@ -84,8 +96,10 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    // Actions to be performed when a player is detected
     void OnPlayerSpotted(CharController player)
     {
+        lastSpottedPlayerPosition = player.transform.position;
         CharacterHealth playerHealth = player.GetComponent<CharacterHealth>();
 
         if (player && playerHealth)
@@ -103,15 +117,38 @@ public class EnemyController : MonoBehaviour
                     break;
             }
         }
+        
+        Vector3 targetDir = (lastSpottedPlayerPosition - transform.position).normalized;
+        ShootNormalBulletAtPlayer(targetDir, defaultBulletSpeed, defaultBulletDamage);
     }
 
 
+    // Command the enemy to return to its starting position
     public void ReturnToPosition()
     {
+        // Use Unity's NavMeshAgent to move the enemy back to its initial position
         UnityEngine.AI.NavMeshAgent agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         if (agent)
         {
             agent.SetDestination(initialPosition);
         }
     }
+    
+    // Shoot a bullet at the detected player
+    private void ShootNormalBulletAtPlayer(Vector3 targetDir, float bulletSpeed, float damageAmount)
+    {
+        GameObject bullet = ObjPoolManager.GetInstance().GetObj("Prefabs/NormalBullet");
+        if (bullet == null)
+        {
+            Debug.LogError("Failed to get bullet from ObjPoolManager");
+            return;
+        }
+
+        // Initialize the bullet using the enemy's position and offset slightly to avoid immediate collision with the launcher
+        bullet.transform.position = this.transform.position + targetDir.normalized * 1.5f;
+    
+        NormalBullet normalBullet = bullet.GetComponent<NormalBullet>();
+        normalBullet.InitializeNormalBullet(targetDir, bulletSpeed, damageAmount);
+    }
+
 }
