@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1409,7 +1409,7 @@ GameObject:
   - component: {fileID: 1262857387}
   - component: {fileID: 1262857386}
   m_Layer: 6
-  m_Name: Plane
+  m_Name: CulledPlane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1495,12 +1495,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1262857385}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.6, y: -10.9, z: 24.3}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 17.79292, y: -8.031782, z: 21.53957}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1582080889}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1336837905
 GameObject:
@@ -5844,8 +5844,10 @@ MonoBehaviour:
   - {fileID: 230209203}
   fullHealthContainer: {fileID: 21300000, guid: 70e88615e05705d41b3b6224d1386fc5, type: 3}
   emptyHealthContainer: {fileID: 21300000, guid: aeb19b744b74be442bf209cad546d76c, type: 3}
+  halfHealthContainer: {fileID: 21300000, guid: 67b25db84c556884989e8b570ad5a609, type: 3}
   DeathMessage: {fileID: 350220342}
   isAlive: 1
+  hasHalfHealth: 0
 --- !u!1 &1582080888
 GameObject:
   m_ObjectHideFlags: 0
@@ -5882,6 +5884,7 @@ Transform:
   - {fileID: 61458703}
   - {fileID: 2057245656}
   - {fileID: 1097522074}
+  - {fileID: 1262857389}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1619649730
@@ -6193,6 +6196,10 @@ PrefabInstance:
       propertyPath: myBag
       value: 
       objectReference: {fileID: 953923126}
+    - target: {fileID: 1087928922627902729, guid: 74cd9503a7f11654592f8f619671e228, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 963194227}
     - target: {fileID: 1087928922627902729, guid: 74cd9503a7f11654592f8f619671e228, type: 3}
       propertyPath: bulletSpeed
       value: 20
@@ -7597,4 +7604,3 @@ SceneRoots:
   - {fileID: 1582080889}
   - {fileID: 1021239041}
   - {fileID: 1377170286}
-  - {fileID: 1262857389}

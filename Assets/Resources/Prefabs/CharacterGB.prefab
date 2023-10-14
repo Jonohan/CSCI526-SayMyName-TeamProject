@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b27d88fbbab8142870c02eb2b3fd00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
   rb: {fileID: 5155887023256277900}
   isPuddle: 0
   moveSpeed: 5
@@ -129,6 +130,13 @@ MonoBehaviour:
   bulletSpeed: 20
   input: {x: 0, y: 0, z: 0}
   LogTextContainer: {fileID: 0}
+  mouseRealWorldPos: {x: 0, y: 0, z: 0}
+  isAiming: 0
+  mousePointer: {fileID: 0}
+  rot: {x: 0, y: 0, z: 0, w: 0}
+  myBag: {fileID: 0}
+  currentState: 0
+  startPosition: {x: 0, y: 0, z: 0}
 --- !u!54 &5155887023256277900
 Rigidbody:
   m_ObjectHideFlags: 0
