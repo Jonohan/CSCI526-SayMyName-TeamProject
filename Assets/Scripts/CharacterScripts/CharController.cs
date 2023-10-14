@@ -40,6 +40,14 @@ public class CharController : MonoBehaviour
     public GameObject myBag;
     bool isOpen;
     
+    //The player has 3 state
+    public enum PlayerState
+    {
+        Normal,
+        Possessing,
+        Fighting
+    }
+    
     public PlayerState currentState;
     public Vector3 startPosition;
 
@@ -47,19 +55,10 @@ public class CharController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.B))
         {
-            isOpen = !isOpen;
+            isOpen = !isOpen; 
             myBag.SetActive(isOpen);
         }
     }
-    
-    public enum PlayerState
-    {
-        Normal,
-        Possessing,
-        Fighting
-    }
-
-
     
     
     
@@ -73,7 +72,7 @@ public class CharController : MonoBehaviour
         
         //Get main camera
         mainCamera = Camera.main;
-        
+
         currentState = PlayerState.Normal; // 初始状态设为Normal
         startPosition = transform.position; // Set the starting position
     }
@@ -136,7 +135,7 @@ public class CharController : MonoBehaviour
         // Convert screen position to a ray
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
 
-        // Cast ray to game plane (however you define it, e.g., z = 0)
+        // Cast ray to game plane
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
             mouseRealWorldPos = hit.point;
@@ -208,11 +207,9 @@ public class CharController : MonoBehaviour
         yield return new WaitForFixedUpdate();
         rb.angularVelocity = Vector3.zero;
     }
-    
-    
+
     public void TeleportToStart()
     {
         transform.position = startPosition; // Reset player position to start
     }
-    
 }
