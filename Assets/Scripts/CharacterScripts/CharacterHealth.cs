@@ -79,9 +79,9 @@ public class CharacterHealth : MonoBehaviour
     /// <summary>
     /// Call this from other scripts when the player (of any form?)is hit by a bullet 
     /// </summary>
-    public void HitByBullet()
+    public void HitByBullet(float dmg)
     {
-        curHealth -= 0.5f;
+        curHealth -= dmg;
     }
 
     /// <summary>

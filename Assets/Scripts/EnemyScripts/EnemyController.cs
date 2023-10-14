@@ -102,7 +102,7 @@ public class EnemyController : MonoBehaviour
                 case CharController.PlayerState.Possessing:
                     break;
                 case CharController.PlayerState.Fighting:
-                    playerHealth.HitByBullet();
+                    playerHealth.HitByBullet(0.5f);
                     break;
             }
         }
