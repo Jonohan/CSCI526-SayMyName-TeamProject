@@ -1,8 +1,17 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MonoSceneManager : MonoBehaviour
 {
+
+    public GameObject WinScreen;
+    
+    private void OnEnable()
+    {
+        EventCenter.GetInstance().AddEventListener("PlayerWins", ShowWinScreen);
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
@@ -20,4 +29,9 @@ public class MonoSceneManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    private void ShowWinScreen(object info)
+    {
+        Debug.Log("Show win screen.");
+    }
+    
 }
