@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class WinningZone : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
-        if ( other.collider.CompareTag("Player") )
+        if ( other.CompareTag("Player") )
         {
             Debug.Log("Player enters the winning zone.");
             EventCenter.GetInstance().TriggerEvent("PlayerWins", this);
