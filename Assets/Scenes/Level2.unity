@@ -1472,7 +1472,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
@@ -1625,7 +1625,7 @@ Transform:
   m_GameObject: {fileID: 405981045}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.372201, y: 0.19, z: -6.4254546}
+  m_LocalPosition: {x: 2.372201, y: 0.16, z: -6.4254546}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4499,7 +4499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   URL: https://docs.google.com/forms/u/0/d/e/1FAIpQLSc-3UannS15j4m4ktTdtOTUvA2XQkByALnaaM-dcp7AvCQU-Q/formResponse
-  go: {fileID: 0}
+  manager: {fileID: 0}
 --- !u!1 &1582080888
 GameObject:
   m_ObjectHideFlags: 0
@@ -4577,7 +4577,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
@@ -4730,7 +4730,7 @@ Transform:
   m_GameObject: {fileID: 1636331062}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.70808554, z: -0, w: 0.70612663}
-  m_LocalPosition: {x: 2.5, y: 0.19, z: -25.25}
+  m_LocalPosition: {x: 2.5, y: 0.16, z: -25.25}
   m_LocalScale: {x: 1, y: 1, z: 0.76751}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5051,6 +5051,7 @@ MonoBehaviour:
   waterLeft: 4
   enemy: 0
   patrolEnemy: 0
+  canEnterFightingState: 0
 --- !u!1 &1734554417
 GameObject:
   m_ObjectHideFlags: 0
@@ -5920,7 +5921,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
