@@ -108,42 +108,6 @@ public class EnemyController : MonoBehaviour
     }
 
 
-    // Actions to be performed when a player is detected
-//     void OnPlayerSpotted(CharController player)
-//     {
-//         lastSpottedPlayerPosition = player.transform.position;
-//         CharacterHealth playerHealth = player.GetComponent<CharacterHealth>();
-//
-//         if (player && playerHealth)
-//         {
-//             switch (player.currentState)  
-//             {
-//                 case CharController.PlayerState.Normal:
-// <<<<<<< Updated upstream
-//                     playerHealth.curHealth -= 1;
-// =======
-//                     Vector3 targetDir = (lastSpottedPlayerPosition - transform.position).normalized;
-//                     ShootNormalBulletAtPlayer(targetDir, defaultBulletSpeed, defaultBulletDamage);
-//                     playerHealth.IsExposed();
-// >>>>>>> Stashed changes
-//                     player.TeleportToStart();  // Assuming you've defined TeleportToStart in CharController
-//                     break;
-//                 case CharController.PlayerState.Possessing:
-//                     break;
-//                 case CharController.PlayerState.Fighting:
-// <<<<<<< Updated upstream
-//                     playerHealth.curHealth -= Mathf.FloorToInt(0.5f);
-// =======
-//                     if (shootingCoroutine == null)
-//                     {
-//                         // If the player is in fighting state, enemies who see this player will fire bullets that will cause the player's health to be reduced by 0.5 damage. A bullet will be fired every 1.5 seconds.
-//                         shootingCoroutine = StartCoroutine(ShootPlayerPeriodically(1.5f, 0.5f));
-//                     }
-// >>>>>>> Stashed changes
-//                     break;
-//             }
-//         }
-//     }
     void OnPlayerSpotted(CharController player)
     {
         lastSpottedPlayerPosition = player.transform.position;
@@ -216,6 +180,4 @@ public class EnemyController : MonoBehaviour
             yield return new WaitForSeconds(interval);
         }
     }
-
-
 }
