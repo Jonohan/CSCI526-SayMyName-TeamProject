@@ -47,7 +47,7 @@ public class NormalBullet : MonoBehaviour
             CharacterHealth playerHealth = other.gameObject.GetComponent<CharacterHealth>();
             if (playerHealth)
             {
-                playerHealth.curHealth -= (int)Mathf.FloorToInt(damageAmount);
+                playerHealth.curHealth -= damageAmount;
             }
         }
         // Recycle the bullet after the collision

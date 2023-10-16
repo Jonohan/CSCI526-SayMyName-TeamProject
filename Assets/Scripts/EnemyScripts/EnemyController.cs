@@ -15,7 +15,10 @@ public class EnemyController : MonoBehaviour
     public Transform firePoint;  // Point from which the bullet is shot
     private Vector3 lastSpottedPlayerPosition;  // The last position where the player was spotted
     public float defaultBulletSpeed = 5.0f;  // Default speed for the bullet
-    public float defaultBulletDamage = 1.0f;   // Default damage dealt by the bullet
+    public float defaultBulletDamage = 0.5f;   // Default damage dealt by the bullet
+    
+    private Coroutine shootingCoroutine;  // Add a new variable to track the coroutine(Enemies shoot the player)
+
 
     // Continuously check for the player's presence within the enemy's field of view
     private void Update()
@@ -93,10 +96,54 @@ public class EnemyController : MonoBehaviour
                     }
                 }
             }
+            else
+            {
+                if (shootingCoroutine != null)
+                {
+                    StopCoroutine(shootingCoroutine);
+                    shootingCoroutine = null;
+                }
+            }
         }
     }
 
+
     // Actions to be performed when a player is detected
+//     void OnPlayerSpotted(CharController player)
+//     {
+//         lastSpottedPlayerPosition = player.transform.position;
+//         CharacterHealth playerHealth = player.GetComponent<CharacterHealth>();
+//
+//         if (player && playerHealth)
+//         {
+//             switch (player.currentState)  
+//             {
+//                 case CharController.PlayerState.Normal:
+// <<<<<<< Updated upstream
+//                     playerHealth.curHealth -= 1;
+// =======
+//                     Vector3 targetDir = (lastSpottedPlayerPosition - transform.position).normalized;
+//                     ShootNormalBulletAtPlayer(targetDir, defaultBulletSpeed, defaultBulletDamage);
+//                     playerHealth.IsExposed();
+// >>>>>>> Stashed changes
+//                     player.TeleportToStart();  // Assuming you've defined TeleportToStart in CharController
+//                     break;
+//                 case CharController.PlayerState.Possessing:
+//                     break;
+//                 case CharController.PlayerState.Fighting:
+// <<<<<<< Updated upstream
+//                     playerHealth.curHealth -= Mathf.FloorToInt(0.5f);
+// =======
+//                     if (shootingCoroutine == null)
+//                     {
+//                         // If the player is in fighting state, enemies who see this player will fire bullets that will cause the player's health to be reduced by 0.5 damage. A bullet will be fired every 1.5 seconds.
+//                         shootingCoroutine = StartCoroutine(ShootPlayerPeriodically(1.5f, 0.5f));
+//                     }
+// >>>>>>> Stashed changes
+//                     break;
+//             }
+//         }
+//     }
     void OnPlayerSpotted(CharController player)
     {
         lastSpottedPlayerPosition = player.transform.position;
@@ -107,20 +154,23 @@ public class EnemyController : MonoBehaviour
             switch (player.currentState)  // Assuming you've defined currentState in CharController
             {
                 case CharController.PlayerState.Normal:
-                    playerHealth.curHealth -= 1;
+                    Vector3 targetDir = (lastSpottedPlayerPosition - transform.position).normalized;
+                    ShootNormalBulletAtPlayer(targetDir, defaultBulletSpeed, defaultBulletDamage);
+                    playerHealth.IsExposed();
                     player.TeleportToStart();  // Assuming you've defined TeleportToStart in CharController
                     break;
                 case CharController.PlayerState.Possessing:
                     break;
                 case CharController.PlayerState.Fighting:
-                    playerHealth.curHealth -= Mathf.FloorToInt(0.5f);
+                    if (shootingCoroutine == null)
+                    {
+                        shootingCoroutine = StartCoroutine(ShootPlayerPeriodically(1.5f, 0.5f));
+                    }
                     break;
             }
         }
-        
-        Vector3 targetDir = (lastSpottedPlayerPosition - transform.position).normalized;
-        ShootNormalBulletAtPlayer(targetDir, defaultBulletSpeed, defaultBulletDamage);
     }
+
 
 
     // Command the enemy to return to its starting position
@@ -150,5 +200,22 @@ public class EnemyController : MonoBehaviour
         NormalBullet normalBullet = bullet.GetComponent<NormalBullet>();
         normalBullet.InitializeNormalBullet(targetDir, bulletSpeed, damageAmount);
     }
+    
+    //  Shoots bullets at the player's last spotted position at regular intervals.
+    IEnumerator ShootPlayerPeriodically(float interval, float damage)
+    {
+        while (true)
+        {
+            // Calculate the direction towards the player's last known position
+            Vector3 targetDir = (lastSpottedPlayerPosition - transform.position).normalized;
+            
+            // Shoot a bullet in that direction
+            ShootNormalBulletAtPlayer(targetDir, defaultBulletSpeed, damage);
+            
+            // Wait for the specified interval before the next shot
+            yield return new WaitForSeconds(interval);
+        }
+    }
+
 
 }

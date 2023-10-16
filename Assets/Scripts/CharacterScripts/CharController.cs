@@ -72,7 +72,7 @@ public class CharController : MonoBehaviour
         //Get main camera
         mainCamera = Camera.main;
 
-        currentState = PlayerState.Normal; // ³õÊ¼×´Ì¬ÉèÎªNormal
+        currentState = PlayerState.Normal; // Set the starting state as Normal state
         startPosition = transform.position; // Set the starting position
     }
 
