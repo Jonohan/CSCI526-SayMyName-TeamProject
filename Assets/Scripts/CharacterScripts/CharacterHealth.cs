@@ -15,7 +15,7 @@ public class CharacterHealth : MonoBehaviour
     public Sprite halfHealthContainer;
     
     public GameObject DeathMessage;
-    [SerializeField] private bool isAlive = true;
+    [SerializeField] public bool isAlive = true;
     [SerializeField] private bool hasHalfHealth;
 
     private void OnEnable()
