@@ -13,6 +13,7 @@ public class WaterAttackManager : MonoBehaviour
     [SerializeField] private int waterLeft = 4;
     public int enemy = 0;
     public int patrolEnemy = 0;
+    public bool canEnterFightingState = false;
 
     // Start is called before the first frame update
     void Start()
@@ -47,10 +48,19 @@ public class WaterAttackManager : MonoBehaviour
         }
 
         // turn player into fighting state
-        if (enemy >= 3 || patrolEnemy >= 3)
+        if (canEnterFightingState && (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2)))
         {
-            originalPlayer.GetComponent<CharController>().currentState = CharController.PlayerState.Fighting;
-            Debug.Log("Player is on Fighting State Now!");
+            if (originalPlayer.GetComponent<CharController>().currentState == CharController.PlayerState.Normal)
+            {
+                originalPlayer.GetComponent<CharController>().currentState = CharController.PlayerState.Fighting;
+                Debug.Log("Player is on Fighting state now!");
+            }
+            else if (originalPlayer.GetComponent<CharController>().currentState == CharController.PlayerState.Fighting)
+            {
+                originalPlayer.GetComponent<CharController>().currentState = CharController.PlayerState.Normal;
+                Debug.Log("Player back to Normal state now!");
+            }
+
         }
 
     }
