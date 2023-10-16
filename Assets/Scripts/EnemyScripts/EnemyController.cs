@@ -16,6 +16,9 @@ public class EnemyController : MonoBehaviour
     private Vector3 lastSpottedPlayerPosition;  // The last position where the player was spotted
     public float defaultBulletSpeed = 5.0f;  // Default speed for the bullet
     public float defaultBulletDamage = 1.0f;   // Default damage dealt by the bullet
+    private Coroutine shootingCoroutine;  // Add a new variable to track the coroutine(Enemies shoot the player)
+    
+    
 
     // Continuously check for the player's presence within the enemy's field of view
     private void Update()
@@ -96,9 +99,43 @@ public class EnemyController : MonoBehaviour
                     }
                 }
             }
+            else
+            {
+                if (shootingCoroutine != null)
+                {
+                    StopCoroutine(shootingCoroutine);
+                    shootingCoroutine = null;
+                }
+            }
         }
     }
 
+    // Actions to be performed when a player is detected
+    // void OnPlayerSpotted(CharController player)
+    // {
+    //     lastSpottedPlayerPosition = player.transform.position;
+    //     CharacterHealth playerHealth = player.GetComponent<CharacterHealth>();
+    //
+    //     if (player && playerHealth)
+    //     {
+    //         switch (player.currentState)  // Assuming you've defined currentState in CharController
+    //         {
+    //             case CharController.PlayerState.Normal:
+    //                 playerHealth.IsExposed();
+    //                 player.TeleportToStart();  // Assuming you've defined TeleportToStart in CharController
+    //                 break;
+    //             case CharController.PlayerState.Possessing:
+    //                 break;
+    //             case CharController.PlayerState.Fighting:
+    //                 playerHealth.HitByBullet(0.5f);
+    //                 break;
+    //         }
+    //     }
+    //     
+    //     Vector3 targetDir = (lastSpottedPlayerPosition - transform.position).normalized;
+    //     ShootNormalBulletAtPlayer(targetDir, defaultBulletSpeed, defaultBulletDamage);
+    // }
+    
     // Actions to be performed when a player is detected
     void OnPlayerSpotted(CharController player)
     {
@@ -110,19 +147,21 @@ public class EnemyController : MonoBehaviour
             switch (player.currentState)  // Assuming you've defined currentState in CharController
             {
                 case CharController.PlayerState.Normal:
+                    Vector3 targetDir = (lastSpottedPlayerPosition - transform.position).normalized;
+                    ShootNormalBulletAtPlayer(targetDir, defaultBulletSpeed, defaultBulletDamage);
                     playerHealth.IsExposed();
                     player.TeleportToStart();  // Assuming you've defined TeleportToStart in CharController
                     break;
                 case CharController.PlayerState.Possessing:
                     break;
                 case CharController.PlayerState.Fighting:
-                    playerHealth.HitByBullet(0.5f);
+                    if (shootingCoroutine == null)
+                    {
+                        shootingCoroutine = StartCoroutine(ShootPlayerPeriodically(1.5f, 0.5f));
+                    }
                     break;
             }
         }
-        
-        Vector3 targetDir = (lastSpottedPlayerPosition - transform.position).normalized;
-        ShootNormalBulletAtPlayer(targetDir, defaultBulletSpeed, defaultBulletDamage);
     }
 
 
@@ -153,5 +192,20 @@ public class EnemyController : MonoBehaviour
         NormalBullet normalBullet = bullet.GetComponent<NormalBullet>();
         normalBullet.InitializeNormalBullet(targetDir, bulletSpeed, damageAmount);
     }
-
+    
+    //  Shoots bullets at the player's last spotted position at regular intervals.
+    IEnumerator ShootPlayerPeriodically(float interval, float damage)
+    {
+        while (true)
+        {
+            // Calculate the direction towards the player's last known position
+            Vector3 targetDir = (lastSpottedPlayerPosition - transform.position).normalized;
+            
+            // Shoot a bullet in that direction
+            ShootNormalBulletAtPlayer(targetDir, defaultBulletSpeed, damage);
+            
+            // Wait for the specified interval before the next shot
+            yield return new WaitForSeconds(interval);
+        }
+    }
 }
