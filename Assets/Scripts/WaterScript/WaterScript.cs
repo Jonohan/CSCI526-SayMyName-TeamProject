@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class WaterScript : MonoBehaviour
 {
-    int patrolEnemy = 0;
-    int enemy = 0;
+
+    public GameObject manager = null;
     // Start is called before the first frame update
     void Start()
     {
-        
+    
     }
 
     // Update is called once per frame
@@ -24,22 +24,22 @@ public class WaterScript : MonoBehaviour
         Debug.Log("Collision with " + collision.gameObject.name);
         if (collision.gameObject.name.Contains("EnemyGB"))
         {
-            enemy += 1;
+            manager.GetComponent<WaterAttackManager>().enemy += 1;
+
             collision.gameObject.SetActive(false);
-            Debug.Log("Swallow EnemyGB amount:" + enemy);
+            Debug.Log("Swallow EnemyGB amount:" + manager.GetComponent<WaterAttackManager>().enemy);
+            manager.GetComponent<WaterAttackManager>().recover();
         }
 
         if (collision.gameObject.name.Contains("PatrolEnemy"))
         {
-            patrolEnemy += 1;
+            manager.GetComponent<WaterAttackManager>().patrolEnemy += 1;
+
             collision.gameObject.SetActive(false);
-            Debug.Log("Swallow patrolEnemy amount:" + patrolEnemy);
+            Debug.Log("Swallow patrolEnemy amount:" + manager.GetComponent<WaterAttackManager>().patrolEnemy);
+            manager.GetComponent<WaterAttackManager>().recover();
         }
         //// Check if the collision involves a specific tag
-        //if (collision.gameObject.CompareTag("Player"))
-        //{
-        //    // Do something when the collision with a GameObject with the "Player" tag occurs
-        //}
         Debug.Log("Collision with " + collision.gameObject.name);
     }
 }

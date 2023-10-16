@@ -9,9 +9,10 @@ public class WaterAttackManager : MonoBehaviour
     [SerializeField] private GameObject water = null;
     //public bool waterStatus = false;
     private float lastTimeSkillUsed = -10.0f;
-    [Header("Count")]
+    [Header("Counting")]
     [SerializeField] private int waterLeft = 4;
-
+    public int enemy = 0;
+    public int patrolEnemy = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +31,6 @@ public class WaterAttackManager : MonoBehaviour
         // Player turn into water when player pressed 3 and is meeting all conditions
         if (originalPlayer.activeInHierarchy && waterLeft > 0 && (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3)))
         {
-
             originalPlayer.SetActive(false);
             water.SetActive(true);
             lastTimeSkillUsed = Time.time;
@@ -46,5 +46,23 @@ public class WaterAttackManager : MonoBehaviour
             Debug.Log("Player back from water!");
         }
 
+        // turn player into fighting state
+        if (enemy >= 3 || patrolEnemy >= 3)
+        {
+            originalPlayer.GetComponent<CharController>().currentState = CharController.PlayerState.Fighting;
+            Debug.Log("Player is on Fighting State Now!");
+        }
+
     }
+
+    public void recover()
+    {
+        if (water.activeInHierarchy)
+        {
+            water.SetActive(false);
+            originalPlayer.SetActive(true);
+        }
+    }
+
+    
 }
