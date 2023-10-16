@@ -32,7 +32,11 @@ public class WaterAttackManager : MonoBehaviour
         // Player turn into water when player pressed 3 and is meeting all conditions
         if (originalPlayer.activeInHierarchy && waterLeft > 0 && (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3)))
         {
-            originalPlayer.SetActive(false);
+            //originalPlayer.SetActive(false)
+            // move player to y=-20 to hide player
+            originalPlayer.transform.position = new Vector3(originalPlayer.transform.position.x, -20f, originalPlayer.transform.position.z);
+            //disable player's controler
+            originalPlayer.GetComponent<CharController>().enabled = false;
             water.SetActive(true);
             lastTimeSkillUsed = Time.time;
             waterLeft -= 1;
@@ -43,7 +47,11 @@ public class WaterAttackManager : MonoBehaviour
         if (water.activeInHierarchy && (Time.time - lastTimeSkillUsed > 10.0f))
         {
             water.SetActive(false);
-            originalPlayer.SetActive(true);
+            //originalPlayer.SetActive(true);
+            // move player back to original position
+            originalPlayer.transform.position = new Vector3(originalPlayer.transform.position.x, 0.5f, originalPlayer.transform.position.z);
+            //enable player's controler
+            originalPlayer.GetComponent<CharController>().enabled = true;
             Debug.Log("Player back from water!");
         }
 
@@ -70,7 +78,11 @@ public class WaterAttackManager : MonoBehaviour
         if (water.activeInHierarchy)
         {
             water.SetActive(false);
-            originalPlayer.SetActive(true);
+            //originalPlayer.SetActive(true);
+            // move player back to original position
+            originalPlayer.transform.position = new Vector3(originalPlayer.transform.position.x, 0.5f, originalPlayer.transform.position.z);
+            //enable player's controler
+            originalPlayer.GetComponent<CharController>().enabled = true;
         }
     }
 
