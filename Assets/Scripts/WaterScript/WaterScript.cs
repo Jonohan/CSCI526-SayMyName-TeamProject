@@ -41,5 +41,10 @@ public class WaterScript : MonoBehaviour
         }
         //// Check if the collision involves a specific tag
         Debug.Log("Collision with " + collision.gameObject.name);
+
+        if (manager.GetComponent<WaterAttackManager>().patrolEnemy >=3 || manager.GetComponent<WaterAttackManager>().patrolEnemy >= 3)
+        {
+            manager.GetComponent<WaterAttackManager>().canEnterFightingState = true;
+        }
     }
 }
