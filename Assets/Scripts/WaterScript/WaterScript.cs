@@ -45,6 +45,7 @@ public class WaterScript : MonoBehaviour
         if (manager.GetComponent<WaterAttackManager>().patrolEnemy >=3 || manager.GetComponent<WaterAttackManager>().patrolEnemy >= 3)
         {
             manager.GetComponent<WaterAttackManager>().canEnterFightingState = true;
+            Debug.Log("You have collected 3 same type bodies, press 3 to Imitate them.");
         }
     }
 }
