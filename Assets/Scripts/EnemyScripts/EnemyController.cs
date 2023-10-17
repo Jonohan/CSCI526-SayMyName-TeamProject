@@ -57,7 +57,7 @@ public class EnemyController : MonoBehaviour
         }
 
         GameObject go = new GameObject("DetectArea");
-        go.transform.position = new Vector3(0, 0.1f, 0);
+        go.transform.position = new Vector3(0, -0.3f, 0);
         go.transform.SetParent(transform);
         MeshFilter mf = go.AddComponent<MeshFilter>();
         MeshRenderer mr = go.AddComponent<MeshRenderer>();

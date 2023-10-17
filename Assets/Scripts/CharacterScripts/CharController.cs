@@ -22,7 +22,12 @@ public class CharController : MonoBehaviour
     public float PossessionSkillCooldown = 5.0f;
     private float lastSkillUseTime = -5.0f;
     public float bulletSpeed = 20f;
-    
+
+    [Header("Skills Parameters - Damage Bullet")]
+    public float fireInterval = 1.5f;
+    private float lastShotTime = -1.5f;
+    public float dBulletSpeed = 20f;
+
     [Header("User Input")]
     [SerializeField] private Vector3 input = Vector3.zero;
 
@@ -72,7 +77,7 @@ public class CharController : MonoBehaviour
         //Get main camera
         mainCamera = Camera.main;
 
-        currentState = PlayerState.Normal; // ³õÊ¼×´Ì¬ÉèÎªNormal
+        currentState = PlayerState.Fighting; // The initial status is set to Fighting (force to one status)
         startPosition = transform.position; // Set the starting position
     }
 
@@ -80,15 +85,29 @@ public class CharController : MonoBehaviour
     {
         GatherMovingInput();
         OpenMyBag();
-
-        // Check if the skill is off cooldown
-        if (Time.time - lastSkillUseTime >= PossessionSkillCooldown)
+        if (currentState == PlayerState.Normal)
         {
-            logText.text = "Press RMB to shoot possession bullet.";
+            // Check if the skill is off cooldown
+            if (Time.time - lastSkillUseTime >= PossessionSkillCooldown)
+            {
+                logText.text = "Press RMB to shoot possession bullet.";
+            }
+            else // not ready yet
+            {
+                logText.text = "Possession bullet is not ready yet.";
+            }
         }
-        else // not ready yet
+        else if (currentState == PlayerState.Fighting)
         {
-            logText.text = "Possession bullet is not ready yet.";
+            // Check if the skill is off cooldown
+            if (Time.time - lastShotTime >= fireInterval)
+            {
+                logText.text = "Press RMB to start killing :)";
+            }
+            else // not ready yet
+            {
+                logText.text = "Reloading";
+            }
         }
 
         if (Input.GetMouseButtonDown(1))
@@ -100,15 +119,25 @@ public class CharController : MonoBehaviour
         Look();
         
         if (Input.GetMouseButtonUp(1))
-        { 
+        {
             // Check if the skill is off cooldown
-            if (Time.time - lastSkillUseTime >= PossessionSkillCooldown)
+            if (currentState == PlayerState.Normal)
             {
-                ShootPossessionBullet();
-                logText.text = "Possession bullet is not ready yet.";
+                if (Time.time - lastSkillUseTime >= PossessionSkillCooldown)
+                {
+                    ShootPossessionBullet(); // only in normal status
+                    logText.text = "Possession bullet is not ready yet.";
+                }
             }
-
-            isAiming = false;
+            else if (currentState == PlayerState.Fighting)
+            {
+                if(Time.time - lastShotTime >= fireInterval)
+                {
+                    ShootDamageBullet();// only in fighting status
+                    logText.text = "Reloading";
+                }
+            }
+                isAiming = false;
         }
     }
     
@@ -193,6 +222,16 @@ public class CharController : MonoBehaviour
         pb.InitializePossessionBullet(this.gameObject, transform.forward, this.bulletSpeed);
         // Reset skill CD.
         lastSkillUseTime = Time.time;
+    }
+
+
+    private void ShootDamageBullet()
+    {
+        GameObject bullet = ObjPoolManager.GetInstance().GetObj("Prefabs/DamageBullet");
+        CharDamageBullet db = bullet.GetComponent<CharDamageBullet>();
+        db.InitializeDamageBullet(this.gameObject, transform.forward, this.bulletSpeed);
+        // Reset skill CD.
+        lastShotTime = Time.time;
     }
 
     /// <summary>

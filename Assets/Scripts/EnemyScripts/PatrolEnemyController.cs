@@ -11,7 +11,7 @@ public class PatrolEnemyController : MonoBehaviour
     Image HP_Image;
     float HP;
     float HP_Percent;
-    private float Max_HP = 10;
+    private float Max_HP = 2;
 
     public Transform[] points; // Patrolling Turning points
     private int destPoint = 0;
@@ -64,7 +64,7 @@ public class PatrolEnemyController : MonoBehaviour
             patrolDirction = 1;
         }
     }
-
+    /**
     // The player enter the patrolling area
     void OnTriggerEnter(Collider collider)
     {
@@ -77,7 +77,7 @@ public class PatrolEnemyController : MonoBehaviour
         }
         
         
-        /*if (collider.gameObject.tag == "Player")
+        if (collider.gameObject.tag == "Player")
         {
             // Shoot at the player
         } else if(collider.gameObject.tag == "") // Hit by a assalt bullet, rather than possession bullet
@@ -87,8 +87,9 @@ public class PatrolEnemyController : MonoBehaviour
             HP_Percent = HP / Max_HP;
             HP_Image.fillAmount = HP_Percent;
             Debug.Log(HP_Percent);
-        }*/
+        }
     }
+    */
 
     // The player exits the patrolling area
     void OnTriggerExit(Collider collider)
