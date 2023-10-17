@@ -7739,7 +7739,7 @@ PrefabInstance:
     m_TransformParent: {fileID: 1582080889}
     m_Modifications:
     - target: {fileID: 1156933374943471983, guid: 63df5640934199741af97dc0be4d6dac, type: 3}
-      propertyPath: CharTransform
+      propertyPath: charTransform
       value: 
       objectReference: {fileID: 1353104442}
     - target: {fileID: 4993580779852607960, guid: 63df5640934199741af97dc0be4d6dac, type: 3}
@@ -7957,6 +7957,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3518286226005933704, guid: b448ca55e7973ad46aa97e4b64d88af0, type: 3}
+      propertyPath: LogTextContainer
+      value: 
+      objectReference: {fileID: 1381595015}
     - target: {fileID: 6788597015621482228, guid: b448ca55e7973ad46aa97e4b64d88af0, type: 3}
       propertyPath: m_Name
       value: Door_Switch

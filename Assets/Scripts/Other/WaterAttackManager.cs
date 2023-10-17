@@ -10,7 +10,7 @@ public class WaterAttackManager : MonoBehaviour
     //public bool waterStatus = false;
     private float lastTimeSkillUsed = -10.0f;
     [Header("Counting")]
-    [SerializeField] private int waterLeft = 4;
+    [SerializeField] private int waterLeft = 5;
     public int enemy = 0;
     public int patrolEnemy = 0;
     public bool canEnterFightingState = false;
@@ -29,8 +29,8 @@ public class WaterAttackManager : MonoBehaviour
         // Update water's location
         water.transform.position = new Vector3(originalPlayer.transform.position.x, water.transform.position.y, originalPlayer.transform.position.z);
 
-        // Player turn into water when player pressed 3 and is meeting all conditions
-        if (originalPlayer.activeInHierarchy && waterLeft > 0 && (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3)))
+        // Player turn into water when player pressed 2 and is meeting all conditions
+        if (originalPlayer.activeInHierarchy && waterLeft > 0 && (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2)))
         {
             //originalPlayer.SetActive(false)
             // move player to y=-20 to hide player
@@ -56,7 +56,7 @@ public class WaterAttackManager : MonoBehaviour
         }
 
         // turn player into fighting state
-        if (canEnterFightingState && (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2)))
+        if (canEnterFightingState && (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3)))
         {
             if (originalPlayer.GetComponent<CharController>().currentState == CharController.PlayerState.Normal)
             {

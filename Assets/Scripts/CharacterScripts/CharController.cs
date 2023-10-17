@@ -77,14 +77,16 @@ public class CharController : MonoBehaviour
         //Get main camera
         mainCamera = Camera.main;
 
-        currentState = PlayerState.Fighting; // The initial status is set to Fighting (force to one status)
+        //currentState = PlayerState.Fighting; // The initial status is set to Fighting (force to one status)
         startPosition = transform.position; // Set the starting position
     }
 
     void Update()
     {
+        //Debug.Log(currentState);
         GatherMovingInput();
         OpenMyBag();
+
         if (currentState == PlayerState.Normal)
         {
             // Check if the skill is off cooldown
@@ -102,7 +104,8 @@ public class CharController : MonoBehaviour
             // Check if the skill is off cooldown
             if (Time.time - lastShotTime >= fireInterval)
             {
-                logText.text = "Press RMB to start killing :)";
+                // need to classify the attack modes in next version
+                logText.text = "Pistol Mode: You have the same firing range as the enemy. Press RMB to start killing :)";
             }
             else // not ready yet
             {
@@ -224,7 +227,8 @@ public class CharController : MonoBehaviour
         lastSkillUseTime = Time.time;
     }
 
-
+    // When player is in fighting status, it can shoot bullet to damage bullet
+    // In the version, bullets just simply destory the enemy object (need health bar in next version)
     private void ShootDamageBullet()
     {
         GameObject bullet = ObjPoolManager.GetInstance().GetObj("Prefabs/DamageBullet");
