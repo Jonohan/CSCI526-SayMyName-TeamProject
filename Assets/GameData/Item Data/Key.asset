@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da640bb9565c3414991ca393525daf53, type: 3}
+  m_Name: Key
+  m_EditorClassIdentifier: 
+  itemType: 0
+  itemName: Key
+  itemIcon: {fileID: 21300000, guid: a6c10312421cb5e438d8b9edaad2db28, type: 3}
+  itemAmount: 1
+  description: This key can open door
+  stackable: 1
+  useablePrefab: {fileID: 2722739282952757559, guid: 69850ae40ad1e234db68615eb4550bc0, type: 3}
