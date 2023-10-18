@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 1003118394937571031}
-  amount: {fileID: 0}
+  amount: {fileID: 7639947190766579840}
 --- !u!1 &7013143219513388191
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotType: 0
-  itemUI: {fileID: 0}
+  itemUI: {fileID: 1052118448301825393}
 --- !u!1 &8766113014971772134
 GameObject:
   m_ObjectHideFlags: 0
