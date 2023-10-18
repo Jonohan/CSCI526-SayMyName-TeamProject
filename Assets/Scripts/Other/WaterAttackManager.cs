@@ -30,7 +30,7 @@ public class WaterAttackManager : MonoBehaviour
         water.transform.position = new Vector3(originalPlayer.transform.position.x, water.transform.position.y, originalPlayer.transform.position.z);
 
         // Player turn into water when player pressed 2 and is meeting all conditions
-        if (originalPlayer.activeInHierarchy && waterLeft > 0 && (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2)))
+        if (originalPlayer.activeInHierarchy && waterLeft >= 0 && (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2)))
         {
             //originalPlayer.SetActive(false)
             // move player to y=-20 to hide player
