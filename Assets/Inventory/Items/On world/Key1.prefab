@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5160277899133672602}
   - component: {fileID: 7760694250898984312}
   - component: {fileID: 222879551672320689}
+  - component: {fileID: 1630302253844020880}
   m_Layer: 0
   m_Name: Key1
   m_TagString: Key
@@ -29,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9212542520582418285}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.52, y: 0.88, z: -0.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -118,7 +119,7 @@ Rigidbody:
   m_GameObject: {fileID: 9212542520582418285}
   serializedVersion: 4
   m_Mass: 3
-  m_Drag: 0
+  m_Drag: 2
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -172,3 +173,18 @@ CapsuleCollider:
   m_Height: 3.4
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1630302253844020880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9212542520582418285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2f90db6726ee114cacd9d3fc3e77233, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charTransform: {fileID: 0}
+  offset: {x: 0, y: 1.5, z: 0}
+  isPickedUp: 1

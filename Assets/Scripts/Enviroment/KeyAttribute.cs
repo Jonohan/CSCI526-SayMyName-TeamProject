@@ -10,6 +10,9 @@ public class KeyAttribute : MonoBehaviour
     public Vector3 offset;
     [SerializeField] private bool isPickedUp = true;
 
+    public delegate void KeyDroppedHandler();
+    public event KeyDroppedHandler OnKeyDropped; // when key is dropped make a event
+
     // when key is picked up, it would follow the player or enemy
     // else it can be picked up by player
     private void Update()
@@ -26,25 +29,34 @@ public class KeyAttribute : MonoBehaviour
         else
         {
             isPickedUp = false;
+            OnKeyDropped?.Invoke();
+            // event: enemy drop the key
         }
 
 
     }
 
-    private void OnCollisionEnter(Collision other)
+    // Get isPickedUp
+    public bool IsKeyPickedUp
     {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            pickUpKey(other.transform);
-        }
+        get { return isPickedUp; }
     }
+
+
+    /*    private void OnCollisionEnter(Collision other)
+        {
+            if (other.gameObject.CompareTag("Player"))
+            {
+                pickUpKey(other.transform);
+            }
+        }*/
 
     /**
     *  else when enemy die, drop the key, and player can pick up the key
     */
-    private void pickUpKey(Transform playerTransform)
-    {
-        charTransform = playerTransform;
-        isPickedUp = true;
-    }
+    /*    private void pickUpKey(Transform playerTransform)
+        {
+            charTransform = playerTransform;
+            isPickedUp = true;
+        }*/
 }
