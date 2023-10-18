@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5759,7 +5759,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   URL: https://docs.google.com/forms/u/0/d/e/1FAIpQLSc-3UannS15j4m4ktTdtOTUvA2XQkByALnaaM-dcp7AvCQU-Q/formResponse
-  manager: {fileID: 0}
+  manager: {fileID: 1902484588}
 --- !u!1 &1582080888
 GameObject:
   m_ObjectHideFlags: 0
@@ -6676,10 +6676,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfb86720b8980a340b3faff7ef1e954e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myBag: {fileID: 11400000, guid: cddacc523ff96f943b1fa2cf0de235a3, type: 2}
-  slotGrid: {fileID: 390577672}
-  slotPrefab: {fileID: -5789887954269601752, guid: 9b4b5e456c032634190e189848141059, type: 3}
-  itemInfromation: {fileID: 1055490754}
 --- !u!1 &2024404073 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2123400372220710338, guid: e903f4b0fbd0ae046a9a437ed9ee2566, type: 3}

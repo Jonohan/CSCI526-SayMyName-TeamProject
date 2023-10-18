@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 public class SendToGoogle : MonoBehaviour
 {
     [SerializeField] private string URL;
 
     private long _sessionID;
+    private string currentSceneName;
     private int _patrolEnemy;
     private int _normalEnemy;
 
@@ -24,7 +26,8 @@ public class SendToGoogle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-    
+        currentSceneName = SceneManager.GetActiveScene().name;
+        Debug.Log(currentSceneName);
     }
 
     // Update is called once per frame
@@ -32,7 +35,7 @@ public class SendToGoogle : MonoBehaviour
     {
         if(this.GetComponent<CharacterHealth>().isAlive == false && toSend == true)
         {
-            Debug.Log("Ready to Send Metrics...");
+            Debug.Log("Sending Metrics...");
             Send();
             toSend = false;
         }
@@ -53,6 +56,7 @@ public class SendToGoogle : MonoBehaviour
     {
         WWWForm form = new WWWForm();
         form.AddField("entry.427865542", sessionID);
+        form.AddField("entry.981299839", currentSceneName);
         form.AddField("entry.165316135", patrolEnemy);
         form.AddField("entry.816835344", normalEnemy);
 
