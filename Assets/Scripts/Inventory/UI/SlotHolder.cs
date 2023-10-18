@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum SlotType {BAG}
+public enum SlotType {BAG,KEY,ACTION}
 public class SlotHolder : MonoBehaviour
 {
     public SlotType slotType;
@@ -15,6 +15,10 @@ public class SlotHolder : MonoBehaviour
         {
             case SlotType.BAG:
                 itemUI.Bag = InventoryManager.Instance.inventoryData;
+                break;
+            case SlotType.KEY:
+                break;
+            case SlotType.ACTION:
                 break;
         }
         var item = itemUI.Bag.items[itemUI.Index];

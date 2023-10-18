@@ -15,6 +15,11 @@ public class InventoryManager : Singleton<InventoryManager>
 
     void Start()
     {
+        foreach (var item in inventoryData.items)
+        {
+            item.itemData = null;
+            item.amount = 0;
+        }
         inventoryUI.RefreshUI();
     }
 
