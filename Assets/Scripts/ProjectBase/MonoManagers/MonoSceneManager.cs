@@ -29,8 +29,10 @@ public class MonoSceneManager : MonoBehaviour
     {
         // Remove all events from dictionary
         EventCenter.GetInstance().ClearEvents();
+        Debug.Log("Event center clear.");
         // Clear object pool
         ObjPoolManager.GetInstance().ClearPool();
+        Debug.Log("Object pool clear.");
         Debug.Log("Restarting Scene...\n");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
