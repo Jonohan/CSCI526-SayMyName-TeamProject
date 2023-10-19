@@ -34,7 +34,7 @@ public class WaterAttackManager : MonoBehaviour
         {
             //originalPlayer.SetActive(false)
             // move player to y=-20 to hide player
-            originalPlayer.transform.position = new Vector3(originalPlayer.transform.position.x, -20f, originalPlayer.transform.position.z);
+            originalPlayer.transform.position = new Vector3(originalPlayer.transform.position.x, -80f, originalPlayer.transform.position.z);
             //disable player's controler
             originalPlayer.GetComponent<CharController>().enabled = false;
             water.SetActive(true);
