@@ -17,8 +17,8 @@ public class EnemyController : MonoBehaviour
     public float defaultBulletSpeed = 5.0f;  // Default speed for the bullet
     public float defaultBulletDamage = 1.0f;   // Default damage dealt by the bullet
     private Coroutine shootingCoroutine;  // Add a new variable to track the coroutine(Enemies shoot the player)
-    
-    
+
+    public Material detectAreaMaterial;
 
     // Continuously check for the player's presence within the enemy's field of view
     private void Update()
@@ -62,8 +62,7 @@ public class EnemyController : MonoBehaviour
         MeshFilter mf = go.AddComponent<MeshFilter>();
         MeshRenderer mr = go.AddComponent<MeshRenderer>();
         Mesh mesh = new Mesh();
-        mr.material.shader = Shader.Find("Unlit/Color");
-        mr.material.color = new Color(1.0f, 0.843f, 0.0f, 0.5f);
+        mr.material = detectAreaMaterial;
         mesh.vertices = vertices;
         mesh.triangles = triangles;
         mf.mesh = mesh;

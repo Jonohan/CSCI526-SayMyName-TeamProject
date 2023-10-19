@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -442,6 +442,7 @@ MonoBehaviour:
   firePoint: {fileID: 0}
   defaultBulletSpeed: 5
   defaultBulletDamage: 1
+  detectAreaMaterial: {fileID: 2100000, guid: 149af377bd2c9c248bc76d0821dcbeba, type: 2}
 --- !u!1 &651209163
 GameObject:
   m_ObjectHideFlags: 0
@@ -1538,6 +1539,7 @@ MonoBehaviour:
   firePoint: {fileID: 0}
   defaultBulletSpeed: 5
   defaultBulletDamage: 1
+  detectAreaMaterial: {fileID: 2100000, guid: 149af377bd2c9c248bc76d0821dcbeba, type: 2}
 --- !u!4 &1353104442 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7824196541849326592, guid: e903f4b0fbd0ae046a9a437ed9ee2566, type: 3}
@@ -6721,6 +6723,7 @@ MonoBehaviour:
   firePoint: {fileID: 0}
   defaultBulletSpeed: 5
   defaultBulletDamage: 1
+  detectAreaMaterial: {fileID: 2100000, guid: 149af377bd2c9c248bc76d0821dcbeba, type: 2}
 --- !u!1 &2032183350 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2123400372220710338, guid: e903f4b0fbd0ae046a9a437ed9ee2566, type: 3}
@@ -6745,6 +6748,7 @@ MonoBehaviour:
   firePoint: {fileID: 0}
   defaultBulletSpeed: 5
   defaultBulletDamage: 1
+  detectAreaMaterial: {fileID: 2100000, guid: 149af377bd2c9c248bc76d0821dcbeba, type: 2}
 --- !u!1 &2057245652 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4993580779852607960, guid: 63df5640934199741af97dc0be4d6dac, type: 3}
