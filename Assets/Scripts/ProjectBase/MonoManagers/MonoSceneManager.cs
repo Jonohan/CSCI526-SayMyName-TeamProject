@@ -6,7 +6,7 @@ public class MonoSceneManager : MonoBehaviour
 {
 
     public GameObject WinScreen;
-    
+    public GameObject NextLevelButton;
     private void OnEnable()
     {
         if (WinScreen == null)
@@ -44,6 +44,11 @@ public class MonoSceneManager : MonoBehaviour
         pm.originalPlayer.GetComponent<CharController>().enabled = false;
         
         WinScreen.SetActive(true);
+
+        if (NextLevelButton != null)
+        {
+            NextLevelButton.SetActive(true);    
+        }
     }
 
     public void MSM_LoadNextLevel()
@@ -54,6 +59,11 @@ public class MonoSceneManager : MonoBehaviour
         int nextSceneIndex = currentSceneIndex + 1;
         if (currentSceneIndex >= totalScenes - 1)
             nextSceneIndex = 0;
+
+        if (currentSceneIndex == 1)
+        {
+            WinScreen.SetActive(false);
+        }
         Debug.Log("Current Scene: " + currentSceneIndex.ToString());
         Debug.Log("Loading the next level...\n");
         EventCenter.GetInstance().ClearEvents();
