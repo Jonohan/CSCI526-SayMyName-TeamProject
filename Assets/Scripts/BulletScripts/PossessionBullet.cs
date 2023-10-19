@@ -55,6 +55,7 @@ public class PossessionBullet : MonoBehaviour
     /// <param name="other">The object that the bullet collides with.</param>
     private void OnCollisionEnter(Collision other)
     {
+        possessionPair.Clear();
         // enter the sequence only if the enemy hit is an enemy.
         //TODO: Integrate with enemy scripts to see if this enemy is dead.
         if  ( other.collider.CompareTag("Enemy") )
