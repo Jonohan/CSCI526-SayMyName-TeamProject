@@ -20,7 +20,7 @@ public class BackgroundColorChange : MonoBehaviour
     void Start()
     {
         mainCam = Camera.main;
-        EventCenter.GetInstance().AddEventListener("PossessionSequence", ChangeBGColor);
+        EventCenter.GetInstance().AddEventListener("PossessionStartsSuccessfully", ChangeBGColor);
         EventCenter.GetInstance().AddEventListener("ReturnToOgBody", ChangeBGColorBack);
         // Change the background color to deepened player's color first 
         ChangeBGColorBack(null);
@@ -29,12 +29,11 @@ public class BackgroundColorChange : MonoBehaviour
     /// <summary>
     /// Get material main color from enemy and apply a deeper shade to camera background
     /// </summary>
-    /// <param name="info">Possession pair passed to event center.</param>
+    /// <param name="info">PlayerControllerPossessed component passed by event center.</param>
     private void ChangeBGColor(object info)
     {
         // Get enemy possessed
-        List<GameObject> objList = info as List<GameObject>;
-        GameObject enemy = objList[1];
+        GameObject enemy = (info as PlayerControllerPossessed).gameObject;
         // Get its color
         Renderer enemyRend = enemy.GetComponent<Renderer>();
         Material enemyMat = enemyRend.material;
