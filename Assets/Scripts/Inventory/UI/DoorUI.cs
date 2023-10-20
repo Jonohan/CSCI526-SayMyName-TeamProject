@@ -41,6 +41,10 @@ public class DoorUI : MonoBehaviour
                 }
             }
         }
+        if (other.gameObject == keyObject)
+        {
+            OpenDoor();
+        }
     }
 
 }
