@@ -33,7 +33,7 @@ public class WaterScript : MonoBehaviour
             Debug.Log("Swallow EnemyGB amount:" + manager.GetComponent<WaterAttackManager>().enemy);
             manager.GetComponent<WaterAttackManager>().recover();
 
-            UpdateEnemyKillText(manager.GetComponent<WaterAttackManager>().enemy, "Red Enemy");
+            UpdateEnemyKillText(manager.GetComponent<WaterAttackManager>().enemy, "EnemyGB");
         }
 
         if (collision.gameObject.name.Contains("PatrolEnemy"))
@@ -44,7 +44,7 @@ public class WaterScript : MonoBehaviour
             Debug.Log("Swallow patrolEnemy amount:" + manager.GetComponent<WaterAttackManager>().patrolEnemy);
             manager.GetComponent<WaterAttackManager>().recover();
 
-            UpdateEnemyKillText(manager.GetComponent<WaterAttackManager>().patrolEnemy, "Green Enemy");
+            UpdateEnemyKillText(manager.GetComponent<WaterAttackManager>().patrolEnemy, "PatrolEnemy");
         }
         //// Check if the collision involves a specific tag
         Debug.Log("Collision with " + collision.gameObject.name);
@@ -59,6 +59,13 @@ public class WaterScript : MonoBehaviour
     // Need to show different type enemy at the same screen in next version
     private void UpdateEnemyKillText(int count, string enemyType)
     {
-        enemyKillCountText.text = $"{enemyType} Kill Count: {count}/3"; 
+        if (enemyType == "EnemyGB")
+        {
+            enemyKillCountText.text = $"Red Enemy Devour Count: {count}/3";
+        }
+        else if (enemyType == "PatrolEnemy")
+        {
+            enemyKillCountText.text = $"Green Enemy Devour Count: {count}/3";
+        }
     }
 }
