@@ -1177,6 +1177,10 @@ PrefabInstance:
       propertyPath: isPickedUp
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1630302253844020880, guid: d707b6474e587ee44808befe38d010c7, type: 3}
+      propertyPath: charTransform
+      value: 
+      objectReference: {fileID: 1353104438}
     - target: {fileID: 5160277899133672602, guid: d707b6474e587ee44808befe38d010c7, type: 3}
       propertyPath: m_Drag
       value: 2
@@ -2140,6 +2144,11 @@ MonoBehaviour:
   defaultBulletSpeed: 5
   defaultBulletDamage: 1
   detectAreaMaterial: {fileID: 2100000, guid: 149af377bd2c9c248bc76d0821dcbeba, type: 2}
+--- !u!4 &1353104438 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7824196541849326592, guid: e903f4b0fbd0ae046a9a437ed9ee2566, type: 3}
+  m_PrefabInstance: {fileID: 1711544784}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1377170281
 GameObject:
   m_ObjectHideFlags: 0
