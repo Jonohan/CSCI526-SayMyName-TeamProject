@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -21,7 +22,13 @@ public class PlayerControllerPossessed : MonoBehaviour
     [SerializeField] private GameObject LogTextContainer;
     private Text logText;
 
-    public EnemyController possessedEnemy;  //ÐÂÔö
+    private void OnEnable()
+    {
+        // once we can confirm that possession has started, trigger this event for background color change and stuff
+        Debug.Log("PlayerControllerPossessed: Possession started. ");
+        EventCenter.GetInstance().TriggerEvent("PossessionStartsSuccessfully", this);
+    }
+
     private void Start()
     {
         input = Vector3.zero;
@@ -30,6 +37,7 @@ public class PlayerControllerPossessed : MonoBehaviour
         LogTextContainer = GameObject.Find("LogTextContainer");
         logText = LogTextContainer.GetComponent<Text>();
         logText.text = "Possession bullet and Puddle are disabled in this form. Press 1 to return to your body.";
+        
     }
 
     // Update is called once per frame

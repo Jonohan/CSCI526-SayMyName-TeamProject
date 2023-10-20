@@ -12,7 +12,7 @@ public class CharController : MonoBehaviour
     
     [Header("Character General Properties")]
     [SerializeField] private Rigidbody rb;
-    [SerializeField] private bool isPuddle = false;
+    //[SerializeField] private bool isPuddle = false;
     
     [Header("Character Movement Parameters")]
     [SerializeField] private float moveSpeed = 5.0f;
@@ -140,7 +140,7 @@ public class CharController : MonoBehaviour
                     logText.text = "Reloading";
                 }
             }
-                isAiming = false;
+            isAiming = false;
         }
     }
     

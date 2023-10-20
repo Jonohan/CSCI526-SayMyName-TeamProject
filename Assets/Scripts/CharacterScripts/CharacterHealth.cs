@@ -35,7 +35,7 @@ public class CharacterHealth : MonoBehaviour
         isAlive = true;
         mainCam = Camera.main;
         bcc = mainCam.GetComponent<BackgroundColorChange>();
-        EventCenter.GetInstance().AddEventListener("PossessionSequence", DelayChangeHealthColor);
+        EventCenter.GetInstance().AddEventListener("PossessionStartsSuccessfully", DelayChangeHealthColor);
         EventCenter.GetInstance().AddEventListener("ReturnToOgBody", DelayChangeHealthColorBack);
         
         // Change the health container's color to the original player's material color.
@@ -117,7 +117,7 @@ public class CharacterHealth : MonoBehaviour
     /// <summary>
     /// Change health container sprite color to the enemy's color when player is possessing an enemy
     /// </summary>
-    /// <param name="info">Possession pair passed to event center. Not relevant in this function.</param>
+    /// <param name="info">PlayerControllerPossessed component passed by event center. Not relevant in this function.</param>
     private void ChangeHealthColor(object info)
     {
         // In onEnable call, leave the intended color unchanged.

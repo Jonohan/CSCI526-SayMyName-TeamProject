@@ -42,7 +42,6 @@ public class PossessionManager : MonoBehaviour
             tempPlayer.AddComponent<PlayerControllerPossessed>();
             RegisterCurrentPlayerControllable(tempPlayer.gameObject);
             
-            Debug.Log("Possession started. ");
         }
     }
 
@@ -77,7 +76,6 @@ public class PossessionManager : MonoBehaviour
             throw new Exception("Error: original enemy controller not found on possessed enemy.");
 
         StartCoroutine(WaitEnemyReturnToPosition(ec));
-        //EventCenter.GetInstance().TriggerEvent("PossessionEnded", this);
         
         this.currentPlayerControllable = originalPlayer;
     }
