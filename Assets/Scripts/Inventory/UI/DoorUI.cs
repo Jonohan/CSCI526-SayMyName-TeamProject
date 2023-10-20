@@ -29,15 +29,19 @@ public class DoorUI : MonoBehaviour
 
     // Open the door with key
     private void OnTriggerEnter(Collider other)
-
     {
         if (other.CompareTag("Player"))
         {
-            foreach (var item in InventoryManager.Instance.inventoryData.items)
+            // Ensure InventoryManager instance and inventoryData are not null
+            if (InventoryManager.Instance != null && InventoryManager.Instance.inventoryData != null)
             {
-                if (item.itemData.itemName == "Key2")
+                foreach (var item in InventoryManager.Instance.inventoryData.items)
                 {
-                    OpenDoor();
+                    // Ensure item and itemData are not null
+                    if (item != null && item.itemData != null && item.itemData.itemName == "Key2")
+                    {
+                        OpenDoor();
+                    }
                 }
             }
         }
@@ -46,5 +50,4 @@ public class DoorUI : MonoBehaviour
             OpenDoor();
         }
     }
-
 }
