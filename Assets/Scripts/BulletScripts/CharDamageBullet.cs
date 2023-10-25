@@ -42,8 +42,14 @@ public class CharDamageBullet : MonoBehaviour
     {
         if (other.collider.CompareTag("Enemy"))
         {
+            Debug.Log(other.collider);
             Debug.Log("Damage bullet hits an enemy");
-            Destroy(other.gameObject);
+            GameObject enemy = other.collider.gameObject;  // get the enemy gameobject\
+            enemy.GetComponent<EnemyHealthController>().restHealth--;
+            Debug.Log("The rest health of current enemy is " + enemy.GetComponent<EnemyHealthController>().restHealth);
+
+            if(other.gameObject.GetComponent<EnemyHealthController>().restHealth <= 0)
+                Destroy(other.gameObject);
         }
         // Recycle the bullet after the collision
         RecycleObj();
