@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 // We set the all player's bullet at same fire interval 
 public class CharDamageBullet : MonoBehaviour
@@ -46,9 +47,26 @@ public class CharDamageBullet : MonoBehaviour
             Debug.Log("Damage bullet hits an enemy");
             GameObject enemy = other.collider.gameObject;  // get the enemy gameobject\
             enemy.GetComponent<EnemyHealthController>().restHealth--;
-            Debug.Log("The rest health of current enemy is " + enemy.GetComponent<EnemyHealthController>().restHealth);
+            Debug.Log("Enemy health = " + enemy.GetComponent<EnemyHealthController>().restHealth);
+            Transform canvas = enemy.transform.GetChild(2); // get the canvas->frontground
+            Image healthBarFrontground = canvas.GetChild(1).GetComponent<Image>();
+            Debug.Log("healthBarFrontground is " + healthBarFrontground.name);
+            healthBarFrontground.fillAmount = 1.0f * enemy.GetComponent<EnemyHealthController>().restHealth / enemy.GetComponent<EnemyHealthController>().maxHealth;
+            //foreach (Transform childTransform in enemy.transform)
+            //{
+            //    // 尝试从子物体获取Image组件
+            //    Canvas imageComponent = childTransform.GetComponent<Canvas>();
 
-            if(other.gameObject.GetComponent<EnemyHealthController>().restHealth <= 0)
+            //    if (imageComponent != null)
+            //    {
+            //        // 找到Image组件，可以进行相应的操作
+            //        Debug.Log("Found Image Component on child GameObject: " + childTransform.name);
+            //    } else
+            //    {
+            //        Debug.Log("Not Found any Image Component on child GameObject: ");
+            //    }
+            //}
+            if (other.gameObject.GetComponent<EnemyHealthController>().restHealth <= 0)
                 Destroy(other.gameObject);
         }
         // Recycle the bullet after the collision

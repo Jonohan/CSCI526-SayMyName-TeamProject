@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
@@ -21,13 +20,11 @@ public class SendToGoogle : MonoBehaviour
     private void Awake()
     {
         _sessionID = DateTime.Now.Ticks;
-        Debug.Log(_sessionID);
     }
     // Start is called before the first frame update
     void Start()
     {
         currentSceneName = SceneManager.GetActiveScene().name;
-        Debug.Log(currentSceneName);
     }
 
     // Update is called once per frame
