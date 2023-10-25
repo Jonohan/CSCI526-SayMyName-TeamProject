@@ -22,11 +22,6 @@ public class PatrolEnemyController : MonoBehaviour
 
         GotoNextPoint();
 
-        // initiate the health bar for the enemy
-        //HP_Bar = GameObject.Find("HBar");
-        //HP_Image = HP_Bar.GetComponent<Image>();
-        //HP = Max_HP;
-
     }
 
     // Update is called once per frame
@@ -55,16 +50,6 @@ public class PatrolEnemyController : MonoBehaviour
         } else if(destPoint == 0)
         {
             patrolDirction = 1;
-        }
-    }
-
-    // The player exits the patrolling area
-    void OnTriggerExit(Collider collider)
-    {
-        if (collider.gameObject.tag == "Player")
-        {
-            // Stop shooting at the player
-
         }
     }
 }

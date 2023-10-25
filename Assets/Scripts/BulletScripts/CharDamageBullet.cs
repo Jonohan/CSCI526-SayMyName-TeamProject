@@ -52,20 +52,6 @@ public class CharDamageBullet : MonoBehaviour
             Image healthBarFrontground = canvas.GetChild(1).GetComponent<Image>();
             Debug.Log("healthBarFrontground is " + healthBarFrontground.name);
             healthBarFrontground.fillAmount = 1.0f * enemy.GetComponent<EnemyHealthController>().restHealth / enemy.GetComponent<EnemyHealthController>().maxHealth;
-            //foreach (Transform childTransform in enemy.transform)
-            //{
-            //    // 尝试从子物体获取Image组件
-            //    Canvas imageComponent = childTransform.GetComponent<Canvas>();
-
-            //    if (imageComponent != null)
-            //    {
-            //        // 找到Image组件，可以进行相应的操作
-            //        Debug.Log("Found Image Component on child GameObject: " + childTransform.name);
-            //    } else
-            //    {
-            //        Debug.Log("Not Found any Image Component on child GameObject: ");
-            //    }
-            //}
             if (other.gameObject.GetComponent<EnemyHealthController>().restHealth <= 0)
                 Destroy(other.gameObject);
         }
