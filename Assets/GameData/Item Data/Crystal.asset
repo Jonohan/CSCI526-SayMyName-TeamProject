@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da640bb9565c3414991ca393525daf53, type: 3}
+  m_Name: Crystal
+  m_EditorClassIdentifier: 
+  itemType: 0
+  itemName: Crystal
+  itemIcon: {fileID: 21300000, guid: 8f6d58fd471ba8a45a4b681953e29c26, type: 3}
+  itemAmount: 1
+  description: Item that need to collect
+  stackable: 1
+  useablePrefab: {fileID: 1193910850627169158, guid: 28a8fb8349ef77342a2c72b2740b29de, type: 3}
