@@ -9,13 +9,14 @@ public class PossessionManager : MonoBehaviour
     
     public GameObject originalPlayer = null;
     [SerializeField] private GameObject currentPlayerControllable = null;
-    
-    
+    [SerializeField] private ParticleSystem psPoss;
+    public GameObject FxContainer;
     void Start()
     {
         Debug.Log("Possession Manager Start()");
         EventCenter.GetInstance().AddEventListener("PossessionSequence", InitiatePossession);
         EventCenter.GetInstance().AddEventListener("ReturnToOgBody", ReturnToOriginalBody);
+        EventCenter.GetInstance().AddEventListener("PossessionStartsSuccessfully", PlayPossessionEffect);
         currentPlayerControllable = originalPlayer;
     }
 
@@ -78,6 +79,8 @@ public class PossessionManager : MonoBehaviour
         StartCoroutine(WaitEnemyReturnToPosition(ec));
         
         this.currentPlayerControllable = originalPlayer;
+
+        CharController cc = originalPlayer.GetComponent<CharController>();
     }
 
     /// <summary>
@@ -90,5 +93,34 @@ public class PossessionManager : MonoBehaviour
     {
         yield return null;
         ec.ReturnToPosition();
+    }
+
+    /// <summary>
+    /// Play the particle effect
+    /// </summary>
+    /// <param name="info">PlayerControllerPossessed component</param>
+    private void PlayPossessionEffect(object info)
+    {
+        Debug.Log("PlayPossessionEffect is triggered.");
+        psPoss = FxContainer.GetComponent<ParticleSystem>();
+        if (psPoss != null)
+        {
+            psPoss.gameObject.SetActive(false);
+            GameObject Enemy = (info as PlayerControllerPossessed).gameObject;
+            Vector3 newPos = Enemy.transform.position;
+            FxContainer.transform.position = newPos;
+            var main = psPoss.main;
+            main.startColor = Enemy.GetComponent<Renderer>().material.color;
+
+            StartCoroutine(PlayParticleEffect(psPoss, 2f));
+        }
+    }
+    
+    private IEnumerator PlayParticleEffect(ParticleSystem ps, float duration)
+    {
+        ps.gameObject.SetActive(true);
+        ps.Play();
+        yield return new WaitForSeconds(duration);
+        ps.gameObject.SetActive(false);
     }
 }

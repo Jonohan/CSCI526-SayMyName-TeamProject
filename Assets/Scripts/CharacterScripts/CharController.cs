@@ -44,6 +44,10 @@ public class CharController : MonoBehaviour
     [Header("Inventory System")]
     public GameObject myBag;
     bool isOpen;
+
+    [Header("Particle Systems")] 
+    public GameObject psAimingSelfContainer;
+    public ParticleSystem psAimingSelf;
     
     public enum PlayerState
     {
@@ -63,9 +67,12 @@ public class CharController : MonoBehaviour
             myBag.SetActive(isOpen);
         }
     }
-    
-    
-    
+
+    private void OnEnable()
+    {
+        StartCoroutine(PlayParticleEffect(psAimingSelf, 2));
+    }
+
     private void Start()
     {
         Debug.Log("CharController Start()");
@@ -79,6 +86,9 @@ public class CharController : MonoBehaviour
 
         //currentState = PlayerState.Fighting; // The initial status is set to Fighting (force to one status)
         startPosition = transform.position; // Set the starting position
+
+        psAimingSelf = psAimingSelfContainer.GetComponent<ParticleSystem>();
+        
     }
 
     void Update()
@@ -114,11 +124,22 @@ public class CharController : MonoBehaviour
         }
 
         if (Input.GetMouseButtonDown(1))
+        {
             isAiming = true;
-        
+            // if possesion is off cooldown then play the effect
+            if (Time.time - lastSkillUseTime >= PossessionSkillCooldown)
+            {
+                StartCoroutine(PlayParticleEffect(psAimingSelf, 1.5f));
+            }
+        }
+            
+
         if (isAiming)
+        {
             GatherMouseLookingInput();
-        
+        }
+
+          
         Look();
         
         if (Input.GetMouseButtonUp(1))
@@ -141,6 +162,8 @@ public class CharController : MonoBehaviour
                 }
             }
             isAiming = false;
+            
+            psAimingSelf.gameObject.SetActive(false);
         }
     }
     
@@ -253,5 +276,16 @@ public class CharController : MonoBehaviour
     public void TeleportToStart()
     {
         transform.position = startPosition; // Reset player position to start
+    }
+
+    private IEnumerator PlayParticleEffect(ParticleSystem ps, float duration)
+    {
+        psAimingSelfContainer.transform.position = gameObject.transform.position;
+        ps.gameObject.SetActive(true);
+        var main = ps.main;
+        main.startColor = GetComponent<Renderer>().material.color;
+        ps.Play();
+        yield return new WaitForSeconds(duration);
+        ps.gameObject.SetActive(false);
     }
 }
