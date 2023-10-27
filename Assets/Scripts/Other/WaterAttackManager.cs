@@ -15,7 +15,7 @@ public class WaterAttackManager : MonoBehaviour
     public int patrolEnemy = 0;
     public bool canEnterFightingState = false;
 
-    private  CharController playerController = null;
+    private CharController playerController = null;
     private bool waterState = false;
 
     // Start is called before the first frame update
@@ -97,5 +97,5 @@ public class WaterAttackManager : MonoBehaviour
         }
     }
 
-    
+
 }
