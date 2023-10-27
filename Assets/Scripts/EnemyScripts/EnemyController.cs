@@ -107,47 +107,21 @@ public class EnemyController : MonoBehaviour
                 {
                     if (hit.collider.CompareTag("Player"))
                     {
-                        lastDetectionTime = Time.time; // 更新最后检测时间
+                        lastDetectionTime = Time.time; // Update the last detected time
                         OnPlayerSpotted(player);
+                        return;
                     }
                 }
             }
-            else
+            
+            if (shootingCoroutine != null)
             {
-                if (shootingCoroutine != null)
-                {
-                    StopCoroutine(shootingCoroutine);
-                    shootingCoroutine = null;
-                }
+                StopCoroutine(shootingCoroutine);
+                shootingCoroutine = null;
             }
         }
     }
-
-    // Actions to be performed when a player is detected
-    // void OnPlayerSpotted(CharController player)
-    // {
-    //     lastSpottedPlayerPosition = player.transform.position;
-    //     CharacterHealth playerHealth = player.GetComponent<CharacterHealth>();
-    //
-    //     if (player && playerHealth)
-    //     {
-    //         switch (player.currentState)  // Assuming you've defined currentState in CharController
-    //         {
-    //             case CharController.PlayerState.Normal:
-    //                 playerHealth.IsExposed();
-    //                 player.TeleportToStart();  // Assuming you've defined TeleportToStart in CharController
-    //                 break;
-    //             case CharController.PlayerState.Possessing:
-    //                 break;
-    //             case CharController.PlayerState.Fighting:
-    //                 playerHealth.HitByBullet(0.5f);
-    //                 break;
-    //         }
-    //     }
-    //     
-    //     Vector3 targetDir = (lastSpottedPlayerPosition - transform.position).normalized;
-    //     ShootNormalBulletAtPlayer(targetDir, defaultBulletSpeed, defaultBulletDamage);
-    // }
+    
     
     // Actions to be performed when a player is detected
     void OnPlayerSpotted(CharController player)
