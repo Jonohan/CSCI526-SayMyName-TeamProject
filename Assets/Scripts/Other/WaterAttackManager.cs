@@ -15,12 +15,15 @@ public class WaterAttackManager : MonoBehaviour
     public int patrolEnemy = 0;
     public bool canEnterFightingState = false;
 
+    private  CharController playerController = null;
+    private bool waterState = false;
+
     // Start is called before the first frame update
     void Start()
     {
         water.SetActive(false);
+        playerController = originalPlayer.GetComponent<CharController>();
         Debug.Log("WaterAttackManager Start()");
-
     }
 
     // Update is called once per frame
@@ -30,28 +33,35 @@ public class WaterAttackManager : MonoBehaviour
         water.transform.position = new Vector3(originalPlayer.transform.position.x, water.transform.position.y, originalPlayer.transform.position.z);
 
         // Player turn into water when player pressed 2 and is meeting all conditions
-        if (originalPlayer.activeInHierarchy && waterLeft >= 0 && (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2)))
+        if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
         {
-            //originalPlayer.SetActive(false)
-            // move player to y=-20 to hide player
-            originalPlayer.transform.position = new Vector3(originalPlayer.transform.position.x, -80f, originalPlayer.transform.position.z);
-            //disable player's controler
-            originalPlayer.GetComponent<CharController>().enabled = false;
-            water.SetActive(true);
-            lastTimeSkillUsed = Time.time;
-            waterLeft -= 1;
-            Debug.Log("Player turned into water!");
+            if (waterState)
+            {
+                recover();
+            }
+            else if (waterLeft > 0 && playerController.enabled == true)
+            {
+                // move player to y=-20 to hide player
+                originalPlayer.transform.position = new Vector3(originalPlayer.transform.position.x, -80f, originalPlayer.transform.position.z);
+                //disable player's controler
+                originalPlayer.GetComponent<CharController>().enabled = false;
+                water.SetActive(true);
+                lastTimeSkillUsed = Time.time;
+                waterLeft -= 1;
+                waterState = true;
+            }
+
         }
 
         // Turn back to original player after 10s
         if (water.activeInHierarchy && (Time.time - lastTimeSkillUsed > 10.0f))
         {
             water.SetActive(false);
-            //originalPlayer.SetActive(true);
             // move player back to original position
             originalPlayer.transform.position = new Vector3(originalPlayer.transform.position.x, 0.5f, originalPlayer.transform.position.z);
             //enable player's controler
             originalPlayer.GetComponent<CharController>().enabled = true;
+            waterState = false;
             Debug.Log("Player back from water!");
         }
 
@@ -83,6 +93,7 @@ public class WaterAttackManager : MonoBehaviour
             originalPlayer.transform.position = new Vector3(originalPlayer.transform.position.x, 0.5f, originalPlayer.transform.position.z);
             //enable player's controler
             originalPlayer.GetComponent<CharController>().enabled = true;
+            waterState = false;
         }
     }
 
