@@ -29,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 2038245503783996055}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.61, y: 0.99, z: 5.91}
-  m_LocalScale: {x: 1, y: 1.6504, z: 3.827417}
+  m_LocalPosition: {x: 0.63, y: 0.62, z: 5.91}
+  m_LocalScale: {x: 1, y: 1.6504, z: 4.1213627}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2115010402839768089}
@@ -118,6 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2d1cd4c7f7c9d44ab4d2d1b56686e4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  keyObject: {fileID: 0}
 --- !u!1 &3607105649096113030
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,7 +148,7 @@ Transform:
   m_GameObject: {fileID: 3607105649096113030}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.35637593, y: 0.8988184, z: 14.856796}
+  m_LocalPosition: {x: -5.22, y: 1.14, z: 9.97}
   m_LocalScale: {x: 0.7, y: 1.2, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -223,8 +224,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.59073, y: 1.1863364, z: 3.2490652}
-  m_Center: {x: -0.79536474, y: 0.09316817, z: 0.03695607}
+  m_Size: {x: 3.5214381, y: 1.1863364, z: 3.2490652}
+  m_Center: {x: -0.33001065, y: 0.09316817, z: 0.03695607}
 --- !u!114 &3518286226005933704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,6 +239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorController: {fileID: 5171543738232065290}
+  isPlayerInRange: 0
 --- !u!1 &4097823970656195894
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,7 +369,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6788597015621482228}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.4592938, y: 2.3293986, z: 1.1127744}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
