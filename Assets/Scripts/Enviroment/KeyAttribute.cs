@@ -22,7 +22,7 @@ public class KeyAttribute : MonoBehaviour
         rotation.y = 0; // Lock the X & Y rotation
         transform.eulerAngles = rotation;
 
-        if (charTransform != null)
+        if (charTransform != null && charTransform.gameObject.activeInHierarchy)
         {
             transform.position = charTransform.position + offset; // Make Key follow the character (above)
         }
