@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryManager : Singleton<InventoryManager>
 {
@@ -12,6 +13,32 @@ public class InventoryManager : Singleton<InventoryManager>
     [Header("ContainerS")]
 
     public ContainerUI inventoryUI;
+
+
+
+    [Header("Status Text")]
+    public Text healthText;
+
+    public Text speedText;
+
+    public Text style;
+
+    public Text skill;
+
+    [Header("GreenCount Text")]
+    public Text greenCountText;
+
+    [Header("RedCount Text")]
+    public Text redCountText;
+
+    [Header("GrayCount Text")]
+    public Text grayCountText;
+
+
+    public void UpdateStatusText(int health, int speed)
+    {
+        healthText.text
+    }
 
     void Start()
     {
