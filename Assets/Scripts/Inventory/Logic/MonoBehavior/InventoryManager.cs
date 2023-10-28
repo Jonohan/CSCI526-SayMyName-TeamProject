@@ -37,7 +37,7 @@ public class InventoryManager : Singleton<InventoryManager>
 
     public void UpdateStatusText(int health, int speed)
     {
-        healthText.text
+        //healthText.text
     }
 
     void Start()
