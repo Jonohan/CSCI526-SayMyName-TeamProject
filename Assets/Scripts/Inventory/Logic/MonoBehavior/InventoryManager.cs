@@ -6,13 +6,30 @@ using UnityEngine.UI;
 
 public class InventoryManager : Singleton<InventoryManager>
 {
-    //TODO load save
+    public class DragData
+    {
+        public SlotHolder originalHolder;
+        public RectTransform originalParent;
+    }
     [Header("Inventory Data")]
     public InventoryData_SO inventoryData;
+
+    public InventoryData_SO actionData;
+
+    public InventoryData_SO equipmentData;
 
     [Header("ContainerS")]
 
     public ContainerUI inventoryUI;
+
+    public ContainerUI actionUI;
+
+    public ContainerUI equipmentUI;
+
+    [Header("Drag Canvas")]
+    public Canvas dragCanvas;
+
+    public DragData currentDrag;
 
 
 
@@ -48,6 +65,8 @@ public class InventoryManager : Singleton<InventoryManager>
             item.amount = 0;
         }
         inventoryUI.RefreshUI();
+        actionUI.RefreshUI();
+        equipmentUI.RefreshUI();
     }
 
 }
