@@ -8,7 +8,7 @@ public class DrugItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 {
     ItemUI currentItemUI;
     SlotHolder currentHolder;
-    SlotHolder targeyHolder;
+    SlotHolder targetHolder;
 
     void Awake()
     {
@@ -29,6 +29,62 @@ public class DrugItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            if(InventoryManager.Instance.CheckInActionUI(eventData.position) || InventoryManager.Instance.CheckInEquipmentUI(eventData.position) ||
+            InventoryManager.Instance.CheckInInventoryUI(eventData.position))
+            {
+                if (eventData.pointerEnter.gameObject.GetComponent <SlotHolder>())
+                {
+                    targetHolder = eventData.pointerEnter.gameObject.GetComponent<SlotHolder>();
+                }
+                else
+                {
+                    targetHolder = eventData.pointerEnter.gameObject.GetComponentInParent<SlotHolder>();
+                }
+                switch (targetHolder.slotType)
+                {
+                    case SlotType.BAG:
+                        SwapItem();
+                        break;
+                    case SlotType.KEY:
+                        break;
+                    case SlotType.ARMOR:
+                        break;
+                    case SlotType.BOOT:
+                        break;
+                    case SlotType.ACTION:
+                        break;
+                }
+                currentHolder.UpdateItem();
+                targetHolder.UpdateItem();
+            }
+        }
+        transform.SetParent(InventoryManager.Instance.currentDrag.originalParent);
+
+        RectTransform t = transform as RectTransform;
+
+        t.offsetMax = -Vector2.one * 5;
+        t.offsetMin = Vector2.one * 5;
+    }
+    public void SwapItem()
+    {
+        var targetItem = targetHolder.itemUI.Bag.items[targetHolder.itemUI.Index];
+        var tempItem = currentHolder.itemUI.Bag.items[currentHolder.itemUI.Index];
+
+        bool isSameItem = tempItem.itemData == targetItem.itemData;
+
+        if(isSameItem && targetItem.itemData.stackable)
+        {
+            targetItem.amount += tempItem.amount;
+            tempItem.itemData = null;
+            tempItem.amount = 0;
+        }
+        else
+        {
+            currentHolder.itemUI.Bag.items[currentHolder.itemUI.Index] = targetItem;
+            targetItem = tempItem;
+        }
 
     }
 }
