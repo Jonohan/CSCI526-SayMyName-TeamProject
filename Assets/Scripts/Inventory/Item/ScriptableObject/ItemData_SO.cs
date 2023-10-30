@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ItemType {useable}
+public enum ItemType {Key, Armor, Boot, Useable}
 [CreateAssetMenu(fileName ="New Item",menuName = "Inventory/Item Data")]
 public class ItemData_SO : ScriptableObject
 {
@@ -14,6 +14,12 @@ public class ItemData_SO : ScriptableObject
     public string description = "";
     public bool stackable;
 
-    [Header("useable")]
-    public GameObject useablePrefab;
+    [Header("Key")]
+    public GameObject KeyPrefab;
+    [Header("Armor")]
+    public GameObject ArmorPrefab;
+    [Header("Boot")]
+    public GameObject BootPrefab;
+    [Header("Useable")]
+    public GameObject UseablePrefab;
 }

@@ -713,7 +713,7 @@ GameObject:
   - component: {fileID: 94113620}
   - component: {fileID: 94113619}
   m_Layer: 5
-  m_Name: Shose
+  m_Name: Boot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2221,7 +2221,7 @@ GameObject:
   - component: {fileID: 333699340}
   - component: {fileID: 333699339}
   m_Layer: 5
-  m_Name: bootEquitmentSlot
+  m_Name: bootSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2259,7 +2259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5d80d47012cea641a91347abbe7a327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotType: 1
+  slotType: 3
   itemUI: {fileID: 775318846}
 --- !u!114 &333699340
 MonoBehaviour:
@@ -5637,7 +5637,7 @@ GameObject:
   - component: {fileID: 1029578785}
   - component: {fileID: 1029578787}
   m_Layer: 5
-  m_Name: armorEquitmentSlot
+  m_Name: armorSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5713,7 +5713,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5d80d47012cea641a91347abbe7a327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotType: 1
+  slotType: 2
   itemUI: {fileID: 1411070120}
 --- !u!1 &1033508925
 GameObject:
@@ -8223,7 +8223,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5850667678210460968, guid: c392ab2594a4469478148e03f837e97f, type: 3}
       propertyPath: slotType
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7451063045413949731, guid: c392ab2594a4469478148e03f837e97f, type: 3}
       propertyPath: m_Pivot.x
@@ -15663,7 +15663,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5850667678210460968, guid: c392ab2594a4469478148e03f837e97f, type: 3}
       propertyPath: slotType
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7451063045413949731, guid: c392ab2594a4469478148e03f837e97f, type: 3}
       propertyPath: m_Pivot.x

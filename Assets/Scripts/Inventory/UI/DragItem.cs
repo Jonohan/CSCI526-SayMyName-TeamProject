@@ -48,12 +48,28 @@ public class DrugItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                         SwapItem();
                         break;
                     case SlotType.KEY:
+                        if (currentItemUI.Bag.items[currentItemUI.Index].itemData.itemType == ItemType.Key)
+                        {
+                            SwapItem();
+                        }
                         break;
                     case SlotType.ARMOR:
+                        if (currentItemUI.Bag.items[currentItemUI.Index].itemData.itemType == ItemType.Armor)
+                        {
+                            SwapItem();
+                        }
                         break;
                     case SlotType.BOOT:
+                        if (currentItemUI.Bag.items[currentItemUI.Index].itemData.itemType == ItemType.Boot)
+                        {
+                            SwapItem();
+                        }
                         break;
                     case SlotType.ACTION:
+                        if(currentItemUI.Bag.items[currentItemUI.Index].itemData.itemType == ItemType.Useable)
+                            {
+                            SwapItem();
+                            }
                         break;
                 }
                 currentHolder.UpdateItem();
