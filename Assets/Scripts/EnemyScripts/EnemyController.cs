@@ -20,7 +20,7 @@ public class EnemyController : MonoBehaviour
 
     public Material detectAreaMaterial;
 
-    public Canvas healthBar;
+    //public Canvas healthBar;
 
     // Continuously check for the player's presence within the enemy's field of view
     private void Update()
@@ -34,17 +34,17 @@ public class EnemyController : MonoBehaviour
 
         DrawDetectArea(transform, viewAngle, viewDistance);  // Draw the enemy's field of view visualization in the game world
 
-        // create new canvas object
-        Canvas newCanvas = Instantiate(healthBar);
-        //newCanvas.transform.position = healthBar.transform.position;
+        //// create new canvas object
+        //Canvas newCanvas = Instantiate(healthBar);
+        ////newCanvas.transform.position = healthBar.transform.position;
 
-        // copy the properties from the original canvas
-        newCanvas.renderMode = RenderMode.WorldSpace;  // set the rendermode as worldspace so that positon can be mannually set for the newCanvas
-        newCanvas.worldCamera = healthBar.worldCamera;
+        //// copy the properties from the original canvas
+        //newCanvas.renderMode = RenderMode.WorldSpace;  // set the rendermode as worldspace so that positon can be mannually set for the newCanvas
+        //newCanvas.worldCamera = healthBar.worldCamera;
 
-        // set parent for newCanvas
-        newCanvas.transform.SetParent(transform);
-        newCanvas.transform.localPosition = new Vector3(0, 0, 0);
+        //// set parent for newCanvas
+        //newCanvas.transform.SetParent(transform);
+        //newCanvas.transform.localPosition = new Vector3(0, 0, 0);
     }
 
     // Method to draw the enemy's field of view

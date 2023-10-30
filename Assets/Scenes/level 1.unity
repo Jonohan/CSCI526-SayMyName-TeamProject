@@ -5427,7 +5427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e100f04a817100d4c88979141a886a85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 1
   restHealth: 0
 --- !u!114 &1120193570
 MonoBehaviour:
@@ -14859,7 +14859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e100f04a817100d4c88979141a886a85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 1
   restHealth: 0
 --- !u!1 &2071076065
 GameObject:
@@ -14916,7 +14916,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _persistent: 1
   inventoryData: {fileID: 11400000, guid: c7a245935199f9741ab82b3ad298d508, type: 2}
+  actionData: {fileID: 0}
+  equipmentData: {fileID: 0}
   inventoryUI: {fileID: 1622064975}
+  actionUI: {fileID: 0}
+  equipmentUI: {fileID: 0}
+  dragCanvas: {fileID: 0}
   healthText: {fileID: 0}
   speedText: {fileID: 0}
   style: {fileID: 0}

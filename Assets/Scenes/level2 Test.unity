@@ -3301,7 +3301,6 @@ MonoBehaviour:
   defaultBulletSpeed: 5
   defaultBulletDamage: 1
   detectAreaMaterial: {fileID: 2100000, guid: 149af377bd2c9c248bc76d0821dcbeba, type: 2}
-  healthBar: {fileID: 1572683699}
 --- !u!114 &519447329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3314,7 +3313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e100f04a817100d4c88979141a886a85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 1
   restHealth: 0
 --- !u!4 &557632477 stripped
 Transform:
@@ -6026,7 +6025,6 @@ MonoBehaviour:
   defaultBulletSpeed: 5
   defaultBulletDamage: 1
   detectAreaMaterial: {fileID: 2100000, guid: 149af377bd2c9c248bc76d0821dcbeba, type: 2}
-  healthBar: {fileID: 1572683699}
 --- !u!114 &1058692228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6039,7 +6037,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e100f04a817100d4c88979141a886a85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 1
   restHealth: 0
 --- !u!1 &1073501197
 GameObject:
@@ -6336,7 +6334,6 @@ MonoBehaviour:
   defaultBulletSpeed: 5
   defaultBulletDamage: 1
   detectAreaMaterial: {fileID: 2100000, guid: 149af377bd2c9c248bc76d0821dcbeba, type: 2}
-  healthBar: {fileID: 1572683699}
 --- !u!114 &1110495417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6349,7 +6346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e100f04a817100d4c88979141a886a85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 1
   restHealth: 0
 --- !u!1 &1118312237
 GameObject:
@@ -6660,7 +6657,6 @@ MonoBehaviour:
   defaultBulletSpeed: 5
   defaultBulletDamage: 1
   detectAreaMaterial: {fileID: 2100000, guid: 149af377bd2c9c248bc76d0821dcbeba, type: 2}
-  healthBar: {fileID: 1572683699}
 --- !u!114 &1128836852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6673,7 +6669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e100f04a817100d4c88979141a886a85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 1
   restHealth: 0
 --- !u!1001 &1149272023
 PrefabInstance:
@@ -7084,7 +7080,6 @@ MonoBehaviour:
   defaultBulletSpeed: 5
   defaultBulletDamage: 1
   detectAreaMaterial: {fileID: 2100000, guid: 149af377bd2c9c248bc76d0821dcbeba, type: 2}
-  healthBar: {fileID: 1572683699}
 --- !u!114 &1289258505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7097,7 +7092,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e100f04a817100d4c88979141a886a85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 1
   restHealth: 0
 --- !u!1 &1305278460
 GameObject:
@@ -7748,7 +7743,6 @@ MonoBehaviour:
   defaultBulletSpeed: 5
   defaultBulletDamage: 1
   detectAreaMaterial: {fileID: 2100000, guid: 149af377bd2c9c248bc76d0821dcbeba, type: 2}
-  healthBar: {fileID: 1572683699}
 --- !u!1 &1363934833
 GameObject:
   m_ObjectHideFlags: 0
@@ -11866,7 +11860,6 @@ MonoBehaviour:
   defaultBulletSpeed: 5
   defaultBulletDamage: 1
   detectAreaMaterial: {fileID: 2100000, guid: 149af377bd2c9c248bc76d0821dcbeba, type: 2}
-  healthBar: {fileID: 1572683699}
 --- !u!114 &2022254546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11879,7 +11872,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e100f04a817100d4c88979141a886a85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 1
   restHealth: 0
 --- !u!4 &2029784917 stripped
 Transform:
@@ -11911,7 +11904,6 @@ MonoBehaviour:
   defaultBulletSpeed: 5
   defaultBulletDamage: 1
   detectAreaMaterial: {fileID: 2100000, guid: 149af377bd2c9c248bc76d0821dcbeba, type: 2}
-  healthBar: {fileID: 1572683699}
 --- !u!114 &2032183362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11924,7 +11916,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e100f04a817100d4c88979141a886a85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 1
   restHealth: 0
 --- !u!1 &2036336930
 GameObject:
@@ -15205,7 +15197,6 @@ MonoBehaviour:
   defaultBulletSpeed: 5
   defaultBulletDamage: 1
   detectAreaMaterial: {fileID: 2100000, guid: 149af377bd2c9c248bc76d0821dcbeba, type: 2}
-  healthBar: {fileID: 1572683699}
 --- !u!114 &2114721232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15218,7 +15209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e100f04a817100d4c88979141a886a85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 1
   restHealth: 0
 --- !u!1 &2123246280 stripped
 GameObject:
@@ -15531,7 +15522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e100f04a817100d4c88979141a886a85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 1
   restHealth: 0
 --- !u!1001 &3737491269058568772
 PrefabInstance:
