@@ -1119,6 +1119,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8352446977940153668, guid: 4633e17f2a1f4014ab9e8794bd71eab5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1128836844}
+    - targetCorrespondingSourceObject: {fileID: 8352446977940153668, guid: 4633e17f2a1f4014ab9e8794bd71eab5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1128836857}
   m_SourcePrefab: {fileID: 100100000, guid: 4633e17f2a1f4014ab9e8794bd71eab5, type: 3}
 --- !u!4 &108443547 stripped
 Transform:
@@ -1529,6 +1532,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8352446977940153668, guid: 4633e17f2a1f4014ab9e8794bd71eab5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2114721224}
+    - targetCorrespondingSourceObject: {fileID: 8352446977940153668, guid: 4633e17f2a1f4014ab9e8794bd71eab5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2114721237}
   m_SourcePrefab: {fileID: 100100000, guid: 4633e17f2a1f4014ab9e8794bd71eab5, type: 3}
 --- !u!4 &292858167 stripped
 Transform:
@@ -9659,6 +9665,20 @@ MonoBehaviour:
   defaultBulletDamage: 1
   detectAreaMaterial: {fileID: 2100000, guid: 149af377bd2c9c248bc76d0821dcbeba, type: 2}
   healthBar: {fileID: 1572683699}
+--- !u!114 &1128836857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1128836837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e100f04a817100d4c88979141a886a85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 3
+  restHealth: 0
 --- !u!1001 &1149272023
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12104,7 +12124,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _persistent: 1
   inventoryData: {fileID: 11400000, guid: c7a245935199f9741ab82b3ad298d508, type: 2}
+  actionData: {fileID: 0}
+  equipmentData: {fileID: 0}
   inventoryUI: {fileID: 2070413343}
+  actionUI: {fileID: 0}
+  equipmentUI: {fileID: 0}
+  dragCanvas: {fileID: 0}
   healthText: {fileID: 0}
   speedText: {fileID: 0}
   style: {fileID: 0}
@@ -13545,6 +13570,20 @@ MonoBehaviour:
   defaultBulletDamage: 1
   detectAreaMaterial: {fileID: 2100000, guid: 149af377bd2c9c248bc76d0821dcbeba, type: 2}
   healthBar: {fileID: 1572683699}
+--- !u!114 &2114721237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114721217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e100f04a817100d4c88979141a886a85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 3
+  restHealth: 0
 --- !u!1001 &2125113895
 PrefabInstance:
   m_ObjectHideFlags: 0
