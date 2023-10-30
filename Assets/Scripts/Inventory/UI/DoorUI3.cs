@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorUI : MonoBehaviour
+public class DoorUI3 : MonoBehaviour
 {
     public GameObject keyObject;
     public void OpenDoor()
@@ -38,7 +38,7 @@ public class DoorUI : MonoBehaviour
                 foreach (var item in InventoryManager.Instance.inventoryData.items)
                 {
                     // Ensure item and itemData are not null
-                    if (item != null && item.itemData != null && (item.itemData.itemName == "Key2"|| item.itemData.itemName == "Golden Key"))
+                    if (item != null && item.itemData != null && item.itemData.itemName == "Brass Key")
                     {
                         OpenDoor();
                     }
