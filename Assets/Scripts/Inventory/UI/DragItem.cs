@@ -83,7 +83,7 @@ public class DrugItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         else
         {
             currentHolder.itemUI.Bag.items[currentHolder.itemUI.Index] = targetItem;
-            targetItem = tempItem;
+            targetHolder.itemUI.Bag.items[targetHolder.itemUI.Index] = tempItem;
         }
 
     }
