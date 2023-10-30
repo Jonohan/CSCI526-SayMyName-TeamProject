@@ -43,20 +43,21 @@ public class KeyAttribute : MonoBehaviour
     }
 
 
-    /*    private void OnCollisionEnter(Collision other)
+    // Enemy can pickup
+      private void OnCollisionEnter(Collision other)
         {
-            if (other.gameObject.CompareTag("Player"))
+            if (other.gameObject.CompareTag("Enemy"))
             {
                 pickUpKey(other.transform);
             }
-        }*/
+        }
 
     /**
     *  else when enemy die, drop the key, and player can pick up the key
     */
-    /*    private void pickUpKey(Transform playerTransform)
+        private void pickUpKey(Transform playerTransform)
         {
             charTransform = playerTransform;
             isPickedUp = true;
-        }*/
+        }
 }
