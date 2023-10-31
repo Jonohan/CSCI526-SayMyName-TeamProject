@@ -3,10 +3,13 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
+using static System.Net.WebRequestMethods;
 
 public class SendToGoogle : MonoBehaviour
 {
     [SerializeField] private string URL;
+    //This is for test 
+    //private string URL2 = "https://docs.google.com/forms/d/e/1FAIpQLSee8Exk_8V1VbOrZ4bOxtao76L8DFinIWB0Qr106AC9uJ1bsQ/viewform?embedded=true";
 
     private long _sessionID;
     private string currentSceneName;
@@ -25,6 +28,16 @@ public class SendToGoogle : MonoBehaviour
     void Start()
     {
         currentSceneName = SceneManager.GetActiveScene().name;
+    }
+
+    // Also send if player win
+    private void OnEnable()
+    {
+        EventCenter.GetInstance().AddEventListener("PlayerWins", PlayerWinsHandler);
+    }
+    private void PlayerWinsHandler(object eventData)
+    {
+        Send();
     }
 
     // Update is called once per frame
@@ -47,6 +60,7 @@ public class SendToGoogle : MonoBehaviour
         _patrolEnemy = manager.GetComponent<WaterAttackManager>().patrolEnemy;
         _normalEnemy = manager.GetComponent<WaterAttackManager>().enemy;
         StartCoroutine(Post(_sessionID.ToString(), _patrolEnemy.ToString(), _normalEnemy.ToString()));
+        //StartCoroutine(Post2(_sessionID.ToString(), _patrolEnemy.ToString(), _normalEnemy.ToString()));
     }
 
     private IEnumerator Post(string sessionID, string patrolEnemy, string normalEnemy)
@@ -71,4 +85,27 @@ public class SendToGoogle : MonoBehaviour
             }
         }
     }
+
+/*    private IEnumerator Post2(string sessionID, string patrolEnemy, string normalEnemy)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("entry.1240078272", sessionID);
+        form.AddField("entry.374845860", currentSceneName);
+        form.AddField("entry.1990401853", patrolEnemy);
+        form.AddField("entry.1664227036", normalEnemy);
+
+        using (UnityWebRequest www = UnityWebRequest.Post(URL2, form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                Debug.Log("Form upload complete2!");
+            }
+        }
+    }*/
 }
