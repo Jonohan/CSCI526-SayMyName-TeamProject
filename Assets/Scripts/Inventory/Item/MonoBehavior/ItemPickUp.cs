@@ -16,12 +16,22 @@ public class ItemPickUp : MonoBehaviour
         {
             keyIsPickedUp = keyAttribute.IsKeyPickedUp;
             keyAttribute.OnKeyDropped += HandleKeyDropped;// subscribe the event
+            keyAttribute.OnKeyPickedUp += HandleKeyPickedUp;
         }
     }
+
+
 
     private void HandleKeyDropped()
     {
         keyIsPickedUp = false;
+        Debug.Log("Key was dropped and the player can pick it up now.");
+    }
+
+    private void HandleKeyPickedUp()
+    {
+        keyIsPickedUp = true;
+        Debug.Log("Key was picked up and the player cannot pick it up now.");
     }
 
     void OnTriggerEnter(Collider other)
@@ -43,6 +53,7 @@ public class ItemPickUp : MonoBehaviour
         if (keyAttribute != null)
         {
             keyAttribute.OnKeyDropped -= HandleKeyDropped;
+            keyAttribute.OnKeyPickedUp -= HandleKeyPickedUp;
         }
     }
 }

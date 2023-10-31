@@ -5449,7 +5449,6 @@ MonoBehaviour:
   defaultBulletSpeed: 5
   defaultBulletDamage: 1
   detectAreaMaterial: {fileID: 2100000, guid: 149af377bd2c9c248bc76d0821dcbeba, type: 2}
-  healthBar: {fileID: 1981843590}
 --- !u!4 &1250040078 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1036965167348561413, guid: 6fc2f095bfb486c4ea6fe4d48f41960b, type: 3}
@@ -13519,6 +13518,10 @@ PrefabInstance:
       propertyPath: LogTextContainer
       value: 
       objectReference: {fileID: 1381595015}
+    - target: {fileID: 1087928922627902729, guid: 74cd9503a7f11654592f8f619671e228, type: 3}
+      propertyPath: PossessionSkillCooldown
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2027366795259942198, guid: 74cd9503a7f11654592f8f619671e228, type: 3}
       propertyPath: m_Material
       value: 
@@ -14846,7 +14849,6 @@ MonoBehaviour:
   defaultBulletSpeed: 5
   defaultBulletDamage: 1
   detectAreaMaterial: {fileID: 2100000, guid: 149af377bd2c9c248bc76d0821dcbeba, type: 2}
-  healthBar: {fileID: 1981843590}
 --- !u!114 &2032183357
 MonoBehaviour:
   m_ObjectHideFlags: 0

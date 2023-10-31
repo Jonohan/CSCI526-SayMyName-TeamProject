@@ -9684,6 +9684,10 @@ PrefabInstance:
       propertyPath: psAimingSelfContainer
       value: 
       objectReference: {fileID: 1974807394}
+    - target: {fileID: 1087928922627902729, guid: 74cd9503a7f11654592f8f619671e228, type: 3}
+      propertyPath: PossessionSkillCooldown
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2123400372220710338, guid: 74cd9503a7f11654592f8f619671e228, type: 3}
       propertyPath: m_Name
       value: PlayerCharacterGB
