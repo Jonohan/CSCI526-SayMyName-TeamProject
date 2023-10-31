@@ -13,9 +13,9 @@ public class DoorUI2 : MonoBehaviour
     private IEnumerator OpenDoorCoroutine()
     {
         Vector3 startPos = transform.position;
-        Vector3 endPos = transform.position + new Vector3(0, -3, 0); // Door move down to open
+        Vector3 endPos = transform.position + new Vector3(0, -2, 0); // Door move down to open
 
-        float duration = 2f; // Duration of opening door
+        float duration = 1.5f; // Duration of opening door
         float elapsed = 0f;
 
         // Open the door smoothly

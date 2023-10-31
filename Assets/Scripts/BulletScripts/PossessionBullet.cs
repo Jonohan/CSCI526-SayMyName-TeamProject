@@ -8,7 +8,7 @@ public class PossessionBullet : MonoBehaviour
 {     
     // Attach this script to bullets
     [Header("General Bullet Properties")]
-    public float lifeCycle = 10.0f; // will be recycled in 5 seconds after instantiated
+    public float lifeCycle = 6.0f; // will be recycled in 3 seconds after instantiated
     public float atk = 0.0f;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private bool isBulletReady = false;
