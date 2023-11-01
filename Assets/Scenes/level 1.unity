@@ -13123,7 +13123,7 @@ Transform:
   m_GameObject: {fileID: 1642773946}
   serializedVersion: 2
   m_LocalRotation: {x: 0.23911765, y: 0.3696438, z: -0.09904577, w: 0.89239913}
-  m_LocalPosition: {x: -2, y: 9, z: 0}
+  m_LocalPosition: {x: 2, y: 9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -13586,8 +13586,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1381595015}
     - target: {fileID: 1087928922627902729, guid: 74cd9503a7f11654592f8f619671e228, type: 3}
+      propertyPath: psAimingSelfContainer
+      value: 
+      objectReference: {fileID: 246146723}
+    - target: {fileID: 1087928922627902729, guid: 74cd9503a7f11654592f8f619671e228, type: 3}
       propertyPath: PossessionSkillCooldown
-      value: 3
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2027366795259942198, guid: 74cd9503a7f11654592f8f619671e228, type: 3}
       propertyPath: m_Material

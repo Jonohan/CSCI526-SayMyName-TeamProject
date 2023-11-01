@@ -125,7 +125,7 @@ MonoBehaviour:
   rb: {fileID: 5155887023256277900}
   moveSpeed: 5
   turnSpeed: 720
-  PossessionSkillCooldown: 5
+  PossessionSkillCooldown: 0.5
   bulletSpeed: 20
   fireInterval: 1.5
   dBulletSpeed: 20
