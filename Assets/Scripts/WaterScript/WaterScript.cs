@@ -7,7 +7,7 @@ public class WaterScript : MonoBehaviour
 {
 
     public GameObject manager = null;
-    public Text enemyKillCountText;
+    //public Text enemyKillCountText;
 
     [Header("Count setting")]
     public int initialPatrolEnemyCount = 0;
@@ -41,7 +41,7 @@ public class WaterScript : MonoBehaviour
             Debug.Log("Swallow EnemyGB amount:" + waterAttackManager.enemy);
             waterAttackManager.recover();
 
-            UpdateEnemyKillText(waterAttackManager.enemy, "EnemyGB");
+            //UpdateEnemyKillText(waterAttackManager.enemy, "EnemyGB");
         }
 
         if (collision.gameObject.name.Contains("PatrolEnemy"))
@@ -52,7 +52,7 @@ public class WaterScript : MonoBehaviour
             Debug.Log("Swallow patrolEnemy amount:" + waterAttackManager.patrolEnemy);
             waterAttackManager.recover();
 
-            UpdateEnemyKillText(waterAttackManager.patrolEnemy, "PatrolEnemy");
+            //UpdateEnemyKillText(waterAttackManager.patrolEnemy, "PatrolEnemy");
         }
 
         if (waterAttackManager.patrolEnemy >= 3 || waterAttackManager.enemy >= 3)
@@ -63,7 +63,7 @@ public class WaterScript : MonoBehaviour
     }
 
 
-    // Need to show different type enemy at the same screen in next version
+/*    // Need to show different type enemy at the same screen in next version
     private void UpdateEnemyKillText(int count, string enemyType)
     {
         if (enemyType == "EnemyGB")
@@ -74,9 +74,20 @@ public class WaterScript : MonoBehaviour
         {
             enemyKillCountText.text = $"Green Enemy Devour Count: {count}/3";
         }
-    }
+    }*/
 
     // get count
+    public int GetEnemyGBCount()
+    {
+        return waterAttackManager.enemy;
+    }
+
+    public int GetPatrolEnemyCount()
+    {
+        return waterAttackManager.patrolEnemy;
+    }
+
+
 }
 /*
 private void OnCollisionEnter(Collision collision)

@@ -15,6 +15,8 @@ public class WaterAttackManager : MonoBehaviour
     public int patrolEnemy = 0;
     public bool canEnterFightingState = false;
 
+    public int countWater = 0;
+
     private CharController playerController = null;
     private bool waterState = false;
 
@@ -48,6 +50,7 @@ public class WaterAttackManager : MonoBehaviour
                 water.SetActive(true);
                 lastTimeSkillUsed = Time.time;
                 waterLeft -= 1;
+                countWater++;// collect data
                 waterState = true;
             }
 
@@ -96,6 +99,12 @@ public class WaterAttackManager : MonoBehaviour
             waterState = false;
         }
     }
+
+    public int GetPuddleCount()
+    {
+        //countWater = 5 - waterLeft;
+        return countWater;
+    }    
 
 
 }
