@@ -50,6 +50,10 @@ public class CharController : MonoBehaviour
     public GameObject psAimingSelfContainer;
     public ParticleSystem psAimingSelf;
 
+    // for data collection
+    private int possessionBulletCount = 0;
+    private int damageBulletCount = 0;
+
     public enum PlayerState
     {
         Normal,
@@ -118,7 +122,7 @@ public class CharController : MonoBehaviour
             if (Time.time - lastShotTime >= fireInterval)
             {
                 // need to classify the attack modes in next version
-                logText.text = "Pistol Mode: You have the same firing range as the enemy. Press RMB to start killing :)";
+                logText.text = "Press RMB to start killing :)";
             }
             else // not ready yet
             {
@@ -154,6 +158,8 @@ public class CharController : MonoBehaviour
                 {
                     ShootPossessionBullet(); // only in normal status
                     logText.text = "Possession bullet is not ready yet.";
+                    possessionBulletCount++;
+                    //Debug.Log("P:" + possessionBulletCount);
                 }
             }
             else if (currentState == PlayerState.Fighting)
@@ -162,6 +168,8 @@ public class CharController : MonoBehaviour
                 {
                     ShootDamageBullet();// only in fighting status
                     logText.text = "Reloading";
+                    damageBulletCount++;
+                    //Debug.Log("F:" + damageBulletCount);
                 }
             }
             isAiming = false;
@@ -290,5 +298,17 @@ public class CharController : MonoBehaviour
         ps.Play();
         yield return new WaitForSeconds(duration);
         ps.gameObject.SetActive(false);
+    }
+
+
+    // Get bullet count
+    public int GetPossessionBulletCount()
+    {
+        return possessionBulletCount;
+    }
+
+    public int GetDamageBulletCount()
+    {
+        return damageBulletCount;
     }
 }
