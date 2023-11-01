@@ -75,6 +75,8 @@ public class WaterScript : MonoBehaviour
             enemyKillCountText.text = $"Green Enemy Devour Count: {count}/3";
         }
     }
+
+    // get count
 }
 /*
 private void OnCollisionEnter(Collision collision)
