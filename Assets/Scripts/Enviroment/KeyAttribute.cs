@@ -13,6 +13,10 @@ public class KeyAttribute : MonoBehaviour
     public delegate void KeyDroppedHandler();
     public event KeyDroppedHandler OnKeyDropped; // when key is dropped make a event
 
+    public delegate void KeyPickedUpHandler();
+    public event KeyPickedUpHandler OnKeyPickedUp;// when key is picked up make a event
+
+
     // when key is picked up, it would follow the player or enemy
     // else it can be picked up by player
     private void Update()
@@ -43,20 +47,26 @@ public class KeyAttribute : MonoBehaviour
     }
 
 
-    /*    private void OnCollisionEnter(Collision other)
+    // Enemy can pickup
+      private void OnCollisionEnter(Collision other)
         {
-            if (other.gameObject.CompareTag("Player"))
+            if (other.gameObject.CompareTag("Enemy"))
             {
                 pickUpKey(other.transform);
+                //Debug.Log("Enemy "+ isPickedUp);
             }
-        }*/
+        }
 
     /**
     *  else when enemy die, drop the key, and player can pick up the key
     */
-    /*    private void pickUpKey(Transform playerTransform)
+        private void pickUpKey(Transform playerTransform)
         {
+            if (!isPickedUp)
+            {
             charTransform = playerTransform;
             isPickedUp = true;
-        }*/
+            OnKeyPickedUp?.Invoke();
+            }      
+        }
 }

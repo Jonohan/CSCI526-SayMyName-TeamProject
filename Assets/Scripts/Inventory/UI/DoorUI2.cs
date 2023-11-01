@@ -13,9 +13,9 @@ public class DoorUI2 : MonoBehaviour
     private IEnumerator OpenDoorCoroutine()
     {
         Vector3 startPos = transform.position;
-        Vector3 endPos = transform.position + new Vector3(0, -3, 0); // Door move down to open
+        Vector3 endPos = transform.position + new Vector3(0, -2, 0); // Door move down to open
 
-        float duration = 2f; // Duration of opening door
+        float duration = 1.5f; // Duration of opening door
         float elapsed = 0f;
 
         // Open the door smoothly
@@ -38,7 +38,7 @@ public class DoorUI2 : MonoBehaviour
                 foreach (var item in InventoryManager.Instance.inventoryData.items)
                 {
                     // Ensure item and itemData are not null
-                    if (item != null && item.itemData != null && item.itemData.itemName == "SilverKey")
+                    if (item != null && item.itemData != null && (item.itemData.itemName == "SilverKey"|| item.itemData.itemName == "Silver Key"))
                     {
                         OpenDoor();
                     }

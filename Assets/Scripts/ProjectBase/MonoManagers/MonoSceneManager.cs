@@ -42,7 +42,18 @@ public class MonoSceneManager : MonoBehaviour
         // Disable player from controlling character 
         PossessionManager pm = GameObject.Find("MonoPossessionManager").GetComponent<PossessionManager>();
         pm.originalPlayer.GetComponent<CharController>().enabled = false;
-        
+
+/*        // Send the data to google form
+        SendToGoogle sendToGoogle = GetComponent<SendToGoogle>();
+        if (sendToGoogle != null)
+        {
+            sendToGoogle.Send();
+        }
+        else
+        {
+            Debug.LogError("SendToGoogle component not found on the GameObject.");
+        }*/
+
         WinScreen.SetActive(true);
 
         if (NextLevelButton != null)

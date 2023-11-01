@@ -38,7 +38,7 @@ public class DoorUI : MonoBehaviour
                 foreach (var item in InventoryManager.Instance.inventoryData.items)
                 {
                     // Ensure item and itemData are not null
-                    if (item != null && item.itemData != null && item.itemData.itemName == "Key2")
+                    if (item != null && item.itemData != null && (item.itemData.itemName == "Key2"|| item.itemData.itemName == "Golden Key"))
                     {
                         OpenDoor();
                     }

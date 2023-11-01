@@ -48,10 +48,10 @@ public class CharDamageBullet : MonoBehaviour
             GameObject enemy = other.collider.gameObject;  // get the enemy gameobject\
             enemy.GetComponent<EnemyHealthController>().restHealth--;
             Debug.Log("Enemy health = " + enemy.GetComponent<EnemyHealthController>().restHealth);
-            Transform canvas = enemy.transform.GetChild(2); // get the canvas->frontground
-            Image healthBarFrontground = canvas.GetChild(1).GetComponent<Image>();
-            Debug.Log("healthBarFrontground is " + healthBarFrontground.name);
-            healthBarFrontground.fillAmount = 1.0f * enemy.GetComponent<EnemyHealthController>().restHealth / enemy.GetComponent<EnemyHealthController>().maxHealth;
+            //Transform canvas = enemy.transform.GetChild(2); // get the canvas->frontground
+            //Image healthBarFrontground = canvas.GetChild(1).GetComponent<Image>();
+            //Debug.Log("healthBarFrontground is " + healthBarFrontground.name);
+            //healthBarFrontground.fillAmount = 1.0f * enemy.GetComponent<EnemyHealthController>().restHealth / enemy.GetComponent<EnemyHealthController>().maxHealth;
             if (other.gameObject.GetComponent<EnemyHealthController>().restHealth <= 0)
                 Destroy(other.gameObject);
         }

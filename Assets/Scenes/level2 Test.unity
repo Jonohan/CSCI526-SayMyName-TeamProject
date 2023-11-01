@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -864,6 +864,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8352446977940153668, guid: 4633e17f2a1f4014ab9e8794bd71eab5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1128836844}
+    - targetCorrespondingSourceObject: {fileID: 8352446977940153668, guid: 4633e17f2a1f4014ab9e8794bd71eab5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1128836852}
   m_SourcePrefab: {fileID: 100100000, guid: 4633e17f2a1f4014ab9e8794bd71eab5, type: 3}
 --- !u!43 &115414626
 Mesh:
@@ -2030,6 +2033,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8352446977940153668, guid: 4633e17f2a1f4014ab9e8794bd71eab5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2114721224}
+    - targetCorrespondingSourceObject: {fileID: 8352446977940153668, guid: 4633e17f2a1f4014ab9e8794bd71eab5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2114721232}
   m_SourcePrefab: {fileID: 100100000, guid: 4633e17f2a1f4014ab9e8794bd71eab5, type: 3}
 --- !u!1 &316855300
 GameObject:
@@ -3295,7 +3301,6 @@ MonoBehaviour:
   defaultBulletSpeed: 5
   defaultBulletDamage: 1
   detectAreaMaterial: {fileID: 2100000, guid: 149af377bd2c9c248bc76d0821dcbeba, type: 2}
-  healthBar: {fileID: 1572683699}
 --- !u!114 &519447329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3308,7 +3313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e100f04a817100d4c88979141a886a85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 1
   restHealth: 0
 --- !u!4 &557632477 stripped
 Transform:
@@ -6020,7 +6025,6 @@ MonoBehaviour:
   defaultBulletSpeed: 5
   defaultBulletDamage: 1
   detectAreaMaterial: {fileID: 2100000, guid: 149af377bd2c9c248bc76d0821dcbeba, type: 2}
-  healthBar: {fileID: 1572683699}
 --- !u!114 &1058692228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6033,7 +6037,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e100f04a817100d4c88979141a886a85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 1
   restHealth: 0
 --- !u!1 &1073501197
 GameObject:
@@ -6330,7 +6334,6 @@ MonoBehaviour:
   defaultBulletSpeed: 5
   defaultBulletDamage: 1
   detectAreaMaterial: {fileID: 2100000, guid: 149af377bd2c9c248bc76d0821dcbeba, type: 2}
-  healthBar: {fileID: 1572683699}
 --- !u!114 &1110495417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6343,7 +6346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e100f04a817100d4c88979141a886a85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 1
   restHealth: 0
 --- !u!1 &1118312237
 GameObject:
@@ -6654,7 +6657,20 @@ MonoBehaviour:
   defaultBulletSpeed: 5
   defaultBulletDamage: 1
   detectAreaMaterial: {fileID: 2100000, guid: 149af377bd2c9c248bc76d0821dcbeba, type: 2}
-  healthBar: {fileID: 1572683699}
+--- !u!114 &1128836852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1128836837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e100f04a817100d4c88979141a886a85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 1
+  restHealth: 0
 --- !u!1001 &1149272023
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7064,7 +7080,6 @@ MonoBehaviour:
   defaultBulletSpeed: 5
   defaultBulletDamage: 1
   detectAreaMaterial: {fileID: 2100000, guid: 149af377bd2c9c248bc76d0821dcbeba, type: 2}
-  healthBar: {fileID: 1572683699}
 --- !u!114 &1289258505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7077,7 +7092,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e100f04a817100d4c88979141a886a85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 1
   restHealth: 0
 --- !u!1 &1305278460
 GameObject:
@@ -7728,7 +7743,6 @@ MonoBehaviour:
   defaultBulletSpeed: 5
   defaultBulletDamage: 1
   detectAreaMaterial: {fileID: 2100000, guid: 149af377bd2c9c248bc76d0821dcbeba, type: 2}
-  healthBar: {fileID: 1572683699}
 --- !u!1 &1363934833
 GameObject:
   m_ObjectHideFlags: 0
@@ -11846,7 +11860,20 @@ MonoBehaviour:
   defaultBulletSpeed: 5
   defaultBulletDamage: 1
   detectAreaMaterial: {fileID: 2100000, guid: 149af377bd2c9c248bc76d0821dcbeba, type: 2}
-  healthBar: {fileID: 1572683699}
+--- !u!114 &2022254546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022254531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e100f04a817100d4c88979141a886a85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 1
+  restHealth: 0
 --- !u!4 &2029784917 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3818865620278138545, guid: f5819c984ea8b8347ab9ad2f50e4935e, type: 3}
@@ -11877,7 +11904,6 @@ MonoBehaviour:
   defaultBulletSpeed: 5
   defaultBulletDamage: 1
   detectAreaMaterial: {fileID: 2100000, guid: 149af377bd2c9c248bc76d0821dcbeba, type: 2}
-  healthBar: {fileID: 1572683699}
 --- !u!114 &2032183362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11890,7 +11916,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e100f04a817100d4c88979141a886a85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 1
   restHealth: 0
 --- !u!1 &2036336930
 GameObject:
@@ -12407,6 +12433,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8352446977940153668, guid: 4633e17f2a1f4014ab9e8794bd71eab5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2022254538}
+    - targetCorrespondingSourceObject: {fileID: 8352446977940153668, guid: 4633e17f2a1f4014ab9e8794bd71eab5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2022254546}
   m_SourcePrefab: {fileID: 100100000, guid: 4633e17f2a1f4014ab9e8794bd71eab5, type: 3}
 --- !u!1001 &2093731707
 PrefabInstance:
@@ -15168,7 +15197,20 @@ MonoBehaviour:
   defaultBulletSpeed: 5
   defaultBulletDamage: 1
   detectAreaMaterial: {fileID: 2100000, guid: 149af377bd2c9c248bc76d0821dcbeba, type: 2}
-  healthBar: {fileID: 1572683699}
+--- !u!114 &2114721232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114721217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e100f04a817100d4c88979141a886a85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 1
+  restHealth: 0
 --- !u!1 &2123246280 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7249318403152939648, guid: 8399e94e98b3a1f44a301e1d80e96969, type: 3}
@@ -15480,7 +15522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e100f04a817100d4c88979141a886a85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 1
   restHealth: 0
 --- !u!1001 &3737491269058568772
 PrefabInstance:

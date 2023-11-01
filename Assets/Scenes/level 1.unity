@@ -5432,7 +5432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e100f04a817100d4c88979141a886a85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 1
   restHealth: 0
 --- !u!114 &1120193570
 MonoBehaviour:
@@ -5454,7 +5454,6 @@ MonoBehaviour:
   defaultBulletSpeed: 5
   defaultBulletDamage: 1
   detectAreaMaterial: {fileID: 2100000, guid: 149af377bd2c9c248bc76d0821dcbeba, type: 2}
-  healthBar: {fileID: 1981843590}
 --- !u!4 &1250040078 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1036965167348561413, guid: 6fc2f095bfb486c4ea6fe4d48f41960b, type: 3}
@@ -7133,6 +7132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   URL: https://docs.google.com/forms/u/0/d/e/1FAIpQLSc-3UannS15j4m4ktTdtOTUvA2XQkByALnaaM-dcp7AvCQU-Q/formResponse
   manager: {fileID: 1902484588}
+  charCon: {fileID: 1543027132}
 --- !u!1 &1582080888
 GameObject:
   m_ObjectHideFlags: 0
@@ -13586,9 +13586,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1381595015}
     - target: {fileID: 1087928922627902729, guid: 74cd9503a7f11654592f8f619671e228, type: 3}
-      propertyPath: psAimingSelfContainer
-      value: 
-      objectReference: {fileID: 246146723}
+      propertyPath: PossessionSkillCooldown
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2027366795259942198, guid: 74cd9503a7f11654592f8f619671e228, type: 3}
       propertyPath: m_Material
       value: 
@@ -14916,7 +14916,6 @@ MonoBehaviour:
   defaultBulletSpeed: 5
   defaultBulletDamage: 1
   detectAreaMaterial: {fileID: 2100000, guid: 149af377bd2c9c248bc76d0821dcbeba, type: 2}
-  healthBar: {fileID: 1981843590}
 --- !u!114 &2032183357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14929,7 +14928,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e100f04a817100d4c88979141a886a85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 1
   restHealth: 0
 --- !u!1 &2071076065
 GameObject:
