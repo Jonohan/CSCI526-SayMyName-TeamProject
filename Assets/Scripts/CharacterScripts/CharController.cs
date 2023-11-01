@@ -20,7 +20,7 @@ public class CharController : MonoBehaviour
     [SerializeField] private float turnSpeed = 720;
 
     [Header("Skills Parameters - Possession Bullet")]
-    public float PossessionSkillCooldown = 5.0f;
+    public float PossessionSkillCooldown = 1.0f;
     private float lastSkillUseTime = -5.0f;
     public float bulletSpeed = 20f;
 
@@ -75,6 +75,11 @@ public class CharController : MonoBehaviour
 
     private void OnEnable()
     {
+        if (psAimingSelfContainer == null)
+            psAimingSelfContainer = GameObject.Find("AimFX");
+        if (psAimingSelf == null)
+            psAimingSelf = psAimingSelfContainer.GetComponent<ParticleSystem>();
+        
         StartCoroutine(PlayParticleEffect(psAimingSelf, 2));
     }
 
