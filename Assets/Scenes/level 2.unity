@@ -4777,7 +4777,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1902484588}
-  enemyKillCountText: {fileID: 1115677776}
   initialPatrolEnemyCount: 0
 --- !u!1001 &1404722170
 PrefabInstance:
@@ -10659,6 +10658,7 @@ MonoBehaviour:
   enemy: 0
   patrolEnemy: 0
   canEnterFightingState: 0
+  countWater: 0
 --- !u!1 &1920992286
 GameObject:
   m_ObjectHideFlags: 0

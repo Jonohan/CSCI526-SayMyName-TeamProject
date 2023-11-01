@@ -5,6 +5,7 @@ using UnityEngine;
 public class WaterAttackManager : MonoBehaviour
 {
     [Header("Game Object Access")]
+    public float recoverHeight = 0.5f;
     [SerializeField] private GameObject originalPlayer = null;
     [SerializeField] private GameObject water = null;
     //public bool waterStatus = false;
@@ -61,7 +62,7 @@ public class WaterAttackManager : MonoBehaviour
         {
             water.SetActive(false);
             // move player back to original position
-            originalPlayer.transform.position = new Vector3(originalPlayer.transform.position.x, 0.5f, originalPlayer.transform.position.z);
+            originalPlayer.transform.position = new Vector3(originalPlayer.transform.position.x, recoverHeight, originalPlayer.transform.position.z);
             //enable player's controler
             originalPlayer.GetComponent<CharController>().enabled = true;
             waterState = false;
@@ -93,7 +94,7 @@ public class WaterAttackManager : MonoBehaviour
             water.SetActive(false);
             //originalPlayer.SetActive(true);
             // move player back to original position
-            originalPlayer.transform.position = new Vector3(originalPlayer.transform.position.x, 0.5f, originalPlayer.transform.position.z);
+            originalPlayer.transform.position = new Vector3(originalPlayer.transform.position.x, recoverHeight, originalPlayer.transform.position.z);
             //enable player's controler
             originalPlayer.GetComponent<CharController>().enabled = true;
             waterState = false;
