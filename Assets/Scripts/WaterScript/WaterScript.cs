@@ -77,6 +77,16 @@ public class WaterScript : MonoBehaviour
     }
 
     // get count
+    public int GetEnemyGBCount()
+    {
+        return waterAttackManager.enemy;
+    }
+
+    public int GetPatrolEnemyCount()
+    {
+        return waterAttackManager.patrolEnemy;
+    }
+
 }
 /*
 private void OnCollisionEnter(Collision collision)
