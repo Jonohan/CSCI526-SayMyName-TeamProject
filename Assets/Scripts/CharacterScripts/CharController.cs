@@ -54,6 +54,10 @@ public class CharController : MonoBehaviour
     private int possessionBulletCount = 0;
     private int damageBulletCount = 0;
 
+    // UI
+    public GameObject stateTextContainer;
+    private Text stateText;
+
     public enum PlayerState
     {
         Normal,
@@ -90,6 +94,11 @@ public class CharController : MonoBehaviour
         rb = this.GetComponent<Rigidbody>();
         logText = LogTextContainer.GetComponent<Text>();
         logText.text = "Possession bullet is ready";
+        if (stateTextContainer != null)
+        {
+            stateText = stateTextContainer.GetComponent<Text>();
+            stateText.text = "Stealth";
+        }
 
         //Get main camera
         mainCamera = Camera.main;
@@ -103,6 +112,19 @@ public class CharController : MonoBehaviour
 
     void Update()
     {
+        if (stateTextContainer != null)
+        {
+            // Update status of player
+            if (currentState == PlayerState.Normal)
+            {
+                stateText.text = "Stealth";
+            }
+            else if (currentState == PlayerState.Fighting)
+            {
+                stateText.text = "Fighting";
+            }
+        }
+
         //Debug.Log(currentState);
         GatherMovingInput();
         OpenMyBag();

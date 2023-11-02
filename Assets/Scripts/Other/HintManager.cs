@@ -24,11 +24,11 @@ public class HintManager : MonoBehaviour
         int enemyCount = waterAttackManager.patrolEnemy;
         if (enemyCount >= 0 && enemyCount<3)
         {
-            playerHintText.text = "press 2 to trap";
+            playerHintText.text = "Press 2 to trap";
         }
         if (enemyCount >=3 && playerController.currentState == CharController.PlayerState.Normal)
         {
-            playerHintText.text = "press 3 to imitate";
+            playerHintText.text = "Press 3 to imitate";
         }
         if (enemyCount >= 3 && playerController.currentState == CharController.PlayerState.Fighting)
         {
