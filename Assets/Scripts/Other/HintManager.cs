@@ -22,7 +22,6 @@ public class HintManager : MonoBehaviour
     void Update()
     {
         int enemyCount = waterAttackManager.patrolEnemy;
-        Debug.Log(enemyCount);
         if (enemyCount >= 0 && enemyCount<3)
         {
             playerHintText.text = "press 2 to trap";
