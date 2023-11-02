@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class WaterScript : MonoBehaviour
 {
-
     public GameObject manager = null;
     //public Text enemyKillCountText;
 
