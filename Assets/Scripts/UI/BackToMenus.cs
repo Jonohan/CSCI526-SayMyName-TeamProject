@@ -8,6 +8,11 @@ public class BackToMenus : MonoBehaviour
 
     public void BackToMenu()
     {
+
+        EventCenter.GetInstance().ClearEvents();
+        ObjPoolManager.GetInstance().ClearPool();
+
+
         SceneManager.LoadScene("Content");
         Debug.Log("back to content");
     }
