@@ -3751,7 +3751,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1732324986}
-  enemyKillCountText: {fileID: 2078131175}
   initialPatrolEnemyCount: 0
 --- !u!1001 &695344407
 PrefabInstance:
@@ -8739,7 +8738,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   URL: https://docs.google.com/forms/u/0/d/e/1FAIpQLSc-3UannS15j4m4ktTdtOTUvA2XQkByALnaaM-dcp7AvCQU-Q/formResponse
-  manager: {fileID: 1732324986}
+  waterAttackManager: {fileID: 1732324986}
+  charCon: {fileID: 1543027132}
+  possManager: {fileID: 1863513382}
+  monoSceneManager: {fileID: 883524705}
 --- !u!4 &1543027146 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7824196541849326592, guid: 74cd9503a7f11654592f8f619671e228, type: 3}
@@ -9938,12 +9940,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d74640cd3c86129479e980e77d596291, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoverHeight: 0.5
   originalPlayer: {fileID: 1543027132}
   water: {fileID: 672883021}
   waterLeft: 5
   enemy: 0
   patrolEnemy: 0
   canEnterFightingState: 0
+  countWater: 0
 --- !u!1 &1734554417
 GameObject:
   m_ObjectHideFlags: 0

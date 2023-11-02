@@ -8419,8 +8419,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   URL: https://docs.google.com/forms/u/0/d/e/1FAIpQLSc-3UannS15j4m4ktTdtOTUvA2XQkByALnaaM-dcp7AvCQU-Q/formResponse
-  manager: {fileID: 1902484588}
+  waterAttackManager: {fileID: 1902484588}
   charCon: {fileID: 1543027132}
+  possManager: {fileID: 1863513382}
+  monoSceneManager: {fileID: 883524705}
 --- !u!1 &1582080888
 GameObject:
   m_ObjectHideFlags: 0
