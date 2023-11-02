@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Hints : MonoBehaviour
 {
+    public GameObject followObject;
     private GameObject child;
+    private float originalY;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,22 +21,26 @@ public class Hints : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        child.transform.position = new Vector3(followObject.transform.position.x, child.transform.position.y, followObject.transform.position.z);
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("player entered");
         if (other.CompareTag("Player"))
         {
-            transform.GetChild(0).gameObject.transform.Translate(0, 100, 0);
+            child.transform.Translate(0, 100, 0);
+            
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
+        Debug.Log("player exited");
         if (other.CompareTag("Player"))
         {
-            transform.GetChild(0).gameObject.transform.Translate(0, -100, 0);
+           child.gameObject.transform.Translate(0, -100, 0);
         }
     }
 }
