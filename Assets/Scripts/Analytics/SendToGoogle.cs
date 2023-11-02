@@ -59,7 +59,6 @@ public class SendToGoogle : MonoBehaviour
         EventCenter.GetInstance().AddEventListener("PlayerWins", PlayerWinsHandler);
         EventCenter.GetInstance().AddEventListener("KilledOneEnemy", BulletKillOneEnemy);
         EventCenter.GetInstance().AddEventListener("PossessionSequence", GetFirstPossessTime);
-        EventCenter.GetInstance().AddEventListener("", GetFirstPossessTime);
     }
 
     private void GetFirstPossessTime(object arg0)
