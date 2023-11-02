@@ -53,7 +53,11 @@ public class CharDamageBullet : MonoBehaviour
             //Debug.Log("healthBarFrontground is " + healthBarFrontground.name);
             //healthBarFrontground.fillAmount = 1.0f * enemy.GetComponent<EnemyHealthController>().restHealth / enemy.GetComponent<EnemyHealthController>().maxHealth;
             if (other.gameObject.GetComponent<EnemyHealthController>().restHealth <= 0)
+            {
                 Destroy(other.gameObject);
+                EventCenter.GetInstance().TriggerEvent("KilledOneEnemy");
+            }
+                
         }
         // Recycle the bullet after the collision
         RecycleObj();

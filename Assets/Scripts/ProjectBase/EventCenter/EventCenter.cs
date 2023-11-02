@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -60,7 +61,12 @@ public class EventCenter : BaseManager<EventCenter>
         }
     }
 
-    
+    internal void TriggerEvent(string v)
+    {
+        throw new NotImplementedException();
+    }
+
+
     /// <summary>
     /// Remove all events in the event center. Example use: call this when switching between scenes.
     /// </summary>

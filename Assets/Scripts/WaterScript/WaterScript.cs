@@ -18,7 +18,7 @@ public class WaterScript : MonoBehaviour
     {
         waterAttackManager = manager.GetComponent<WaterAttackManager>();
 
-        waterAttackManager.enemy = initialPatrolEnemyCount;
+        waterAttackManager.SetTotalEnemyCount(initialPatrolEnemyCount);
     }
 
     // Update is called once per frame
@@ -34,7 +34,7 @@ public class WaterScript : MonoBehaviour
 
         if (collision.gameObject.name.Contains("EnemyGB"))
         {
-            waterAttackManager.enemy += 1;
+            //waterAttackManager.enemy += 1;
 
             collision.gameObject.SetActive(false);
             Debug.Log("Swallow EnemyGB amount:" + waterAttackManager.enemy);
@@ -45,7 +45,7 @@ public class WaterScript : MonoBehaviour
 
         if (collision.gameObject.name.Contains("PatrolEnemy"))
         {
-            waterAttackManager.patrolEnemy += 1;
+            //waterAttackManager.patrolEnemy += 1;
 
             collision.gameObject.SetActive(false);
             Debug.Log("Swallow patrolEnemy amount:" + waterAttackManager.patrolEnemy);
@@ -59,6 +59,8 @@ public class WaterScript : MonoBehaviour
             waterAttackManager.canEnterFightingState = true;
             Debug.Log("You have collected 3 same type bodies, press 3 to Imitate them.");
         }
+
+        waterAttackManager.SetTotalEnemyCount(waterAttackManager.GetTotalEnemyCount() + 1);
     }
 
 

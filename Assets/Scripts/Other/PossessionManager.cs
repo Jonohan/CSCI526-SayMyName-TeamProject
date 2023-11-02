@@ -11,6 +11,9 @@ public class PossessionManager : MonoBehaviour
     [SerializeField] private GameObject currentPlayerControllable = null;
     [SerializeField] private ParticleSystem psPoss;
     public GameObject FxContainer;
+
+    private int possessedCount = 0;
+
     void Start()
     {
         Debug.Log("Possession Manager Start()");
@@ -19,7 +22,6 @@ public class PossessionManager : MonoBehaviour
         EventCenter.GetInstance().AddEventListener("PossessionStartsSuccessfully", PlayPossessionEffect);
         currentPlayerControllable = originalPlayer;
     }
-
 
     private void InitiatePossession(object info)
     {
@@ -42,7 +44,10 @@ public class PossessionManager : MonoBehaviour
             // attach a possessed player controller script
             tempPlayer.AddComponent<PlayerControllerPossessed>();
             RegisterCurrentPlayerControllable(tempPlayer.gameObject);
-            
+
+            possessedCount++;
+
+
         }
     }
 
@@ -122,5 +127,10 @@ public class PossessionManager : MonoBehaviour
         ps.Play();
         yield return new WaitForSeconds(duration);
         ps.gameObject.SetActive(false);
+    }
+
+    public int GetPossessedCount()
+    {
+        return possessedCount;
     }
 }

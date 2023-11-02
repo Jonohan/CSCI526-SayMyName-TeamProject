@@ -14091,8 +14091,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   URL: https://docs.google.com/forms/u/0/d/e/1FAIpQLSc-3UannS15j4m4ktTdtOTUvA2XQkByALnaaM-dcp7AvCQU-Q/formResponse
-  manager: {fileID: 1732324986}
+  waterAttackManager: {fileID: 1732324986}
   charCon: {fileID: 1543027132}
+  possManager: {fileID: 1863513382}
+  monoSceneManager: {fileID: 883524705}
 --- !u!4 &1543027146 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7824196541849326592, guid: 74cd9503a7f11654592f8f619671e228, type: 3}

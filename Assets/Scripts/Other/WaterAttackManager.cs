@@ -14,6 +14,9 @@ public class WaterAttackManager : MonoBehaviour
     [SerializeField] private int waterLeft = 5;
     public int enemy = 0;
     public int patrolEnemy = 0;
+
+    private int totalEnemyCount = 0;
+
     public bool canEnterFightingState = false;
 
     public int countWater = 0;
@@ -106,6 +109,16 @@ public class WaterAttackManager : MonoBehaviour
         //countWater = 5 - waterLeft;
         return countWater;
     }    
+
+    public int GetTotalEnemyCount()
+    {
+        return totalEnemyCount;
+    }
+
+    public void SetTotalEnemyCount(int count)
+    {
+        totalEnemyCount = count;
+    }
 
 
 }

@@ -53,7 +53,7 @@ public class CharController : MonoBehaviour
     // for data collection
     private int possessionBulletCount = 0;
     private int damageBulletCount = 0;
-
+    
     // UI
     public GameObject stateTextContainer;
     private Text stateText;

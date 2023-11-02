@@ -7,6 +7,8 @@ public class MonoSceneManager : MonoBehaviour
 
     public GameObject WinScreen;
     public GameObject NextLevelButton;
+
+    private float winTime = 0;
     private void OnEnable()
     {
         if (WinScreen == null)
@@ -60,6 +62,8 @@ public class MonoSceneManager : MonoBehaviour
         {
             NextLevelButton.SetActive(true);    
         }
+
+        winTime = Time.time;
     }
 
     public void MSM_LoadNextLevel()
@@ -80,6 +84,11 @@ public class MonoSceneManager : MonoBehaviour
         EventCenter.GetInstance().ClearEvents();
         ObjPoolManager.GetInstance().ClearPool();
         SceneManager.LoadScene(nextSceneIndex);
+    }
+
+    public float GetWinTime()
+    {
+        return winTime;
     }
     
 }
