@@ -18,8 +18,11 @@ public class EventCenter : BaseManager<EventCenter>
     /// <param name="eventName">Name of the event</param>
     /// <param name="action">Delegate methods that will be executed in case this event happens</param>
     public void AddEventListener(string eventName, UnityAction<object> action)
-    {   
-        Debug.Log("EventCenter: AddEventListener - " + eventName);
+    {
+        // Print the stack trace
+        //System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace();
+        Debug.Log("EventCenter: AddEventListener - " + eventName );
+
         // Case 1: this event exists in the event dict
         if (eventDict.ContainsKey(eventName))
         {
