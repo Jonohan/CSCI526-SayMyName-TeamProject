@@ -7142,6 +7142,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3685216289847720689, guid: 64135eaa1426f418ab63cc75a02c16f7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 672883026}
+    - targetCorrespondingSourceObject: {fileID: 3685216289847720689, guid: 64135eaa1426f418ab63cc75a02c16f7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 672883027}
   m_SourcePrefab: {fileID: 100100000, guid: 64135eaa1426f418ab63cc75a02c16f7, type: 3}
 --- !u!4 &592381242 stripped
 Transform:
@@ -8001,6 +8004,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manager: {fileID: 1732324986}
   initialPatrolEnemyCount: 0
+--- !u!114 &672883027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 672883021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d79b0e116518724591cb9806142fe6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waterScript: {fileID: 672883026}
+  redEnemySlider: {fileID: 309275405}
+  greenEnemySlider: {fileID: 568882077}
+  redEnemyText: {fileID: 590305569}
+  greenEnemyText: {fileID: 1866862748}
 --- !u!1 &681539826
 GameObject:
   m_ObjectHideFlags: 0
@@ -31400,6 +31420,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7824196541849326592, guid: 74cd9503a7f11654592f8f619671e228, type: 3}
   m_PrefabInstance: {fileID: 1708330064}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1543027147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1543027132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d79b0e116518724591cb9806142fe6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waterScript: {fileID: 672883026}
+  redEnemySlider: {fileID: 309275405}
+  greenEnemySlider: {fileID: 568882077}
+  redEnemyText: {fileID: 590305569}
+  greenEnemyText: {fileID: 1866862748}
 --- !u!1 &1548657414
 GameObject:
   m_ObjectHideFlags: 0
@@ -33151,6 +33188,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2123400372220710338, guid: 74cd9503a7f11654592f8f619671e228, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1543027140}
+    - targetCorrespondingSourceObject: {fileID: 2123400372220710338, guid: 74cd9503a7f11654592f8f619671e228, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1543027147}
   m_SourcePrefab: {fileID: 100100000, guid: 74cd9503a7f11654592f8f619671e228, type: 3}
 --- !u!1 &1716743435
 GameObject:
