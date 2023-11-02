@@ -52,7 +52,7 @@ public class PlayerControllerPossessed : MonoBehaviour
             EventCenter.GetInstance().TriggerEvent("ReturnToOgBody", this);
             
             // Moved this part to PossessionManager -NW
-            // possessedEnemy.ReturnToPosition();  // ÐÂÔö
+            // possessedEnemy.ReturnToPosition();  // æ–°å¢ž
         }
     }
 
