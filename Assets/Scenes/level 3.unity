@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11635,6 +11635,8 @@ MonoBehaviour:
   playerHintText: {fileID: 628417408}
   attackManager: {fileID: 1732324986}
   originalPlayer: {fileID: 1543027132}
+  redHint: {fileID: 1533589246}
+  greenHint: {fileID: 937853429}
 --- !u!4 &1193518160
 Transform:
   m_ObjectHideFlags: 0

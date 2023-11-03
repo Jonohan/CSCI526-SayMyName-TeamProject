@@ -8,13 +8,15 @@ public class HintManager : MonoBehaviour
     public TMP_Text playerHintText;
     public GameObject attackManager;
     private WaterAttackManager waterAttackManager;
-    public GameObject originalPlayer;
+    public GameObject originalPlayer, redHint, greenHint;
     private CharController playerController;
+
     // Start is called before the first frame update
     void Start()
     {
         waterAttackManager = attackManager.GetComponent<WaterAttackManager>();
         playerController = originalPlayer.GetComponent<CharController>();
+
 
     }
 
@@ -33,6 +35,15 @@ public class HintManager : MonoBehaviour
         if (enemyCount >= 3 && playerController.currentState == CharController.PlayerState.Fighting)
         {
             playerHintText.text = "RMB to shoot";
+        }
+
+        if (GameObject.Find("EnemyGB2") == null)
+        {
+            redHint.SetActive(false);
+        }
+        if (GameObject.Find("PatrolEnemy2") == null)
+        {
+            greenHint.SetActive(false);
         }
     }
 }
