@@ -30,7 +30,7 @@ public class HintManager : MonoBehaviour
         }
         if (enemyCount >=3 && playerController.currentState == CharController.PlayerState.Normal)
         {
-            playerHintText.text = "Press 3 to imitate";
+            playerHintText.text = "Press 3 for new status";
         }
         if (enemyCount >= 3 && playerController.currentState == CharController.PlayerState.Fighting)
         {
