@@ -36,7 +36,7 @@ public class PlayerControllerPossessed : MonoBehaviour
         // TODO: Move this to UIManager later.
         LogTextContainer = GameObject.Find("LogTextContainer");
         logText = LogTextContainer.GetComponent<Text>();
-        logText.text = "Possession bullet and Puddle are disabled in this form. Press 1 to return to your body.";
+        logText.text = "Press 1 to return to your body.";
         
     }
 
