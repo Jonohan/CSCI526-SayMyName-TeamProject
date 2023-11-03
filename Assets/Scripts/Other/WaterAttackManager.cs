@@ -79,14 +79,14 @@ public class WaterAttackManager : MonoBehaviour
             {
                 originalPlayer.GetComponent<CharController>().currentState = CharController.PlayerState.Fighting;
                 Debug.Log("Player is on Fighting state now!");
+                EventCenter.GetInstance().TriggerEvent("StartFighting", "Fighting");
             }
             else if (originalPlayer.GetComponent<CharController>().currentState == CharController.PlayerState.Fighting)
             {
                 originalPlayer.GetComponent<CharController>().currentState = CharController.PlayerState.Normal;
                 Debug.Log("Player back to Normal state now!");
+                EventCenter.GetInstance().TriggerEvent("BackToNormalMode", "Normal");
             }
-
-            EventCenter.GetInstance().TriggerEvent("StartFighting", this);
         }
 
     }

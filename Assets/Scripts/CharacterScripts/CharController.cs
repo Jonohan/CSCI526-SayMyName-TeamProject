@@ -107,6 +107,8 @@ public class CharController : MonoBehaviour
         startPosition = transform.position; // Set the starting position
 
         psAimingSelf = psAimingSelfContainer.GetComponent<ParticleSystem>();
+        
+       
 
     }
 
@@ -338,4 +340,6 @@ public class CharController : MonoBehaviour
     {
         return damageBulletCount;
     }
+
+    
 }
