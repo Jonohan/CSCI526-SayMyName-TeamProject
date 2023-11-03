@@ -21,7 +21,7 @@ public class SendToGoogle : MonoBehaviour
     private int _puddleCount = 0;
     private int _ifWin = 0;
     private int _ifLose = 0;
-
+    
     private bool toSend = true;
 
     public GameObject waterAttackManager = null;
@@ -29,6 +29,7 @@ public class SendToGoogle : MonoBehaviour
     public GameObject possManager = null;
     public GameObject monoSceneManager = null;
 
+    private float gameStartTime = 0;
     private float firstTransformTime = 0;
     private float gameOverTime; // either win or lose, recording the last time in the game
 
@@ -49,8 +50,17 @@ public class SendToGoogle : MonoBehaviour
     {
         currentSceneName = SceneManager.GetActiveScene().name;
 
+        gameStartTime = Time.time;
+        firstTransformTime = gameStartTime;
+        Debug.Log("start at " + gameStartTime);
         EventCenter.GetInstance().AddEventListener("KilledOneEnemy", BulletKillOneEnemy);
         EventCenter.GetInstance().AddEventListener("StartFighting", SetFirstTransformTime);
+    }
+
+    private void SetGameStartTime(object info)
+    {
+        Debug.Log("set...........");
+        gameStartTime = Time.time;
     }
 
     // Also send if player win
@@ -119,14 +129,8 @@ public class SendToGoogle : MonoBehaviour
         //Debug.Log("Damage Bullet Count: " + _damageBulletCount);
         //Debug.Log("Puddle Count: " + _puddleCount);
 
-        string startToPossess = "";
-        string possessToEnd = "";
-
-        if (_ifWin == 1)
-        {
-            startToPossess = firstTransformTime.ToString();
-            possessToEnd = (gameOverTime - firstTransformTime).ToString();
-        }
+        string startToPossess = (firstTransformTime - gameStartTime).ToString();
+        string possessToEnd = (gameOverTime - firstTransformTime).ToString();
 
         waterKilledEnemies = waterAttackManager.GetComponent<WaterAttackManager>().GetTotalEnemyCount();
         totalKilledEnemies = waterKilledEnemies + bulletKilledEnemies;
@@ -183,5 +187,4 @@ public class SendToGoogle : MonoBehaviour
         _ifWin = 0;
         _ifLose = 0;
     }
-
 }
