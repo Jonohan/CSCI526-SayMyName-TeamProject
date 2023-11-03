@@ -29,11 +29,8 @@ public class SendToGoogle : MonoBehaviour
     public GameObject possManager = null;
     public GameObject monoSceneManager = null;
 
-    private float firstPossTime;
-    private float gameOverTime;
-
-    private float timeFromStartToPossess = 0;
-    private float timeFromPossessToWin = 0;
+    private float firstTransformTime = 0;
+    private float gameOverTime; // either win or lose, recording the last time in the game
 
     private int bulletKilledEnemies = 0;
     private int waterKilledEnemies = 0;
@@ -41,7 +38,7 @@ public class SendToGoogle : MonoBehaviour
 
     private int totalPossessedCount = 0;
 
-    private bool hasGetFirstPossTime = false;
+    private bool hasGetFirstTransformTime = false;
 
     private void Awake()
     {
@@ -51,23 +48,24 @@ public class SendToGoogle : MonoBehaviour
     void Start()
     {
         currentSceneName = SceneManager.GetActiveScene().name;
+
+        EventCenter.GetInstance().AddEventListener("KilledOneEnemy", BulletKillOneEnemy);
+        EventCenter.GetInstance().AddEventListener("StartFighting", SetFirstTransformTime);
     }
 
     // Also send if player win
     private void OnEnable()
     {
         EventCenter.GetInstance().AddEventListener("PlayerWins", PlayerWinsHandler);
-        EventCenter.GetInstance().AddEventListener("KilledOneEnemy", BulletKillOneEnemy);
-        EventCenter.GetInstance().AddEventListener("PossessionSequence", GetFirstPossessTime);
     }
 
-    private void GetFirstPossessTime(object arg0)
+    private void SetFirstTransformTime(object info)
     {
-        if(hasGetFirstPossTime == false)
+        if(hasGetFirstTransformTime == false)
         {
-            firstPossTime = Time.time;
-            hasGetFirstPossTime = true;
-            Debug.Log("firstPossTime: " + firstPossTime);
+            firstTransformTime = Time.time;
+            Debug.Log("hasGetFirstTransformTime: " + hasGetFirstTransformTime);
+            hasGetFirstTransformTime = true;
         }
     }
 
@@ -75,7 +73,12 @@ public class SendToGoogle : MonoBehaviour
     {
         _ifWin = 1;
         gameOverTime = Time.time;
+        Debug.Log("winGameOverTime:" + gameOverTime);
 
+    }
+    private void BulletKillOneEnemy(object info)
+    {
+        bulletKilledEnemies++;
     }
 
     // Update is called once per frame
@@ -92,17 +95,14 @@ public class SendToGoogle : MonoBehaviour
             if(this.GetComponent<CharacterHealth>().isAlive == false)
             {
                 _ifLose = 1;
+                gameOverTime = Time.time;
+                Debug.Log("loseGameOverTime:" + gameOverTime);
             }
             
             Debug.Log("Sending Metrics...");
             Send();
             toSend = false;
         }
-    }
-
-    private void BulletKillOneEnemy(object info)
-    {
-        bulletKilledEnemies++;
     }
 
     public void Send()
@@ -124,8 +124,8 @@ public class SendToGoogle : MonoBehaviour
 
         if (_ifWin == 1)
         {
-            startToPossess = firstPossTime.ToString();
-            possessToEnd = (gameOverTime - firstPossTime).ToString();
+            startToPossess = firstTransformTime.ToString();
+            possessToEnd = (gameOverTime - firstTransformTime).ToString();
         }
 
         waterKilledEnemies = waterAttackManager.GetComponent<WaterAttackManager>().GetTotalEnemyCount();

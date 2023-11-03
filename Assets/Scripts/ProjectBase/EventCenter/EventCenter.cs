@@ -64,16 +64,6 @@ public class EventCenter : BaseManager<EventCenter>
         }
     }
 
-    public void TriggerEvent(string eventName)
-    {
-        // check if there is a corresponding event listener
-        if (eventDict.ContainsKey(eventName))
-        {
-            Debug.Log("EventCenter: TriggerEvent - " + eventName);
-            // eventDict[eventName].Invoke(info); also works! is the same as the line below. 
-        }
-    }
-
     /// <summary>
     /// Remove all events in the event center. Example use: call this when switching between scenes.
     /// </summary>

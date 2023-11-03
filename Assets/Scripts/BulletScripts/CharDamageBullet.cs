@@ -55,7 +55,7 @@ public class CharDamageBullet : MonoBehaviour
             if (other.gameObject.GetComponent<EnemyHealthController>().restHealth <= 0)
             {
                 Destroy(other.gameObject);
-                EventCenter.GetInstance().TriggerEvent("KilledOneEnemy");
+                EventCenter.GetInstance().TriggerEvent("KilledOneEnemy", this);
             }
         }
         // Recycle the bullet after the collision

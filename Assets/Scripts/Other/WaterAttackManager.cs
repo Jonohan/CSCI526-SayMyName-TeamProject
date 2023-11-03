@@ -86,6 +86,7 @@ public class WaterAttackManager : MonoBehaviour
                 Debug.Log("Player back to Normal state now!");
             }
 
+            EventCenter.GetInstance().TriggerEvent("StartFighting", this);
         }
 
     }
