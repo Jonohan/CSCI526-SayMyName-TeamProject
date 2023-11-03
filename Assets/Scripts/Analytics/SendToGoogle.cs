@@ -51,16 +51,9 @@ public class SendToGoogle : MonoBehaviour
         currentSceneName = SceneManager.GetActiveScene().name;
 
         gameStartTime = Time.time;
-        firstTransformTime = gameStartTime;
-        Debug.Log("start at " + gameStartTime);
+        firstTransformTime = gameStartTime; // when no transform happens, first transform time defaults to be the game start time
         EventCenter.GetInstance().AddEventListener("KilledOneEnemy", BulletKillOneEnemy);
         EventCenter.GetInstance().AddEventListener("StartFighting", SetFirstTransformTime);
-    }
-
-    private void SetGameStartTime(object info)
-    {
-        Debug.Log("set...........");
-        gameStartTime = Time.time;
     }
 
     // Also send if player win

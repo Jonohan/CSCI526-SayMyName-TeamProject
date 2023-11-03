@@ -84,8 +84,6 @@ public class MonoSceneManager : MonoBehaviour
         EventCenter.GetInstance().ClearEvents();
         ObjPoolManager.GetInstance().ClearPool();
         SceneManager.LoadScene(nextSceneIndex);
-
-        EventCenter.GetInstance().TriggerEvent("GameStart", this);
     }
 
     public float GetWinTime()
