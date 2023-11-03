@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class CharDamageBullet : MonoBehaviour
 {
     [Header("Player's General Bullet Properties")]
-    [SerializeField] private float lifeCycle = 0.5f; // then recycle
+    [SerializeField] private float lifeCycle = 1.5f; // then recycle
     [SerializeField] private float bulletSpeed;
     private Rigidbody rb;
     private GameObject shooter;

@@ -13,7 +13,7 @@ public class BackToMenus : MonoBehaviour
         ObjPoolManager.GetInstance().ClearPool();
 
 
-        SceneManager.LoadScene("Content");
+        SceneManager.LoadScene("Content"); // Back to content
         Debug.Log("back to content");
     }
 }
