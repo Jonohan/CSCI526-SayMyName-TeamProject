@@ -57,7 +57,6 @@ public class CharDamageBullet : MonoBehaviour
                 Destroy(other.gameObject);
                 EventCenter.GetInstance().TriggerEvent("KilledOneEnemy");
             }
-                
         }
         // Recycle the bullet after the collision
         RecycleObj();

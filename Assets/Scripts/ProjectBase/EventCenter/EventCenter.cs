@@ -64,11 +64,15 @@ public class EventCenter : BaseManager<EventCenter>
         }
     }
 
-    internal void TriggerEvent(string v)
+    public void TriggerEvent(string eventName)
     {
-        throw new NotImplementedException();
+        // check if there is a corresponding event listener
+        if (eventDict.ContainsKey(eventName))
+        {
+            Debug.Log("EventCenter: TriggerEvent - " + eventName);
+            // eventDict[eventName].Invoke(info); also works! is the same as the line below. 
+        }
     }
-
 
     /// <summary>
     /// Remove all events in the event center. Example use: call this when switching between scenes.
