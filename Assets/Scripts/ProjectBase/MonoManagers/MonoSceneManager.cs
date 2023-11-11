@@ -23,8 +23,8 @@ public class MonoSceneManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
             RestartGame();
 
-        else if (Input.GetKeyDown(KeyCode.Q))
-            Application.Quit();
+        // else if (Input.GetKeyDown(KeyCode.Q))
+        //     Application.Quit();
     }
     
     private void RestartGame()

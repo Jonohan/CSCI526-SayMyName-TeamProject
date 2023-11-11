@@ -12,9 +12,14 @@
                 "value": "{\"m_Value\":true}"
             },
             {
+                "type": "System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "key": "createDefaultBuildsFolder",
+                "value": "{\"m_Value\":true}"
+            },
+            {
                 "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "buildOutputDirList",
-                "value": "{\"m_Value\":\"E:/STUDY/Unity/CSCI 526 - Saymyname/WEBGL2;E:/STUDY/Unity/CSCI 526 - Saymyname/WEBGL;;;;;;;;\"}"
+                "value": "{\"m_Value\":\"Q:/Files/USC/2023Fall/526/SayMyName/Development/CSCI526-SayMyName-TeamProject/WebGL Builds;E:/STUDY/Unity/CSCI 526 - Saymyname/WEBGL2;E:/STUDY/Unity/CSCI 526 - Saymyname/WEBGL;;;;;;;\"}"
             }
         ]
     }

@@ -15,7 +15,7 @@ public class BackgroundColorChange : MonoBehaviour
     [Range(0,1)] public float valueReduction = 0.3f;
     [SerializeField] private Color currentObjCol;
     [SerializeField] private Color backgroundCol;
-    
+    public Color mainCharBackgroundCol = new Color(0.6f, 0.6f, 0.6f);
    
     void Start()
     {
@@ -51,18 +51,21 @@ public class BackgroundColorChange : MonoBehaviour
     /// <param name="info">PlayerControllerPossessed component passed to event center. Not relevant and not used in this function.</param>
     private void ChangeBGColorBack(object info)
     {
-        // Get original player
-        PossessionManager pm = GameObject.Find("MonoPossessionManager").GetComponent<PossessionManager>();
-        GameObject originalPlayer = pm.originalPlayer;
-        // Get its color
-        Renderer ogPlayerRend = originalPlayer.GetComponent<Renderer>();
-        Material ogPlayerMat = ogPlayerRend.material;
-        Color ogPlayerColor = ogPlayerMat.color;
-        // Convert to a deeper shade
-        currentObjCol = ogPlayerColor;
-        backgroundCol = ToDeeperShade(ogPlayerColor);
+        // // Get original player
+        // PossessionManager pm = GameObject.Find("MonoPossessionManager").GetComponent<PossessionManager>();
+        // GameObject originalPlayer = pm.originalPlayer;
+        // // Get its color
+        // Renderer ogPlayerRend = originalPlayer.GetComponent<Renderer>();
+        // Material ogPlayerMat = ogPlayerRend.material;
+        // Color ogPlayerColor = ogPlayerMat.color;
+        // // Convert to a deeper shade
+        // currentObjCol = ogPlayerColor;
+        // backgroundCol = ToDeeperShade(ogPlayerColor);
+        
         // Set camera background color
-        mainCam.backgroundColor = backgroundCol;
+        //mainCam.backgroundColor = backgroundCol;
+        mainCam.backgroundColor = mainCharBackgroundCol;
+
     }
     
     
