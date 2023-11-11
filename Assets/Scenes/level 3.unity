@@ -9453,8 +9453,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 286d3414979b30347811f1f59973267d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saturationReduction: 0.25
-  valueReduction: 0.3
+  saturationReduction: 0.45
+  valueReduction: 0
   currentObjCol: {r: 0, g: 0, b: 0, a: 0}
   backgroundCol: {r: 0, g: 0, b: 0, a: 0}
   mainCharBackgroundCol: {r: 0.6, g: 0.6, b: 0.6, a: 1}

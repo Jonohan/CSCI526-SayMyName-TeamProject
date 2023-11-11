@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -24669,7 +24669,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.11764706, g: 0.18039216, b: 0.22352941, a: 0}
+  m_BackGroundColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -24737,10 +24737,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 286d3414979b30347811f1f59973267d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saturationReduction: 0.25
-  valueReduction: 0.3
+  saturationReduction: 0.45
+  valueReduction: 0
   currentObjCol: {r: 0, g: 0, b: 0, a: 0}
   backgroundCol: {r: 0, g: 0, b: 0, a: 0}
+  mainCharBackgroundCol: {r: 0.6, g: 0.6, b: 0.6, a: 1}
 --- !u!1 &965439157
 GameObject:
   m_ObjectHideFlags: 0
@@ -37999,7 +38000,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8703592636780674538, guid: 7563ea8fb2e476f4a8ccfb9fa0e900d3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 7563ea8fb2e476f4a8ccfb9fa0e900d3, type: 3}
 --- !u!224 &858765056299574654 stripped
 RectTransform:
