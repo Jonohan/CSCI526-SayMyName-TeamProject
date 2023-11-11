@@ -107,9 +107,6 @@ public class CharController : MonoBehaviour
         startPosition = transform.position; // Set the starting position
 
         psAimingSelf = psAimingSelfContainer.GetComponent<ParticleSystem>();
-        
-       
-
     }
 
     void Update()
@@ -138,12 +135,12 @@ public class CharController : MonoBehaviour
             // Check if the skill is off cooldown
             if (Time.time - lastSkillUseTime >= PossessionSkillCooldown)
             {
-                logText.text = "Press RMB to shoot possession bullet.";
+                logText.text = "Right Click to shoot a possession bullet.";
             }
-            else // not ready yet
-            {
-                logText.text = "Possession bullet is not ready yet.";
-            }
+            // else // not ready yet
+            // {
+            //     logText.text = "Possession bullet is not ready yet.";
+            // }
         }
         else if (currentState == PlayerState.Fighting)
         {
@@ -151,7 +148,7 @@ public class CharController : MonoBehaviour
             if (Time.time - lastShotTime >= fireInterval)
             {
                 // need to classify the attack modes in next version
-                logText.text = "Press RMB to start killing :)";
+                logText.text = "Right Click to start killing :)";
             }
             else // not ready yet
             {

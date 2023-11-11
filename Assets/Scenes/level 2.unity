@@ -807,6 +807,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7639947190766579840, guid: 40ee114281f573e4c998eaae139b4be1, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 2a2297af226a57b4fba02de43652fed1, type: 3}
     - target: {fileID: 8686833743735185438, guid: 40ee114281f573e4c998eaae139b4be1, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2239,6 +2243,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slot Holder (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7639947190766579840, guid: 40ee114281f573e4c998eaae139b4be1, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 2a2297af226a57b4fba02de43652fed1, type: 3}
     - target: {fileID: 8686833743735185438, guid: 40ee114281f573e4c998eaae139b4be1, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2951,7 +2959,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.11764706, g: 0.18039216, b: 0.22352941, a: 0}
+  m_BackGroundColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -3023,6 +3031,7 @@ MonoBehaviour:
   valueReduction: 0.35
   currentObjCol: {r: 0, g: 0, b: 0, a: 0}
   backgroundCol: {r: 0, g: 0, b: 0, a: 0}
+  mainCharBackgroundCol: {r: 0.6, g: 0.6, b: 0.6, a: 1}
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3988,6 +3997,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slot Holder (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 7639947190766579840, guid: 40ee114281f573e4c998eaae139b4be1, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 2a2297af226a57b4fba02de43652fed1, type: 3}
     - target: {fileID: 8686833743735185438, guid: 40ee114281f573e4c998eaae139b4be1, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4987,6 +5000,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slot Holder (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 7639947190766579840, guid: 40ee114281f573e4c998eaae139b4be1, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 2a2297af226a57b4fba02de43652fed1, type: 3}
     - target: {fileID: 8686833743735185438, guid: 40ee114281f573e4c998eaae139b4be1, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -5146,7 +5163,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 8a2b9e2a607dd2143b58c44bc32410b4, type: 3}
+    m_Font: {fileID: 12800000, guid: 2a2297af226a57b4fba02de43652fed1, type: 3}
     m_FontSize: 44
     m_FontStyle: 1
     m_BestFit: 0
@@ -5158,7 +5175,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: My bag
+  m_Text: MY BAG
 --- !u!222 &1422871256
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9646,6 +9663,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7639947190766579840, guid: 40ee114281f573e4c998eaae139b4be1, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 2a2297af226a57b4fba02de43652fed1, type: 3}
     - target: {fileID: 8686833743735185438, guid: 40ee114281f573e4c998eaae139b4be1, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -10840,6 +10861,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7639947190766579840, guid: 40ee114281f573e4c998eaae139b4be1, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 2a2297af226a57b4fba02de43652fed1, type: 3}
     - target: {fileID: 8686833743735185438, guid: 40ee114281f573e4c998eaae139b4be1, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -12292,6 +12317,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slot Holder (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7639947190766579840, guid: 40ee114281f573e4c998eaae139b4be1, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 2a2297af226a57b4fba02de43652fed1, type: 3}
     - target: {fileID: 8686833743735185438, guid: 40ee114281f573e4c998eaae139b4be1, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -12405,6 +12434,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slot Holder (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7639947190766579840, guid: 40ee114281f573e4c998eaae139b4be1, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 2a2297af226a57b4fba02de43652fed1, type: 3}
     - target: {fileID: 8686833743735185438, guid: 40ee114281f573e4c998eaae139b4be1, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
