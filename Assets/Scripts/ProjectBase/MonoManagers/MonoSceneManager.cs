@@ -7,7 +7,7 @@ public class MonoSceneManager : MonoBehaviour
 
     public GameObject WinScreen;
     public GameObject NextLevelButton;
-
+    private GameObject mousePointer;
     private float winTime = 0;
     private void OnEnable()
     {
@@ -16,6 +16,7 @@ public class MonoSceneManager : MonoBehaviour
             WinScreen = GameObject.Find("WinScreen");
         }
         EventCenter.GetInstance().AddEventListener("PlayerWins", ShowWinScreen);
+        mousePointer = GameObject.Find("MousePointer");
     }
 
     void Update()

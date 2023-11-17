@@ -59,7 +59,9 @@ public class CharDamageBullet : MonoBehaviour
             }
         }
         // Recycle the bullet after the collision
-        RecycleObj();
+        // except colliding with a key or a detect area
+        if (!other.collider.CompareTag("Key") && !other.collider.CompareTag("DetectArea")  )
+            RecycleObj();
     }
 
     public void InitializeDamageBullet(GameObject obj, Vector3 targetDir, float speed)

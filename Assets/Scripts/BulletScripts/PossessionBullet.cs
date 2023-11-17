@@ -55,32 +55,23 @@ public class PossessionBullet : MonoBehaviour
     /// <param name="other">The object that the bullet collides with.</param>
     private void OnCollisionEnter(Collision other)
     {
-        possessionPair.Clear();
+        Debug.Log("Collision with possession bullet detected");
+        // possessionPair.Clear();
         // enter the sequence only if the enemy hit is an enemy.
-        //TODO: Integrate with enemy scripts to see if this enemy is dead.
         if  ( other.collider.CompareTag("Enemy") )
         {
             Debug.Log("Possession bullet hits an enemy");
             possessionPair.Add(shooter);
             possessionPair.Add(other.gameObject);
-            EventCenter.GetInstance().TriggerEvent("PossessionSequence", possessionPair );
+            //Debug.Log("PossessionBullet: pair:"+ possessionPair[0].ToString()+" to  "+possessionPair[1].ToString());
+            if (possessionPair[0] != null && possessionPair[1] != null )
+                EventCenter.GetInstance().TriggerEvent("PossessionSequence", possessionPair );
         }
-        else if (other.collider.CompareTag("Key"))
-        {
-            Debug.Log("Possession bullet hits a key on an enemy");
-            possessionPair.Add(shooter);
-            // Add the key's parent enemy gameobject to the possession pair as the hit (possessed) one.
-            Transform enemyTransform = other.gameObject.transform.parent;
-            if(enemyTransform != null)
-            {
-                GameObject EnemyObj = enemyTransform.gameObject;
-               possessionPair.Add(EnemyObj);
-            }
-        }
+        
         
         // After collision, recycle this object immediately
         // except colliding with a transparent wall or a detect area
-        if (!other.collider.CompareTag("TransparentWall") && !other.collider.CompareTag("DetectArea")  )
+        if (!other.collider.CompareTag("TransparentWall") && !other.collider.CompareTag("DetectArea") && !other.collider.CompareTag("Key")  )
             RecycleObj();
     }
 
@@ -95,6 +86,7 @@ public class PossessionBullet : MonoBehaviour
         this.shooter = obj;
         this.bulletSpeed = speed;
         this.moveDir = targetDir;
+        //Debug.Log("PossessionBullet: Shooting target direction: "+targetDir.ToString());
         this.transform.position = shooter.transform.position + targetDir * 1.5f;
         this.rb.velocity = Vector3.zero;
         //Debug.Log("InitalizePosessionBullet is executed.");

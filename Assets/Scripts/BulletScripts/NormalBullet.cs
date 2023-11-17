@@ -52,7 +52,9 @@ public class NormalBullet : MonoBehaviour
             }
         }
         // Recycle the bullet after the collision
-        RecycleObj();
+        // except colliding with a key or a detect area
+        if (!other.collider.CompareTag("Key") && !other.collider.CompareTag("DetectArea")  )
+            RecycleObj();
     }
 
     // Method to set up the bullet's properties when it's taken from the object pool and fired
