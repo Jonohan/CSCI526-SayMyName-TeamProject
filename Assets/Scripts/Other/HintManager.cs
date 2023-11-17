@@ -34,7 +34,7 @@ public class HintManager : MonoBehaviour
         }
         if (enemyCount >= 3 && playerController.currentState == CharController.PlayerState.Fighting)
         {
-            playerHintText.text = "RMB to shoot";
+            playerHintText.text = "Right Click to shoot";
         }
 
         if (GameObject.Find("EnemyGB2") == null)
