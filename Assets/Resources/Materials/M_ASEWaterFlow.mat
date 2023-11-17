@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_ASEWaterFlow
-  m_Shader: {fileID: 4800000, guid: f730f3c4b250eea4a94be16f50cde791, type: 3}
+  m_Shader: {fileID: 4800000, guid: cf54ce275bfc58143b8c079ecde38100, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -27,11 +27,16 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _PuddleRimMask:
+        m_Texture: {fileID: 2800000, guid: 1eb986ebf212a204395facaddd880343, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Float2: 0.94
     - _NoiseScale: 4
     m_Colors:
-    - _MainColor: {r: 0, g: 0.9667376, b: 1.339623, a: 0}
+    - _MainColor: {r: 0, g: 2.6792462, b: 0.7991202, a: 0}
     - _MainSpeed: {r: 0, g: 0, b: 0, a: 0}
     - _MaskSpeed: {r: 0.5, g: 0.2, b: 0, a: 0}
   m_BuildTextureStacks: []

@@ -27,27 +27,29 @@ public class PossessionManager : MonoBehaviour
     {
         List<GameObject> objList = info as List<GameObject>;
         // if shooter and the possessed are all valid game objects
+        //if (objList != null && objList[0] != null && objList[1] != null)
         if (objList != null && objList.Count == 2)
         {
             Debug.Log(objList[0].gameObject.name + " shoots a possession bullet onto "+ objList[1].gameObject.name);
-            
-            // Temporarily disable the original character's controller and attach a new controller to the possessed
-            currentPlayerControllable.GetComponent<CharController>().enabled = false;
             
             // get the possessed enemy (temporary player)
             GameObject tempPlayer = objList[1];
             
             // disable the enemy controller on it
-            // TODO: Replace EnemyController with any actual script name 
             tempPlayer.GetComponent<EnemyController>().enabled = false;
             
             // attach a possessed player controller script
             tempPlayer.AddComponent<PlayerControllerPossessed>();
+            
+            // Temporarily disable the original character's controller and attach a new controller to the possessed
+            CharController cc = objList[0].GetComponent<CharController>();
+            cc.enabled = false;
+            //currentPlayerControllable.GetComponent<CharController>().enabled = false;
+            
             RegisterCurrentPlayerControllable(tempPlayer.gameObject);
 
             possessedCount++;
-
-
+            
         }
     }
 
@@ -64,7 +66,7 @@ public class PossessionManager : MonoBehaviour
 
     private void ReturnToOriginalBody(object info)
     {
-        Debug.Log("ReturnToOriginalBody() started. Current time: "+ Time.time.ToString());
+        Debug.Log("Possession Manager: ReturnToOgBody Event triggered.");
         
         // reactivate the original body's CharController script
         originalPlayer.GetComponent<CharController>().enabled = true;
@@ -106,7 +108,7 @@ public class PossessionManager : MonoBehaviour
     /// <param name="info">PlayerControllerPossessed component</param>
     private void PlayPossessionEffect(object info)
     {
-        Debug.Log("PlayPossessionEffect is triggered.");
+        Debug.Log("Possession Manager: PlayPossessionEffect is triggered.");
         psPoss = FxContainer.GetComponent<ParticleSystem>();
         if (psPoss != null)
         {

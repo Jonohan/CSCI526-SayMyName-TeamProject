@@ -31,17 +31,20 @@ public class CharController : MonoBehaviour
 
     [Header("User Input")]
     [SerializeField] private Vector3 input = Vector3.zero;
-
-    [Header("LogText (need to move to UIManager later?)")]
+    
+    [Header("LogText")]
     public GameObject LogTextContainer;
     private Text logText;
+    public GameObject DebugTextContainer;
+    private Text debugText;
 
     [Header("Debug: Mouse Aiming")]
-    [SerializeField] private Vector3 mouseRealWorldPos;
     [SerializeField] private bool isAiming = false;
-    public GameObject mousePointer;
+    [SerializeField]private GameObject mousePointer;
+    [SerializeField] private Vector3 mouseRealWorldPos;
     [SerializeField] private Quaternion rot;
-
+    private LayerMask lm;
+    
     [Header("Inventory System")]
     public GameObject myBag;
     bool isOpen;
@@ -49,6 +52,8 @@ public class CharController : MonoBehaviour
     [Header("Particle Systems")]
     public GameObject psAimingSelfContainer;
     public ParticleSystem psAimingSelf;
+    private bool isCoroutineRunning = false;
+    private Coroutine FXCoroutine;
 
     // for data collection
     private int possessionBulletCount = 0;
@@ -78,13 +83,9 @@ public class CharController : MonoBehaviour
     }
 
     private void OnEnable()
-    {
-        if (psAimingSelfContainer == null)
-            psAimingSelfContainer = GameObject.Find("AimFX");
-        if (psAimingSelf == null)
-            psAimingSelf = psAimingSelfContainer.GetComponent<ParticleSystem>();
-        
-        StartCoroutine(PlayParticleEffect(psAimingSelf, 2));
+    { 
+        // ensures that this event is listened BEFORE 
+        EventCenter.GetInstance().AddEventListener("MousePointerInitialized", GetMousePointer);
     }
 
     private void Start()
@@ -105,8 +106,14 @@ public class CharController : MonoBehaviour
 
         //currentState = PlayerState.Fighting; // The initial status is set to Fighting (force to one status)
         startPosition = transform.position; // Set the starting position
-
-        psAimingSelf = psAimingSelfContainer.GetComponent<ParticleSystem>();
+        
+        // Initial fx 
+        if (psAimingSelfContainer == null)
+            psAimingSelfContainer = GameObject.Find("AimFX");
+        if (psAimingSelf == null)
+            psAimingSelf = psAimingSelfContainer.GetComponent<ParticleSystem>();
+        
+        StartCoroutine(PlayParticleEffect(psAimingSelf, 2));
     }
 
     void Update()
@@ -137,10 +144,6 @@ public class CharController : MonoBehaviour
             {
                 logText.text = "Right Click to shoot a possession bullet.";
             }
-            // else // not ready yet
-            // {
-            //     logText.text = "Possession bullet is not ready yet.";
-            // }
         }
         else if (currentState == PlayerState.Fighting)
         {
@@ -159,20 +162,19 @@ public class CharController : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             isAiming = true;
-            // if possesion is off cooldown then play the effect
-            if (Time.time - lastSkillUseTime >= PossessionSkillCooldown)
-            {
-                StartCoroutine(PlayParticleEffect(psAimingSelf, 1.5f));
-            }
+            // if possession is off cooldown and the coroutine is not running
+            // if (Time.time - lastSkillUseTime >= PossessionSkillCooldown && !isCoroutineRunning)
+            // {
+            //     FXCoroutine = StartCoroutine(PlayParticleEffect(psAimingSelf, 1.5f));
+            // }
+            // // if possession is off cooldown but the coroutine is already running
+            // else if (Time.time - lastSkillUseTime >= PossessionSkillCooldown && isCoroutineRunning)
+            // {
+            //     
+            // }
+            FXCoroutine = StartCoroutine(PlayParticleEffect(psAimingSelf, 1.5f));
         }
-
-
-        if (isAiming)
-        {
-            GatherMouseLookingInput();
-        }
-
-
+        
         Look();
 
         if (Input.GetMouseButtonUp(1))
@@ -183,7 +185,7 @@ public class CharController : MonoBehaviour
                 if (Time.time - lastSkillUseTime >= PossessionSkillCooldown)
                 {
                     ShootPossessionBullet(); // only in normal status
-                    logText.text = "Possession bullet is not ready yet.";
+                    logText.text = "";
                     possessionBulletCount++;
                     //Debug.Log("P:" + possessionBulletCount);
                 }
@@ -217,24 +219,8 @@ public class CharController : MonoBehaviour
     {
         input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")); // comparing to GetAxis this one does not have a smoothing in or out, resulting in no 'inertia'.
     }
-
-    /// <summary>
-    /// Gather mouse position input from the user for aiming. Called once per frame ONLY IF isAiming == true.
-    /// </summary>
-    void GatherMouseLookingInput()
-    {
-        // Convert screen position to a ray
-        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-
-        // Cast ray to game plane
-        if (Physics.Raycast(ray, out RaycastHit hit))
-        {
-            mouseRealWorldPos = hit.point;
-        }
-        // Handle cases where the raycast might not hit anything.
-        mouseRealWorldPos = transform.forward;
-    }
-
+    
+    
     /// <summary>
     /// Rotate the player game object, according to either 1) keyboard input, or 2) aiming mouse input
     /// </summary>
@@ -248,7 +234,6 @@ public class CharController : MonoBehaviour
             relativeDiff.y = 0;
             var rotation = Quaternion.LookRotation(relativeDiff);
             transform.rotation = rotation;
-            StartCoroutine(ResetAngularVelocity());
         }
 
         else if (input != Vector3.zero)
@@ -297,19 +282,7 @@ public class CharController : MonoBehaviour
         // Reset skill CD.
         lastShotTime = Time.time;
     }
-
-    /// <summary>
-    /// Reset the player gameo bject's angular velocity exactly 1 FixedUpdate after its rotation happens.
-    /// Trying to reduce the inertia like behavior.
-    /// Not sure this is needed or not?
-    /// </summary>
-    /// <returns></returns>
-    private IEnumerator ResetAngularVelocity()
-    {
-        yield return new WaitForFixedUpdate();
-        rb.angularVelocity = Vector3.zero;
-    }
-
+    
     public void TeleportToStart()
     {
         transform.position = startPosition; // Reset player position to start
@@ -317,6 +290,7 @@ public class CharController : MonoBehaviour
 
     private IEnumerator PlayParticleEffect(ParticleSystem ps, float duration)
     {
+        isCoroutineRunning = true;
         psAimingSelfContainer.transform.position = gameObject.transform.position;
         ps.gameObject.SetActive(true);
         var main = ps.main;
@@ -324,6 +298,7 @@ public class CharController : MonoBehaviour
         ps.Play();
         yield return new WaitForSeconds(duration);
         ps.gameObject.SetActive(false);
+        isCoroutineRunning = false;
     }
 
 
@@ -338,5 +313,18 @@ public class CharController : MonoBehaviour
         return damageBulletCount;
     }
 
-    
+    /// <summary>
+    /// At the beginning of game, when MousePointer gameobject is initialized, this function will be called when MousePointer
+    /// triggers this event. This makes sure CharController has the reference of the mouse pointer. 
+    /// </summary>
+    /// <param name="info"> Passed in by event center. A MousePointer class component.</param>
+    private void GetMousePointer(object info)
+    {
+        MousePointer mp = info as MousePointer;
+        if (mp != null)
+        {
+            mousePointer = mp.gameObject;
+            lm = mp.mouseLayerMask;
+        }
+    }
 }
