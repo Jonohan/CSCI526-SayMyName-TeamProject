@@ -14,6 +14,8 @@ for i in range(len(data['Scene Name'])):
         level_dict[data['Scene Name'][i]]['PossessionBullets'] += data['# of Shooting Possesion Bullet'][i]
         level_dict[data['Scene Name'][i]]['DamageBullets'] += data['# of Shooting Damage Bullet'][i]
         level_dict[data['Scene Name'][i]]['PuddleAttack'] += data['# of Becoming Puddle'][i]
+        level_dict[data['Scene Name'][i]]['Win'] += data['If Wins'][i]
+        level_dict[data['Scene Name'][i]]['Lose'] += data['If Loses'][i]
     else:
         level_dict[data['Scene Name'][i]] = {'Start': data['Time (Start to Transform)/seconds'][i],
                                              'End': data['Time (Tranform to End)/seconds'][i],
@@ -21,7 +23,9 @@ for i in range(len(data['Scene Name'])):
                                              'Kill': data['# of Total Killed Enemy'][i],
                                              'PossessionBullets': data['# of Shooting Possesion Bullet'][i],
                                              'DamageBullets': data['# of Shooting Damage Bullet'][i],
-                                             'PuddleAttack': data['# of Becoming Puddle'][i]}
+                                             'PuddleAttack': data['# of Becoming Puddle'][i],
+                                             'Win': data['If Wins'][i],
+                                             'Lose': data['If Loses'][i]}
 
 level_list = []
 for k in level_dict.keys():
@@ -34,6 +38,8 @@ Kill_list = []
 PossessionBullets_list = []
 DamageBullets_list = []
 PuddleAttack_list = []
+Win_list = []
+Lose_list = []
 
 for level in level_list:
     total = float(level_dict[level]['Start']) + float(level_dict[level]['End'])
@@ -44,6 +50,8 @@ for level in level_list:
     PossessionBullets_list.append(float(level_dict[level]['PossessionBullets']))
     DamageBullets_list.append(float(level_dict[level]['DamageBullets']))
     PuddleAttack_list.append(float(level_dict[level]['PuddleAttack']))
+    Win_list.append(float(level_dict[level]['Win']))
+    Lose_list.append(float(level_dict[level]['Lose']))
 
 transformation_list = {
     'Start': np.array(Start_list),
@@ -118,4 +126,27 @@ ax.set_xticks(x + width, level_list)
 ax.legend(loc='upper right', ncols=3)
 # ax.set_ylim(0, 250)
 plt.savefig('Attack Ways Statistics.png')
+plt.show()
+
+
+# Win-Lost bar chart
+fig, ax = plt.subplots()
+x = np.arange(len(level_list))  
+width = 0.35  
+
+rects1 = ax.bar(x - width/2, Win_list, width, label='Wins')
+rects2 = ax.bar(x + width/2, Lose_list, width, label='Loses')
+
+# Add some text for labels, title and custom x-axis tick labels, etc.
+ax.set_ylabel('Counts')
+ax.set_title('Wins and Loses by Scene')
+ax.set_xticks(x)
+ax.set_xticklabels(level_list)
+ax.legend()
+
+ax.bar_label(rects1, padding=3)
+ax.bar_label(rects2, padding=3)
+
+plt.xticks(rotation=45)  # Rotate labels if they overlap
+plt.savefig('Wins and Loses Statistics.png')
 plt.show()
