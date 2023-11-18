@@ -162,17 +162,26 @@ public class CharController : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             isAiming = true;
-            // if possession is off cooldown and the coroutine is not running
-            // if (Time.time - lastSkillUseTime >= PossessionSkillCooldown && !isCoroutineRunning)
-            // {
-            //     FXCoroutine = StartCoroutine(PlayParticleEffect(psAimingSelf, 1.5f));
-            // }
-            // // if possession is off cooldown but the coroutine is already running
-            // else if (Time.time - lastSkillUseTime >= PossessionSkillCooldown && isCoroutineRunning)
-            // {
-            //     
-            // }
-            FXCoroutine = StartCoroutine(PlayParticleEffect(psAimingSelf, 1.5f));
+            //if possession is off cooldown and the coroutine is not running
+            if (Time.time - lastSkillUseTime >= PossessionSkillCooldown && !isCoroutineRunning)
+            {
+                Debug.Log("FXCoroutine starts.");
+                FXCoroutine = StartCoroutine(PlayParticleEffect(psAimingSelf, 1.5f));
+            }
+            // if possession is off cooldown but the coroutine is already running
+            else if (Time.time - lastSkillUseTime >= PossessionSkillCooldown && isCoroutineRunning)
+            {
+                // If we have this running coroutine's reference 
+                if (FXCoroutine != null)
+                {
+                    // Stop the current coroutine and start a new one
+                    Debug.Log("FXCoroutine interrupted.");
+                    StopCoroutine(FXCoroutine);
+                    Debug.Log("FXCoroutine restarts");
+                    FXCoroutine = StartCoroutine(PlayParticleEffect(psAimingSelf, 1.5f));
+                }
+            }
+            // FXCoroutine = StartCoroutine(PlayParticleEffect(psAimingSelf, 1.5f));
         }
         
         Look();
@@ -210,6 +219,10 @@ public class CharController : MonoBehaviour
     {
         if (!isAiming)
             Move();
+        
+        // update fx position
+        if (isCoroutineRunning)
+            psAimingSelfContainer.transform.position = gameObject.transform.position;
     }
 
     /// <summary>
@@ -299,6 +312,7 @@ public class CharController : MonoBehaviour
         yield return new WaitForSeconds(duration);
         ps.gameObject.SetActive(false);
         isCoroutineRunning = false;
+        Debug.Log("FXCoroutine stops naturally");
     }
 
 
