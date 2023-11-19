@@ -8,6 +8,8 @@ TagManager:
   - TransparentWall
   - DetectArea
   - Key
+  - DoorSwitch
+  - Switch
   layers:
   - Default
   - TransparentFX

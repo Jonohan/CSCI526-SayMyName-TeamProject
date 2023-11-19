@@ -40,6 +40,9 @@ public class PossessionManager : MonoBehaviour
             
             // attach a possessed player controller script
             tempPlayer.AddComponent<PlayerControllerPossessed>();
+            PlayerControllerPossessed pcc = tempPlayer.GetComponent<PlayerControllerPossessed>();
+            // Assign the VFX object
+            pcc.AssignFXContainer(FxContainer);
             
             // Temporarily disable the original character's controller and attach a new controller to the possessed
             CharController cc = objList[0].GetComponent<CharController>();
@@ -88,6 +91,9 @@ public class PossessionManager : MonoBehaviour
         this.currentPlayerControllable = originalPlayer;
 
         CharController cc = originalPlayer.GetComponent<CharController>();
+        // Trigger the event to play the possession fx
+        EventCenter.GetInstance().TriggerEvent("ReturnedFromPossession", cc);
+        
     }
 
     /// <summary>
@@ -119,7 +125,7 @@ public class PossessionManager : MonoBehaviour
             var main = psPoss.main;
             main.startColor = Enemy.GetComponent<Renderer>().material.color;
 
-            StartCoroutine(PlayParticleEffect(psPoss, 2f));
+            StartCoroutine(PlayParticleEffect(psPoss, 0.7f));
         }
     }
     

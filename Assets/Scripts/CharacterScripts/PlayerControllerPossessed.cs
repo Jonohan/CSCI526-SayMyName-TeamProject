@@ -22,6 +22,9 @@ public class PlayerControllerPossessed : MonoBehaviour
     [SerializeField] private GameObject LogTextContainer;
     private Text logText;
 
+    [Header("VFX")]
+    [SerializeField] private GameObject FXContainer;
+
     private void OnEnable()
     {
         // once we can confirm that possession has started, trigger this event for background color change and stuff
@@ -59,6 +62,10 @@ public class PlayerControllerPossessed : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
+        if (FXContainer)
+        {
+            FXContainer.transform.position = gameObject.transform.position;
+        }
     }
 
     void GatherMovingInput()
@@ -89,5 +96,10 @@ public class PlayerControllerPossessed : MonoBehaviour
     void Move()
     {
         rb.MovePosition(transform.position + ( transform.forward * input.magnitude ) * moveSpeed * Time.deltaTime);
+    }
+
+    public void AssignFXContainer(GameObject fxc)
+    {
+        this.FXContainer = fxc;
     }
 }

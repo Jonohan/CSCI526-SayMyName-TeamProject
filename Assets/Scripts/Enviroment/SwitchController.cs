@@ -7,6 +7,7 @@ public class SwitchController : MonoBehaviour
 {
     public DoorController doorController; // Call Door controller method
     public bool isPlayerInRange = false;
+    public bool isDoorOpen = false;
     private CharController charController;
     /*    public GameObject LogTextContainer;
         private Text logText;*/
@@ -33,6 +34,7 @@ public class SwitchController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 doorController.OpenDoor(); // if character is in collide range and press E, open the door
+                isDoorOpen = true;
             }
         }
     }
