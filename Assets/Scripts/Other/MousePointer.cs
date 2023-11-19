@@ -11,6 +11,9 @@ public class MousePointer : MonoBehaviour
 
    private void Start()
    {
+      // trigger the MousePointerInitialized event 2 frames after Start()
+      StartCoroutine(CRT_TriggerMousePterEvent());
+      // Get camera and mask for mouse pointer
       mainCamera = Camera.main;
       LayerMask mouseIgnoredLayerMask = LayerMask.GetMask("IgnoreMouseRaycast");
       mouseLayerMask = ~mouseIgnoredLayerMask;

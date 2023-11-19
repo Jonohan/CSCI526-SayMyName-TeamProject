@@ -35,7 +35,6 @@ public class CharController : MonoBehaviour
     [Header("LogText")]
     public GameObject LogTextContainer;
     private Text logText;
-    public GameObject DebugTextContainer;
     private Text debugText;
 
     [Header("Debug: Mouse Aiming")]
@@ -52,8 +51,9 @@ public class CharController : MonoBehaviour
     [Header("Particle Systems")]
     public GameObject psAimingSelfContainer;
     public ParticleSystem psAimingSelf;
-    private bool isCoroutineRunning = false;
-    private Coroutine FXCoroutine;
+    private Coroutine FXCoroutine = null;
+    public bool isCoroutineRunning = false;
+    
 
     // for data collection
     private int possessionBulletCount = 0;
@@ -84,8 +84,10 @@ public class CharController : MonoBehaviour
 
     private void OnEnable()
     { 
-        // ensures that this event is listened BEFORE 
+        // ensures that this event is listened BEFORE mouse pointer is actually initialized
         EventCenter.GetInstance().AddEventListener("MousePointerInitialized", GetMousePointer);
+        // Listen to an event where possession is officially done and returned to the player's original body
+        EventCenter.GetInstance().AddEventListener("ReturnedFromPossession", PlayReturnFx);
     }
 
     private void Start()
@@ -113,7 +115,7 @@ public class CharController : MonoBehaviour
         if (psAimingSelf == null)
             psAimingSelf = psAimingSelfContainer.GetComponent<ParticleSystem>();
         
-        StartCoroutine(PlayParticleEffect(psAimingSelf, 2));
+        StartCoroutine(PlayParticleEffect(psAimingSelf, 0.7f));
     }
 
     void Update()
@@ -165,8 +167,7 @@ public class CharController : MonoBehaviour
             //if possession is off cooldown and the coroutine is not running
             if (Time.time - lastSkillUseTime >= PossessionSkillCooldown && !isCoroutineRunning)
             {
-                Debug.Log("FXCoroutine starts.");
-                FXCoroutine = StartCoroutine(PlayParticleEffect(psAimingSelf, 1.5f));
+                FXCoroutine = StartCoroutine(PlayParticleEffect(psAimingSelf, 0.7f));
             }
             // if possession is off cooldown but the coroutine is already running
             else if (Time.time - lastSkillUseTime >= PossessionSkillCooldown && isCoroutineRunning)
@@ -175,10 +176,8 @@ public class CharController : MonoBehaviour
                 if (FXCoroutine != null)
                 {
                     // Stop the current coroutine and start a new one
-                    Debug.Log("FXCoroutine interrupted.");
                     StopCoroutine(FXCoroutine);
-                    Debug.Log("FXCoroutine restarts");
-                    FXCoroutine = StartCoroutine(PlayParticleEffect(psAimingSelf, 1.5f));
+                    FXCoroutine = StartCoroutine(PlayParticleEffect(psAimingSelf, 0.7f));
                 }
             }
             // FXCoroutine = StartCoroutine(PlayParticleEffect(psAimingSelf, 1.5f));
@@ -312,7 +311,6 @@ public class CharController : MonoBehaviour
         yield return new WaitForSeconds(duration);
         ps.gameObject.SetActive(false);
         isCoroutineRunning = false;
-        Debug.Log("FXCoroutine stops naturally");
     }
 
 
@@ -328,7 +326,7 @@ public class CharController : MonoBehaviour
     }
 
     /// <summary>
-    /// At the beginning of game, when MousePointer gameobject is initialized, this function will be called when MousePointer
+    /// At the beginning of game, when MousePointer game object is initialized, this function will be called when MousePointer
     /// triggers this event. This makes sure CharController has the reference of the mouse pointer. 
     /// </summary>
     /// <param name="info"> Passed in by event center. A MousePointer class component.</param>
@@ -339,6 +337,25 @@ public class CharController : MonoBehaviour
         {
             mousePointer = mp.gameObject;
             lm = mp.mouseLayerMask;
+        }
+    }
+
+    /// <summary>
+    /// Start the coroutine of playing the possession effect. 
+    /// </summary>
+    /// <param name="info"> Passed in by the event center. CharController object. Irrelevant to this function.</param>
+    private void PlayReturnFx(object info)
+    {
+        // if currently no FX coroutine is running
+        if (FXCoroutine == null)
+        {
+            FXCoroutine = StartCoroutine(PlayParticleEffect(psAimingSelf, 0.7f));
+        }
+        else
+        {
+            // Stop the current coroutine and start a new one
+            StopCoroutine(FXCoroutine);
+            FXCoroutine = StartCoroutine(PlayParticleEffect(psAimingSelf, 0.7f));
         }
     }
 }

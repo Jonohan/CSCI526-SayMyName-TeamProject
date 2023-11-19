@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 3518286226005933704}
   m_Layer: 0
   m_Name: Switch
-  m_TagString: Untagged
+  m_TagString: Switch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -356,7 +356,7 @@ GameObject:
   - component: {fileID: 2115010402839768089}
   m_Layer: 0
   m_Name: Door_Switch
-  m_TagString: Untagged
+  m_TagString: DoorSwitch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
