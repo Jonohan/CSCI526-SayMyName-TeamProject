@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ShowTutorial : MonoBehaviour
+public class ToggleTutorial : MonoBehaviour
 {
     public GameObject tutorial;
     public void ShowtheTutorial()
