@@ -4,13 +4,14 @@ using UnityEngine.SceneManagement;
 
 public class MonoSceneManager : MonoBehaviour
 {
-
+    public GameObject Tutorial;
     public GameObject WinScreen;
     public GameObject NextLevelButton;
     private GameObject mousePointer;
     private float winTime = 0;
     private void OnEnable()
     {
+        Tutorial.SetActive(false);
         if (WinScreen == null)
         {
             WinScreen = GameObject.Find("WinScreen");
