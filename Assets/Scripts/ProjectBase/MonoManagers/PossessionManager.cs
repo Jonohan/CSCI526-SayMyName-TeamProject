@@ -14,6 +14,7 @@ public class PossessionManager : MonoBehaviour
 
     private int possessedCount = 0;
 
+
     void Start()
     {
         Debug.Log("Possession Manager Start()");
@@ -140,5 +141,15 @@ public class PossessionManager : MonoBehaviour
     public int GetPossessedCount()
     {
         return possessedCount;
+    }
+
+    public GameObject GetCurrentPossessedEnemy()
+    {
+        if (currentPlayerControllable != null && currentPlayerControllable.GetComponent<PlayerControllerPossessed>() != null)
+        {
+            return currentPlayerControllable;
+        }
+
+        return null; 
     }
 }
