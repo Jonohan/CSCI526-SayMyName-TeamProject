@@ -4534,7 +4534,7 @@ GameObject:
   m_Component:
   - component: {fileID: 700877405}
   - component: {fileID: 700877407}
-  - component: {fileID: 700877406}
+  - component: {fileID: 700877408}
   m_Layer: 0
   m_Name: CameraCollider2
   m_TagString: Untagged
@@ -4557,21 +4557,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1978608303}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &700877406
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 700877404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79aecc43d1605bb45aa422c26c285626, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCamera: {fileID: 963194227}
-  cameraPosition1: {fileID: 374149989}
-  cameraPosition2: {fileID: 1881141281}
 --- !u!65 &700877407
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4593,6 +4578,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 25.868858, y: 1.2309034, z: 18.377443}
   m_Center: {x: 3.7330894, y: 0.11545169, z: -1.408494}
+--- !u!114 &700877408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700877404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f080baa628b2bcf4cb47305be0ec8530, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 963194227}
+  cameraPosition1: {fileID: 1881141281}
+  cameraPosition2: {fileID: 374149989}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

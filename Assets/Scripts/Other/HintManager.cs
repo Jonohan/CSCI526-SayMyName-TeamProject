@@ -30,7 +30,7 @@ public class HintManager : MonoBehaviour
         }
         if (enemyCount >=3 && playerController.currentState == CharController.PlayerState.Normal)
         {
-            playerHintText.text = "Press 3 for new status";
+            playerHintText.text = "Press 3 to fighting state";
         }
         if (enemyCount >= 3 && playerController.currentState == CharController.PlayerState.Fighting)
         {

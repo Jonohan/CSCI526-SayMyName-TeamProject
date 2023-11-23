@@ -10,6 +10,8 @@ public class CameraSwitch : MonoBehaviour
     public Transform cameraPosition1;
     public Transform cameraPosition2;
 
+    private float transitionDuration = 1.0f;
+
     void Start()
     {
         // Set the initial camera position and rotation
@@ -21,50 +23,32 @@ public class CameraSwitch : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            MoveCamera(cameraPosition1);
+            StartCoroutine(MoveCameraSmoothly(cameraPosition1));
         }
     }
 
     // Move the camera to the new position and rotation
-    private void MoveCamera(Transform newCameraPosition)
+
+    private IEnumerator MoveCameraSmoothly(Transform newCameraPosition)
     {
+        float elapsed = 0;
+
+        Vector3 startPosition = mainCamera.transform.position;
+        Quaternion startRotation = mainCamera.transform.rotation;
+
+        while (elapsed < transitionDuration)
+        {
+            mainCamera.transform.position = Vector3.Lerp(startPosition, newCameraPosition.position, elapsed / transitionDuration);
+            mainCamera.transform.rotation = Quaternion.Lerp(startRotation, newCameraPosition.rotation, elapsed / transitionDuration);
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
         mainCamera.transform.position = newCameraPosition.position;
         mainCamera.transform.rotation = newCameraPosition.rotation;
-        Debug.Log("Camera moved to new position and rotation");
+
+        Debug.Log("Camera moved to new position and rotation smoothly");
     }
-    /*    // When player enter the collider box, switch to the corresponding camera
-        public Camera camera1;
-        public Camera camera2;
-
-        //public GameObject collider1;
-        //public GameObject collider2;
-
-        void Start()
-        {
-            Debug.Log("Camera Switch Script Started");
-            camera1.gameObject.SetActive(true);
-            camera2.gameObject.SetActive(false);
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-
-            if (other.CompareTag("Player"))
-            {
-                Debug.Log("Trigger Entered: " + other.name);
-
-                    camera1.gameObject.SetActive(true);
-                    camera2.gameObject.SetActive(false);
-                    Debug.Log("Switching to Camera 1");
-
-            }
-        }*/
 
 }
