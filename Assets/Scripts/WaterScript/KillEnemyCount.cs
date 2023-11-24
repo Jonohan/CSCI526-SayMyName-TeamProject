@@ -36,6 +36,7 @@ public class KillEnemyCount : MonoBehaviour
             int greenCount = waterScript.GetPatrolEnemyCount();
             redEnemySlider.value = redCount / 3.0f;
             greenEnemySlider.value = greenCount / 3.0f;
+            greenEnemySlider.value = greenEnemySlider.value + redEnemySlider.value;
             if (redCount >= 3)
             {
                 redEnemyText.gameObject.SetActive(true);
