@@ -24,11 +24,17 @@ public class WaterAttackManager : MonoBehaviour
     private CharController playerController = null;
     private bool waterState = false;
 
+    private GameObject leftTriange, rightTriangle;
+
     // Start is called before the first frame update
     void Start()
     {
         water.SetActive(false);
         playerController = originalPlayer.GetComponent<CharController>();
+        leftTriange = GameObject.Find("triangle_left");
+        rightTriangle = GameObject.Find("triangle_right");
+        leftTriange.SetActive(false);
+        rightTriangle.SetActive(false);
         Debug.Log("WaterAttackManager Start()");
     }
 
@@ -80,12 +86,16 @@ public class WaterAttackManager : MonoBehaviour
                 originalPlayer.GetComponent<CharController>().currentState = CharController.PlayerState.Fighting;
                 Debug.Log("Player is on Fighting state now!");
                 EventCenter.GetInstance().TriggerEvent("StartFighting", "Fighting");
+                leftTriange.SetActive(true);
+                rightTriangle.SetActive(true);
             }
             else if (originalPlayer.GetComponent<CharController>().currentState == CharController.PlayerState.Fighting)
             {
                 originalPlayer.GetComponent<CharController>().currentState = CharController.PlayerState.Normal;
                 Debug.Log("Player back to Normal state now!");
                 EventCenter.GetInstance().TriggerEvent("BackToNormalMode", "Normal");
+                leftTriange.SetActive(false);
+                rightTriangle.SetActive(false);
             }
         }
 
