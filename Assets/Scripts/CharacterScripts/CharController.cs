@@ -62,6 +62,11 @@ public class CharController : MonoBehaviour
     // UI
     public GameObject stateTextContainer;
     private Text stateText;
+    
+    
+    private PlayerState previousState;
+    public Color darkShadeColor = new Color(0.5f, 0.5f, 1.0f, 1.0f); //color for detect area
+    public EnemyController possessedEnemy; 
 
     public enum PlayerState
     {
@@ -120,6 +125,14 @@ public class CharController : MonoBehaviour
 
     void Update()
     {
+        // check if the status changed
+        if (currentState != previousState)
+        {
+            UpdateEnemyDetectAreaColor();
+            previousState = currentState;
+        }
+        
+        
         if (stateTextContainer != null)
         {
             // Update status of player
@@ -356,6 +369,42 @@ public class CharController : MonoBehaviour
             // Stop the current coroutine and start a new one
             StopCoroutine(FXCoroutine);
             FXCoroutine = StartCoroutine(PlayParticleEffect(psAimingSelf, 0.7f));
+        }
+    }
+    
+    
+    public void SetPossessedEnemy(EnemyController enemy)
+    {
+        possessedEnemy = enemy;
+        possessedEnemy.ChangeDetectAreaColor(darkShadeColor); // 暗色调表示附身状态
+    }
+
+    public void ClearPossessedEnemy()
+    {
+        if (possessedEnemy != null)
+        {
+            possessedEnemy.RestoreOriginalColor(); // 恢复原始颜色
+            possessedEnemy = null;
+        }
+    }
+    
+    private void UpdateEnemyDetectAreaColor()
+    {
+        if (currentState == PlayerState.Possessing)
+        {
+            // 只改变附身敌人的颜色
+            possessedEnemy?.ChangeDetectAreaColor(darkShadeColor); 
+        }
+        else if (currentState == PlayerState.Fighting)
+        {
+            // 改变所有敌人的颜色
+            EnemyController.ChangeAllDetectAreasColor(darkShadeColor); 
+        }
+        else
+        {
+            // 恢复所有敌人的颜色
+            ClearPossessedEnemy();
+            EnemyController.RestoreAllDetectAreasOriginalColor();
         }
     }
 }
