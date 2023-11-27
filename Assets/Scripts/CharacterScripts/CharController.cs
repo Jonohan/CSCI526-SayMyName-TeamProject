@@ -372,37 +372,36 @@ public class CharController : MonoBehaviour
         }
     }
     
-    
+    // Sets the current possessed enemy and changes its detection area color
     public void SetPossessedEnemy(EnemyController enemy)
     {
         possessedEnemy = enemy;
-        possessedEnemy.ChangeDetectAreaColor(darkShadeColor); // 暗色调表示附身状态
+        possessedEnemy.ChangeDetectAreaColor(darkShadeColor);
     }
 
+    // Restores the original color of the detection area for the possessed enemy and clears the reference
     public void ClearPossessedEnemy()
     {
         if (possessedEnemy != null)
         {
-            possessedEnemy.RestoreOriginalColor(); // 恢复原始颜色
+            possessedEnemy.RestoreOriginalColor(); 
             possessedEnemy = null;
         }
     }
     
+    // Updates the detection area color based on the player's state - possessing, fighting, or other
     private void UpdateEnemyDetectAreaColor()
     {
         if (currentState == PlayerState.Possessing)
         {
-            // 只改变附身敌人的颜色
             possessedEnemy?.ChangeDetectAreaColor(darkShadeColor); 
         }
         else if (currentState == PlayerState.Fighting)
         {
-            // 改变所有敌人的颜色
             EnemyController.ChangeAllDetectAreasColor(darkShadeColor); 
         }
         else
         {
-            // 恢复所有敌人的颜色
             ClearPossessedEnemy();
             EnemyController.RestoreAllDetectAreasOriginalColor();
         }

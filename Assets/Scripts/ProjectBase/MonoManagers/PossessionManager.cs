@@ -36,6 +36,13 @@ public class PossessionManager : MonoBehaviour
             // get the possessed enemy (temporary player)
             GameObject tempPlayer = objList[1];
             
+            // change the enemy detect area
+            EnemyController enemyController = tempPlayer.GetComponent<EnemyController>();
+            if (enemyController != null)
+            {
+                enemyController.ChangeDetectAreaColor(new Color(0.5f, 0.5f, 1.0f, 1.0f)); // change enemy detect area color to blue coloe
+            }
+            
             // disable the enemy controller on it
             tempPlayer.GetComponent<EnemyController>().enabled = false;
             
@@ -94,6 +101,8 @@ public class PossessionManager : MonoBehaviour
         CharController cc = originalPlayer.GetComponent<CharController>();
         // Trigger the event to play the possession fx
         EventCenter.GetInstance().TriggerEvent("ReturnedFromPossession", cc);
+        
+        EnemyController.RestoreAllDetectAreasOriginalColor();
         
     }
 
