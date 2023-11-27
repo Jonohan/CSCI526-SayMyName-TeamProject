@@ -36,6 +36,8 @@ public class EnemyController : MonoBehaviour
 
         DrawDetectArea(transform, viewAngle, viewDistance);  // Draw the enemy's field of view visualization in the game world
 
+        ChangeDetectAreaColor(originalColor);
+
         //// create new canvas object
         //Canvas newCanvas = Instantiate(healthBar);
         ////newCanvas.transform.position = healthBar.transform.position;
