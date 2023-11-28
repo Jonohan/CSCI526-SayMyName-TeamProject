@@ -373,11 +373,11 @@ public class CharController : MonoBehaviour
     }
     
     // Sets the current possessed enemy and changes its detection area color
-    public void SetPossessedEnemy(EnemyController enemy)
+/*    public void SetPossessedEnemy(EnemyController enemy)
     {
         possessedEnemy = enemy;
         possessedEnemy.ChangeDetectAreaColor(darkShadeColor);
-    }
+    }*/
 
     // Restores the original color of the detection area for the possessed enemy and clears the reference
     public void ClearPossessedEnemy()
