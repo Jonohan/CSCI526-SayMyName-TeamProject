@@ -19,8 +19,8 @@ public class EnemyController : MonoBehaviour
     private Coroutine shootingCoroutine;  // Add a new variable to track the coroutine(Enemies shoot the player)
 
     public Material detectAreaMaterial;
-    
-    private Color originalColor = new Color(1.0f, 1.0f, 0.5f, 1.0f);
+
+    public Color originalColor = new Color(1.0f, 1.0f, 0.5f, 1.0f);
 
     //public Canvas healthBar;
 
@@ -33,6 +33,8 @@ public class EnemyController : MonoBehaviour
     private void Start()
     {
         initialPosition = transform.position;  // Set the enemy's starting position
+
+        detectAreaMaterial = new Material(detectAreaMaterial);
 
         DrawDetectArea(transform, viewAngle, viewDistance);  // Draw the enemy's field of view visualization in the game world
 
@@ -154,6 +156,7 @@ public class EnemyController : MonoBehaviour
             enemy.RestoreOriginalColor();
         }
     }
+
     
     
     
